@@ -31,15 +31,33 @@ const styles = StyleSheet.create({
 export default class CameraScreen extends PureComponent {
   constructor() {
     super();
+    this.state = {
+      recording: false,
+    };
     this.takePicture = this.takePicture.bind(this);
+    this.record = this.record.bind(this);
   }
-  takePicture() {
+  async takePicture() {
     if (this.camera) {
       const options = { quality: 0.5, base64: true };
-      this.camera.takePictureAsync(options)
-        .then(data => console.log(data));
+      const data = await this.camera.takePictureAsync(options);
+      console.log(data.uri);
     }
   }
+
+  async record() {
+    if (this.camera) {
+      if (this.state.recording) {
+        this.camera.stopRecording();
+        this.setState({ recording: false });
+      } else {
+        this.setState({ recording: true });
+        const data = await this.camera.recordAsync();
+        console.log(data.uri);
+      }
+    }
+  }
+
 
   render() {
     return (
@@ -56,7 +74,7 @@ export default class CameraScreen extends PureComponent {
         />
         <View style={{ flex: 0, flexDirection: 'row', justifyContent: 'center' }}>
           <TouchableOpacity
-            onPress={this.takePicture}
+            onPress={this.record}
             style={styles.capture}
           >
             <Text style={{ fontSize: 14 }}> SNAP </Text>
