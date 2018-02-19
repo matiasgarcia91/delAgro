@@ -22,9 +22,7 @@ module.exports = {
     'jsx-a11y/no-autofocus': ['off'],
     'react/jsx-filename-extension': [1, { 'extensions': ['.js', '.jsx'] }],
     'import/no-extraneous-dependencies': ['error', {
-      devDependencies: [
-        'tests/**',
-      ],
+      devDependencies: false,
       optionalDependencies: false,
     }],
   },

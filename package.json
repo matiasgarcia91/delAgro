@@ -31,6 +31,8 @@
     "eslint-plugin-jsx-a11y": "^5.0.2",
     "eslint-plugin-react": "^7.1.0",
     "jest": "22.3.0",
+    "metro": "^0.26.0",
+    "metro-core": "^0.26.0",
     "react-test-renderer": "16.2.0"
   },
   "jest": {
