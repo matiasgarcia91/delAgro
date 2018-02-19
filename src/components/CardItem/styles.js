@@ -5,7 +5,6 @@ import { colors } from '../../styles';
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.creamBackground,
     height: 420,
     borderBottomWidth: 2,
     borderBottomColor: colors.lightGrey,
@@ -13,8 +12,6 @@ export default StyleSheet.create({
   },
   videoContainer: {
     flex: 4,
-    justifyContent: 'flex-start',
-    alignItems: 'center',
   },
   image: {
     resizeMode: 'contain',
