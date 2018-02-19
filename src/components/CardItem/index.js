@@ -23,5 +23,9 @@ export default class CardItem extends PureComponent {
 }
 
 CardItem.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string,
+};
+
+CardItem.defaultProps = {
+  id: null,
 };

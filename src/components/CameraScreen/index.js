@@ -1,32 +1,12 @@
 import React, { PureComponent } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import PropTypes from 'prop-types';
 
 import { RNCamera } from 'react-native-camera';
-import MainButton from '../MainButton';
+import NavBarCamara from '../NavBarCamara';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    backgroundColor: 'black',
-  },
-  preview: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-  },
-  capture: {
-    flex: 0,
-    backgroundColor: '#fff',
-    borderRadius: 5,
-    padding: 15,
-    paddingHorizontal: 20,
-    alignSelf: 'center',
-    margin: 20,
-  },
-});
-
+import styles from './styles';
 
 export default class CameraScreen extends PureComponent {
   constructor() {
@@ -34,15 +14,7 @@ export default class CameraScreen extends PureComponent {
     this.state = {
       recording: false,
     };
-    this.takePicture = this.takePicture.bind(this);
     this.record = this.record.bind(this);
-  }
-  async takePicture() {
-    if (this.camera) {
-      const options = { quality: 0.5, base64: true };
-      const data = await this.camera.takePictureAsync(options);
-      console.log(data.uri);
-    }
   }
 
   async record() {
@@ -52,16 +24,17 @@ export default class CameraScreen extends PureComponent {
         this.setState({ recording: false });
       } else {
         this.setState({ recording: true });
-        const data = await this.camera.recordAsync();
+        const options = { quality: RNCamera.Constants.VideoQuality['720p'], maxDuration: 180 };
+        const data = await this.camera.recordAsync(options);
         console.log(data.uri);
       }
     }
   }
 
-
   render() {
     return (
       <View style={styles.container}>
+        <NavBarCamara navigation={this.props.navigation} />
         <RNCamera
           ref={(ref) => {
             this.camera = ref;
@@ -72,14 +45,18 @@ export default class CameraScreen extends PureComponent {
           permissionDialogTitle={'Permission to use camera'}
           permissionDialogMessage={'We need your permission to use your camera phone'}
         />
-        <View style={{ flex: 0, flexDirection: 'row', justifyContent: 'center' }}>
-          <TouchableOpacity
-            onPress={this.record}
-            style={styles.capture}
-          >
-            <Text style={{ fontSize: 14 }}> SNAP </Text>
-          </TouchableOpacity>
-          <MainButton onPress={() => this.props.navigation.goBack()} title={'back'} />
+        <View style={styles.footer}>
+          <View style={styles.buttonContainers}>
+            <TouchableOpacity style={styles.galleryButton} onPress={() => console.log('To gallery')}>
+              <Icon name='image' size={40} color={'#a5a49a'} />
+            </TouchableOpacity>
+          </View>
+          <View style={styles.buttonContainers}>
+            <TouchableOpacity style={styles.captureButton} onPress={this.record}>
+              <Icon name='circle' size={25} />
+            </TouchableOpacity>
+          </View>
+          <View style={styles.buttonContainers} />
         </View>
       </View>
     );

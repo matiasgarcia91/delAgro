@@ -7,7 +7,7 @@ import uploadIcon from '../../assets/images/icons/upload-icon.png';
 import delAgroLogo from '../../assets/images/icons/delagroLogo.png';
 import styles from './styles';
 
-export default class NavBar extends PureComponent {
+export default class NavBarHome extends PureComponent {
   render() {
     return (
       <View style={styles.bar} >
@@ -34,10 +34,10 @@ export default class NavBar extends PureComponent {
   }
 }
 
-NavBar.propTypes = {
+NavBarHome.propTypes = {
   navigation: PropTypes.shape(),
 };
 
-NavBar.defaultProps = {
+NavBarHome.defaultProps = {
   navigation: {},
 };
