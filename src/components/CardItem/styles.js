@@ -5,18 +5,17 @@ import { colors } from '../../styles';
 export default StyleSheet.create({
   container: {
     flex: 1,
-    height: 420,
+    height: 450,
     borderBottomWidth: 2,
     borderBottomColor: colors.lightGrey,
     justifyContent: 'flex-start',
+    backgroundColor: colors.creamBackground,
   },
   videoContainer: {
-    flex: 4,
-  },
-  image: {
-    resizeMode: 'contain',
-    width: 350,
-    flex: 1,
+    marginTop: 15,
+    marginBottom: 10,
+    height: 345,
+    alignItems: 'center',
   },
   footer: {
     flex: 1,
