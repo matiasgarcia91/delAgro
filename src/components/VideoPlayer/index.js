@@ -38,6 +38,7 @@ export default class VideoPlayer extends PureComponent {
           source={{ uri: 'https://player.vimeo.com/external/255985812.m3u8?s=68efe184a31448142948def47515696ef3cb4ec6' }}
           resizeMode='cover'
           repeat
+          muted
           paused={paused}
           style={styles.backgroundVideo}
         />
