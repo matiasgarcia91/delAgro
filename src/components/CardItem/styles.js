@@ -14,8 +14,9 @@ export default StyleSheet.create({
   videoContainer: {
     marginTop: 15,
     marginBottom: 10,
+    marginLeft: 15,
     height: 345,
-    alignItems: 'center',
+    width: 345,
   },
   footer: {
     flex: 1,
