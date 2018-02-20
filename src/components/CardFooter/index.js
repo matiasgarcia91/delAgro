@@ -14,7 +14,7 @@ export default class CardFooter extends PureComponent {
           <Text style={styles.priceText}>$1.24/kg</Text>
         </View>
         <View style={styles.buttonContainer}>
-          <MainButton title={'DETALLES'} onPress={() => console.log('aa')} />
+          <MainButton title={'DETALLES'} onPress={() => console.log('vamo que vamo')} />
         </View>
       </View>
     );

@@ -12,8 +12,7 @@ export default class VideoPlayer extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      paused: true,
-      isLoading: false,
+      paused: this.props.paused,
     };
 
     this.onPress = this.onPress.bind(this);
@@ -30,12 +29,13 @@ export default class VideoPlayer extends PureComponent {
 
   render() {
     const { paused } = this.state;
+    const { uri } = this.props;
 
     return (
       <TouchableOpacity style={styles.backgroundVideo} onPress={this.onPress}>
         <ActivityIndicator size="large" style={styles.spinner} color={colors.lightGreen} />
         <Video
-          source={{ uri: 'https://player.vimeo.com/external/255985812.m3u8?s=68efe184a31448142948def47515696ef3cb4ec6' }}
+          source={{ uri }}
           resizeMode='cover'
           repeat
           muted
@@ -55,9 +55,13 @@ export default class VideoPlayer extends PureComponent {
 
 VideoPlayer.propTypes = {
   id: PropTypes.string,
+  uri: PropTypes.string,
+  paused: PropTypes.bool,
   visibleItems: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 VideoPlayer.defaultProps = {
   id: null,
+  paused: true,
+  uri: 'https://player.vimeo.com/external/255985812.m3u8?s=68efe184a31448142948def47515696ef3cb4ec6',
 };
