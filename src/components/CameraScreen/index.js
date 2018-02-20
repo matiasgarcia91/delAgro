@@ -1,49 +1,66 @@
 import React, { PureComponent } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity, Text, Dimensions } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import PropTypes from 'prop-types';
+import * as Progress from 'react-native-progress';
 
 import { RNCamera } from 'react-native-camera';
-import MainButton from '../MainButton';
+import NavBarCamara from '../NavBarCamara';
+import parseTime from '../../helpers/parseTime';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    backgroundColor: 'black',
-  },
-  preview: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-  },
-  capture: {
-    flex: 0,
-    backgroundColor: '#fff',
-    borderRadius: 5,
-    padding: 15,
-    paddingHorizontal: 20,
-    alignSelf: 'center',
-    margin: 20,
-  },
-});
-
+import styles from './styles';
 
 export default class CameraScreen extends PureComponent {
   constructor() {
     super();
-    this.takePicture = this.takePicture.bind(this);
+    this.state = {
+      recording: false,
+      elapsed: null,
+    };
+    this.record = this.record.bind(this);
+    this.tick = this.tick.bind(this);
+    this.startTimer = this.startTimer.bind(this);
+    this.stopRecording = this.stopRecording.bind(this);
   }
-  takePicture() {
+
+  startTimer() {
+    this.timer = setInterval(this.tick, 1000);
+    this.setState({ elapsed: 0 });
+  }
+
+  stopRecording() {
+    this.camera.stopRecording();
+    clearInterval(this.timer);
+    this.setState({ recording: false, elapsed: null });
+  }
+
+  tick() {
+    const { elapsed: last } = this.state;
+    if (last + 1 === 180) return this.stopRecording();
+    return this.setState({ elapsed: last + 1 });
+  }
+
+  async record() {
     if (this.camera) {
-      const options = { quality: 0.5, base64: true };
-      this.camera.takePictureAsync(options)
-        .then(data => console.log(data));
+      if (this.state.recording) {
+        this.stopRecording();
+      } else {
+        this.startTimer();
+        this.setState({ recording: true });
+        const options = { quality: RNCamera.Constants.VideoQuality['720p'], maxDuration: 180 };
+        const data = await this.camera.recordAsync(options);
+        console.log(data.uri);
+      }
     }
   }
 
   render() {
+    const { elapsed } = this.state;
+    const timer = elapsed ? parseTime(elapsed) : null;
+    const progress = elapsed / 180;
     return (
       <View style={styles.container}>
+        <NavBarCamara navigation={this.props.navigation} />
         <RNCamera
           ref={(ref) => {
             this.camera = ref;
@@ -54,14 +71,37 @@ export default class CameraScreen extends PureComponent {
           permissionDialogTitle={'Permission to use camera'}
           permissionDialogMessage={'We need your permission to use your camera phone'}
         />
-        <View style={{ flex: 0, flexDirection: 'row', justifyContent: 'center' }}>
-          <TouchableOpacity
-            onPress={this.takePicture}
-            style={styles.capture}
-          >
-            <Text style={{ fontSize: 14 }}> SNAP </Text>
-          </TouchableOpacity>
-          <MainButton onPress={() => this.props.navigation.goBack()} title={'back'} />
+        <Progress.Bar
+          progress={progress}
+          width={Dimensions.get('window').width}
+          height={30}
+          borderRadius={0}
+          animated
+          useNativeDriver
+          animationType={'timing'}
+          color={'#95c684'}
+          unfilledColor={'#4a4a4a'}
+          borderWidth={0}
+        />
+        <View style={styles.footer}>
+          <View style={styles.buttonContainers}>
+            <TouchableOpacity style={styles.galleryButton} onPress={() => console.log('To gallery')}>
+              <Icon name='image' size={40} color={'#a5a49a'} />
+            </TouchableOpacity>
+          </View>
+          <View style={styles.buttonContainers}>
+            <TouchableOpacity style={styles.captureButton} onPress={this.record}>
+              <Icon name='circle' size={25} />
+            </TouchableOpacity>
+          </View>
+          <View style={styles.timerContainer}>
+            {!!elapsed && (
+              <View style={{ flexDirection: 'row' }}>
+                <View style={styles.rec} />
+                <Text style={{ fontSize: 19 }}>{timer}</Text>
+              </View>
+            )}
+          </View>
         </View>
       </View>
     );

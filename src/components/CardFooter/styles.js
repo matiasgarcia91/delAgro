@@ -13,11 +13,12 @@ export default StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
-    paddingLeft: 10,
+    paddingLeft: 15,
     paddingVertical: 5,
   },
   buttonContainer: {
     justifyContent: 'center',
+    paddingLeft: 15,
     flex: 1,
   },
   countText: {

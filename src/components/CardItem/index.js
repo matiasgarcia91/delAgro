@@ -1,7 +1,8 @@
 import React, { PureComponent } from 'react';
-import { View, Image } from 'react-native';
+import { View } from 'react-native';
+import PropTypes from 'prop-types';
 
-import cow from '../../assets/images/cow.png';
+import VideoPlayer from '../../containers/VideoPlayerContainer';
 import CardFooter from '../CardFooter';
 
 import styles from './styles';
@@ -11,7 +12,7 @@ export default class CardItem extends PureComponent {
     return (
       <View style={styles.container}>
         <View style={styles.videoContainer}>
-          <Image source={cow} style={styles.image} />
+          <VideoPlayer id={this.props.id} />
         </View>
         <View style={styles.footer}>
           <CardFooter />
@@ -20,3 +21,11 @@ export default class CardItem extends PureComponent {
     );
   }
 }
+
+CardItem.propTypes = {
+  id: PropTypes.string,
+};
+
+CardItem.defaultProps = {
+  id: null,
+};
