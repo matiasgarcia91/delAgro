@@ -8,7 +8,7 @@ export default StyleSheet.create({
     backgroundColor: 'black',
   },
   preview: {
-    flex: 4,
+    flex: 8,
     justifyContent: 'flex-end',
     alignItems: 'center',
   },
@@ -22,7 +22,7 @@ export default StyleSheet.create({
     margin: 20,
   },
   footer: {
-    flex: 1,
+    flex: 2,
     backgroundColor: colors.creamBackground,
     flexDirection: 'row',
   },
@@ -36,6 +36,14 @@ export default StyleSheet.create({
     backgroundColor: '#d11427',
     borderRadius: 70,
   },
+  rec: {
+    width: 10,
+    height: 10,
+    backgroundColor: '#d11427',
+    borderRadius: 10,
+    marginTop: 8,
+    marginRight: 12,
+  },
   galleryButton: {
     height: 70,
     width: 70,
@@ -46,5 +54,11 @@ export default StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  timerContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    flexDirection: 'row',
   },
 });
