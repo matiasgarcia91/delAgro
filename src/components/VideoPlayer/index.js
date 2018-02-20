@@ -54,6 +54,10 @@ export default class VideoPlayer extends PureComponent {
 }
 
 VideoPlayer.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string,
   visibleItems: PropTypes.arrayOf(PropTypes.string).isRequired,
+};
+
+VideoPlayer.defaultProps = {
+  id: null,
 };
