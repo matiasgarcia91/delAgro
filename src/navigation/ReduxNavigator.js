@@ -4,7 +4,7 @@ import * as ReactNavigation from 'react-navigation';
 import { connect } from 'react-redux';
 import { BackHandler } from 'react-native';
 
-import AppNavigator from './AppNavigator';
+import AppWithNavigationState from './AppNavigator';
 
 // here is our redux-aware our smart component
 class ReduxNavigation extends Component {
@@ -33,7 +33,7 @@ class ReduxNavigation extends Component {
       dispatch,
       state: nav,
     });
-    return <AppNavigator navigation={navigation} />;
+    return <AppWithNavigationState navigation={navigation} />;
   }
 }
 

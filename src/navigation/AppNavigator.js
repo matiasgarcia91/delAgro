@@ -1,24 +1,36 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addNavigationHelpers, StackNavigator } from 'react-navigation';
+import { addNavigationHelpers, StackNavigator, DrawerNavigator } from 'react-navigation';
 
 import Login from '../containers/LoginScreen';
 import Register from '../containers/RegisterScreen';
-import DrawerRootContainer from '../containers/DrawerRootContainer';
+import Home from '../containers/HomeScreenContainer';
+import Details from '../components/DetailsScreen';
+import Camera from '../components/CameraScreen';
 import { addListener } from '../utils/redux';
 
-export const AppNavigator = StackNavigator(
-  {
-    Login: { screen: Login },
-    Register: { screen: Register },
-    App: { screen: DrawerRootContainer },
+const homeStack = StackNavigator({
+  Home: { screen: Home },
+  Details: { screen: Details },
+}, { headerMode: 'none' });
+
+export const AppNavigator = StackNavigator({
+  loggedOutFlow: {
+    screen: DrawerNavigator({
+      Home: { screen: homeStack },
+      Camera: { screen: Camera },
+      Login: { screen: Login },
+      Register: { screen: Register },
+    }, { headerMode: 'none' }),
   },
-  {
-    initialRouteName: 'Login',
-    headerMode: 'none',
+  loggedInFlow: {
+    screen: DrawerNavigator({
+      Home: { screen: Home },
+      Camera: { screen: Camera },
+    }, { headerMode: 'none' }),
   },
-);
+}, { initialRouteName: 'loggedOutFlow', headerMode: 'none' });
 
 class AppWithNavigationState extends Component {
   render() {

@@ -9,6 +9,7 @@ export default class Home extends PureComponent {
   constructor(props) {
     super(props);
     this.onViewableItemsChanged = this.onViewableItemsChanged.bind(this);
+    this.renderItem = this.renderItem.bind(this);
   }
 
   onViewableItemsChanged({ viewableItems }) {
@@ -16,15 +17,16 @@ export default class Home extends PureComponent {
     this.props.changeVisibleItemsChange(visibleItems);
   }
 
-  renderItem({ item: { key } }) {
+  renderItem({ item: { key, navigation } }) {
     return (
-      <CardItem id={key} key={key} />
+      <CardItem id={key} key={key} navigation={navigation} />
     );
   }
 
   render() {
+    console.log(this.props.navigation);
     const keys = [{ key: 'a' }, { key: 'b' }, { key: 'c' }, { key: 'd' }, { key: 'e' }, { key: 'f' }];
-
+    const data = keys.map(item => ({ key: item, navigation: this.props.navigation }));
     return (
       <View style={{ flex: 1 }}>
         <View style={{ flex: 1 }}>
@@ -32,11 +34,10 @@ export default class Home extends PureComponent {
         </View>
         <View style={{ flex: 8 }}>
           <FlatList
-            data={keys}
+            data={data}
             renderItem={this.renderItem}
             onViewableItemsChanged={this.onViewableItemsChanged}
           />
-          <CardItem />
         </View>
       </View>
     );
