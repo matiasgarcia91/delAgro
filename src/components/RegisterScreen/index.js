@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import { View, Text, ScrollView } from 'react-native';
 import PropTypes from 'prop-types';
+import { NavigationActions } from 'react-navigation';
 
 import styles from './styles';
 import Logo from '../Logo';
@@ -21,7 +22,6 @@ export default class RegisterScreen extends PureComponent {
       password: '',
       confirmPassword: '',
     };
-    this.toLogin = this.toLogin.bind(this);
     this.onChangeName = this.onChangeName.bind(this);
     this.onChangeLName = this.onChangeLName.bind(this);
     this.onChangeCellphone = this.onChangeCellphone.bind(this);
@@ -64,10 +64,12 @@ export default class RegisterScreen extends PureComponent {
     this.setState({ confirmPassword });
   }
 
-  toLogin() {
-    const { toLogin } = this.props;
-    toLogin();
-  }
+  navigate = () => {
+    const navigateToDetails = NavigationActions.navigate({
+      routeName: 'Login',
+    });
+    this.props.navigation.dispatch(navigateToDetails);
+  };
 
   render() {
     return (
@@ -89,7 +91,7 @@ export default class RegisterScreen extends PureComponent {
             <MainButton onPress={() => console.log('pressed')} title={'Registrarse'} style={styles.bigButton} />
           </View>
           <View style={{ flex: 1 }}>
-            <LoginFooter text={'TIENES UNA CUENTA? '} linkText={'INICIAR SESION'} link={this.toLogin} />
+            <LoginFooter text={'TIENES UNA CUENTA? '} linkText={'INICIAR SESION'} link={this.navigate} />
           </View>
         </ScrollView>
       </View>
@@ -98,5 +100,5 @@ export default class RegisterScreen extends PureComponent {
 }
 
 RegisterScreen.propTypes = {
-  toLogin: PropTypes.func.isRequired,
+  navigation: PropTypes.func.isRequired,
 };

@@ -23,11 +23,7 @@ export default class CardFooter extends PureComponent {
           <Text style={styles.priceText}>$1.24/kg</Text>
         </View>
         <View style={styles.buttonContainer}>
-<<<<<<< HEAD
-          <MainButton title={'DETALLES'} onPress={() => console.log('vamo que vamo')} />
-=======
           <MainButton title={'DETALLES'} onPress={this.navigate} />
->>>>>>> Rearrange navigators, add Details Screen
         </View>
       </View>
     );

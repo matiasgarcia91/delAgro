@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import { View, Text, KeyboardAvoidingView, Platform } from 'react-native';
 import PropTypes from 'prop-types';
+import { NavigationActions } from 'react-navigation';
 
 import FormInput from '../FormInput';
 import MainButton from '../MainButton';
@@ -18,7 +19,6 @@ export default class LoginScreen extends PureComponent {
     this.onUsernameChanged = this.onUsernameChanged.bind(this);
     this.onPasswordChanged = this.onPasswordChanged.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-    this.toRegister = this.toRegister.bind(this);
   }
 
   onUsernameChanged(username) {
@@ -33,9 +33,12 @@ export default class LoginScreen extends PureComponent {
     this.props.login();
   }
 
-  toRegister() {
-    this.props.toRegister();
-  }
+  navigate = () => {
+    const navigateToDetails = NavigationActions.navigate({
+      routeName: 'Register',
+    });
+    this.props.navigation.dispatch(navigateToDetails);
+  };
 
   render() {
     const { username, password } = this.state;
@@ -61,7 +64,7 @@ export default class LoginScreen extends PureComponent {
           <MainButton onPress={this.onSubmit} title={'INGRESAR'} style={styles.bigButton} />
         </View>
         <View style={{ flex: 1 }}>
-          <LoginFooter text={'¿TODAVIA NO TIENES UNA CUENTA? '} linkText={'REGISTRATE'} link={this.toRegister} />
+          <LoginFooter text={'¿TODAVIA NO TIENES UNA CUENTA? '} linkText={'REGISTRATE'} link={this.navigate} />
         </View>
       </KeyboardAvoidingView>
     );
@@ -70,5 +73,5 @@ export default class LoginScreen extends PureComponent {
 
 LoginScreen.propTypes = {
   login: PropTypes.func.isRequired,
-  toRegister: PropTypes.func.isRequired,
+  navigation: PropTypes.shape().isRequired,
 };
