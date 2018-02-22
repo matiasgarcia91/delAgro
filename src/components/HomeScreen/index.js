@@ -24,7 +24,6 @@ export default class Home extends PureComponent {
   }
 
   render() {
-    console.log(this.props.navigation);
     const keys = [{ key: 'a' }, { key: 'b' }, { key: 'c' }, { key: 'd' }, { key: 'e' }, { key: 'f' }];
     const data = keys.map(item => ({ key: item, navigation: this.props.navigation }));
     return (

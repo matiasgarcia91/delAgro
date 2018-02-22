@@ -10,6 +10,7 @@ import Details from '../components/DetailsScreen';
 import Camera from '../components/CameraScreen';
 import { addListener } from '../utils/redux';
 
+// Si se rompe algo probar hacer navs separados para los stacks de logged in/out;
 const homeStack = StackNavigator({
   Home: { screen: Home },
   Details: { screen: Details },
@@ -18,17 +19,17 @@ const homeStack = StackNavigator({
 export const AppNavigator = StackNavigator({
   loggedOutFlow: {
     screen: DrawerNavigator({
-      Home: { screen: homeStack },
-      Camera: { screen: Camera },
-      Login: { screen: Login },
-      Register: { screen: Register },
-    }, { headerMode: 'none' }),
+      Home: { screen: homeStack, navigationOptions: { drawerLabel: 'Inicio' } },
+      Camera: { screen: Camera, navigationOptions: { drawerLabel: 'Publicar lote' } },
+      Login: { screen: Login, navigationOptions: { drawerLabel: 'Iniciar sesion' } },
+      Register: { screen: Register, navigationOptions: { drawerLabel: 'Registrarse' } },
+    }, { headerMode: 'none', drawerWidth: 200 }),
   },
   loggedInFlow: {
     screen: DrawerNavigator({
-      Home: { screen: Home },
-      Camera: { screen: Camera },
-    }, { headerMode: 'none' }),
+      Home: { screen: homeStack, navigationOptions: { drawerLabel: 'Inicio' } },
+      Camera: { screen: Camera, navigationOptions: { drawerLabel: 'Publicar lote' } },
+    }, { headerMode: 'none', drawerWidth: 200 }),
   },
 }, { initialRouteName: 'loggedOutFlow', headerMode: 'none' });
 
