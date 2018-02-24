@@ -9,6 +9,8 @@ export default StyleSheet.create({
     backgroundColor: colors.creamBackground,
     paddingBottom: 5,
     maxHeight: 80,
+    borderBottomWidth: 2,
+    borderBottomColor: colors.lightGrey,
   },
   textContainer: {
     flex: 1,

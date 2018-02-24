@@ -8,7 +8,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: colors.creamBackground,
     paddingBottom: 5,
-    maxHeight: 70,
+    maxHeight: 60,
     borderBottomWidth: 1,
     borderBottomColor: colors.lightGrey,
   },

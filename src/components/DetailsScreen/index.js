@@ -10,7 +10,6 @@ const lot = { key: 'a', quantity: 103, weight: 400, price: '1.24', location: 'Pa
 
 export default class DetailsScreen extends PureComponent {
   render() {
-    const { quantity, location, breed, weight, inspectionDate, comments } = lot;
     return (
       <View style={{ flex: 1 }}>
         <View style={{ flex: 1 }}>
@@ -19,6 +18,7 @@ export default class DetailsScreen extends PureComponent {
         <View style={{ flex: 8 }}>
           <ScrollView>
             <CardItem lot={lot} details />
+            <DetailsText lot={lot} />
           </ScrollView>
         </View>
       </View>
