@@ -1,12 +1,7 @@
-import { login, loginSuccess, loginFailure, toLogin, toRegister } from './session';
-import { toHome, toCamera } from './homeNavigation';
+import { login, loginSuccess, loginFailure } from './session';
 
 export {
   login,
   loginSuccess,
   loginFailure,
-  toLogin,
-  toRegister,
-  toHome,
-  toCamera,
 };

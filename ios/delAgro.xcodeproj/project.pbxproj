@@ -285,7 +285,7 @@
 			remoteGlobalIDString = 358F4ED71D1E81A9004DF814;
 			remoteInfo = RCTBlob;
 		};
-		CE8CF8002040EC95007AC55F /* PBXContainerItemProxy */ = {
+		CE8CF788203F7F98007AC55F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 13672E76F0FE43BCA8662FFC /* RNVectorIcons.xcodeproj */;
 			proxyType = 2;
@@ -671,7 +671,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				2857DAD8B8164C71B9F9488E /* Resources */,
-				CE8CF7D42040EC66007AC55F /* Recovered References */,
+				CE8CF75C203F7F95007AC55F /* Recovered References */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -698,7 +698,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		CE8CF7D42040EC66007AC55F /* Recovered References */ = {
+		CE8CF75C203F7F95007AC55F /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
 				35BB48E7728C4B8C8CE09C81 /* libRNVectorIcons.a */,
@@ -706,10 +706,10 @@
 			name = "Recovered References";
 			sourceTree = "<group>";
 		};
-		CE8CF7FD2040EC95007AC55F /* Products */ = {
+		CE8CF785203F7F97007AC55F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CE8CF8012040EC95007AC55F /* libRNVectorIcons.a */,
+				CE8CF789203F7F98007AC55F /* libRNVectorIcons.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -890,7 +890,7 @@
 					ProjectRef = CEF22D8C203684E800DAA5D2 /* RNCamera.xcodeproj */;
 				},
 				{
-					ProductGroup = CE8CF7FD2040EC95007AC55F /* Products */;
+					ProductGroup = CE8CF785203F7F97007AC55F /* Products */;
 					ProjectRef = 13672E76F0FE43BCA8662FFC /* RNVectorIcons.xcodeproj */;
 				},
 			);
@@ -1122,11 +1122,11 @@
 			remoteRef = ADBDB9261DFEBF0700ED6528 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		CE8CF8012040EC95007AC55F /* libRNVectorIcons.a */ = {
+		CE8CF789203F7F98007AC55F /* libRNVectorIcons.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libRNVectorIcons.a;
-			remoteRef = CE8CF8002040EC95007AC55F /* PBXContainerItemProxy */;
+			remoteRef = CE8CF788203F7F98007AC55F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		CEF22DB5203684E800DAA5D2 /* libjsinspector.a */ = {

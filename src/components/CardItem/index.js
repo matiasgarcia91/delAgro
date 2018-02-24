@@ -15,7 +15,7 @@ export default class CardItem extends PureComponent {
           <VideoPlayer id={this.props.id} />
         </View>
         <View style={styles.footer}>
-          <CardFooter />
+          <CardFooter navigation={this.props.navigation} />
         </View>
       </View>
     );
@@ -24,6 +24,7 @@ export default class CardItem extends PureComponent {
 
 CardItem.propTypes = {
   id: PropTypes.string,
+  navigation: PropTypes.shape().isRequired,
 };
 
 CardItem.defaultProps = {

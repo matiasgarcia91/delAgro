@@ -1,24 +1,37 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addNavigationHelpers, StackNavigator } from 'react-navigation';
+import { addNavigationHelpers, StackNavigator, DrawerNavigator } from 'react-navigation';
 
 import Login from '../containers/LoginScreen';
 import Register from '../containers/RegisterScreen';
-import DrawerRootContainer from '../containers/DrawerRootContainer';
+import Home from '../containers/HomeScreenContainer';
+import Details from '../components/DetailsScreen';
+import Camera from '../components/CameraScreen';
 import { addListener } from '../utils/redux';
 
-export const AppNavigator = StackNavigator(
-  {
-    Login: { screen: Login },
-    Register: { screen: Register },
-    App: { screen: DrawerRootContainer },
+// Si se rompe algo probar hacer navs separados para los stacks de logged in/out;
+const homeStack = StackNavigator({
+  Home: { screen: Home },
+  Details: { screen: Details },
+}, { headerMode: 'none' });
+
+export const AppNavigator = StackNavigator({
+  loggedOutFlow: {
+    screen: DrawerNavigator({
+      Home: { screen: homeStack, navigationOptions: { drawerLabel: 'Inicio' } },
+      Camera: { screen: Camera, navigationOptions: { drawerLabel: 'Publicar lote' } },
+      Login: { screen: Login, navigationOptions: { drawerLabel: 'Iniciar sesion' } },
+      Register: { screen: Register, navigationOptions: { drawerLabel: 'Registrarse' } },
+    }, { headerMode: 'none', drawerWidth: 200 }),
   },
-  {
-    initialRouteName: 'Login',
-    headerMode: 'none',
+  loggedInFlow: {
+    screen: DrawerNavigator({
+      Home: { screen: homeStack, navigationOptions: { drawerLabel: 'Inicio' } },
+      Camera: { screen: Camera, navigationOptions: { drawerLabel: 'Publicar lote' } },
+    }, { headerMode: 'none', drawerWidth: 200 }),
   },
-);
+}, { initialRouteName: 'loggedOutFlow', headerMode: 'none' });
 
 class AppWithNavigationState extends Component {
   render() {

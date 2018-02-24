@@ -12,7 +12,9 @@ const NAV_REGISTER = 'NAV_REGISTER';
 
 // Reducer
 
-const initialState = AppNavigator.router.getStateForAction(AppNavigator.router.getActionForPathAndParams('Login'));
+const initialState = AppNavigator.router.getStateForAction(
+  NavigationActions.init(),
+);
 
 export default function reducer(state = initialState, action) {
   const newState = AppNavigator.router.getStateForAction(action, state);

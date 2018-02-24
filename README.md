@@ -1,5 +1,10 @@
 ## To install
 
+Prerequisite packages:
+
+`npm install -g react-native-cli watchman`
+
+
 1) `yarn install`
 2) `Link camera RN`
 2.1) In XCode, in the project navigator, right click `Libraries` ➜ `Add Files to [your project's name]`
