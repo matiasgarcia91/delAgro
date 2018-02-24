@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Text, TouchableOpacity, Picker, View } from 'react-native';
+import ModalDropdown from 'react-native-modal-dropdown';
 
 import styles from './styles';
 
@@ -30,19 +31,14 @@ export default class DropDown extends PureComponent {
       ([...acc, <Picker.Item label={val.name} value={val.id} />]),
     []);
     return (
-      <View>
-        <TouchableOpacity style={styles.container} disabled={disabled} onPress={this.renderPicker}>
-          <Text style={styles.label}>{label}</Text>
-        </TouchableOpacity>
-        { renderPicker &&
-          <Picker
-            selectedValue={selected}
-            onValueChange={onChange}
-          >
-            <Picker.Item label={'Elija'} value={null} />
-            { items }
-          </Picker>
-        }
+      <View style={styles.container}>
+        <ModalDropdown
+          selectedValue={selected}
+          onValueChange={onChange}
+          style={styles.textInput}
+          options={['1', '2']}
+          onSelect={onChange}
+        />
       </View>
     );
   }

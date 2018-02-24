@@ -32,8 +32,8 @@ export default class PublishScreen extends PureComponent {
     this.onChangeConfirmPassword = this.onChangeConfirmPassword.bind(this);
   }
 
-  onChangeBreed(breedId) {
-    this.setState({ breedId });
+  onChangeBreed(index) {
+    this.setState({ breedId: index });
   }
 
   onChangeCategory(categoryId) {
