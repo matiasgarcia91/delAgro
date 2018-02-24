@@ -5,10 +5,10 @@ import { NavigationActions } from 'react-navigation';
 
 import styles from './styles';
 
-export default class NavBarCamara extends PureComponent {
+export default class NavBarPublish extends PureComponent {
   navigate = () => {
     const navigateToDetails = NavigationActions.navigate({
-      routeName: 'Publish',
+      routeName: 'Home',
     });
     this.props.navigation.dispatch(navigateToDetails);
   };
@@ -16,24 +16,24 @@ export default class NavBarCamara extends PureComponent {
   render() {
     return (
       <View style={styles.bar} >
-        <TouchableHighlight onPress={() => this.props.navigation.goBack()}>
+        <TouchableHighlight onPress={this.navigate}>
           <Text style={styles.sideButtons}>Cancelar</Text>
         </TouchableHighlight>
         <TouchableHighlight>
-          <Text style={styles.title}>Grabar Video</Text>
+          <Text style={styles.title} >Completar datos</Text>
         </TouchableHighlight>
-        <TouchableHighlight onPress={this.navigate}>
-          <Text style={styles.sideButtons}>Siguiente</Text>
+        <TouchableHighlight onPress={() => console.log('Tuya coco')}>
+          <Text style={styles.sideButtons}>Subir</Text>
         </TouchableHighlight>
       </View>
     );
   }
 }
 
-NavBarCamara.propTypes = {
+NavBarPublish.propTypes = {
   navigation: PropTypes.shape(),
 };
 
-NavBarCamara.defaultProps = {
+NavBarPublish.defaultProps = {
   navigation: {},
 };
