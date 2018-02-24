@@ -9,15 +9,15 @@ export default class NavBarBack extends PureComponent {
   render() {
     return (
       <View style={styles.bar} >
-        <TouchableHighlight onPress={() => this.props.navigation.goBack()}>
+        <TouchableHighlight style={{ flex: 1 }} onPress={() => this.props.navigation.goBack()}>
           <Text style={styles.sideButtons}>
             <Icon name={'chevron-left'} size={30} />
           </Text>
         </TouchableHighlight>
-        <TouchableHighlight>
+        <View style={{ flex: 1, alignItems: 'center' }}>
           <Text style={styles.title}>Detalles</Text>
-        </TouchableHighlight>
-        <View />
+        </View>
+        <View style={{ flex: 1 }} />
       </View>
     );
   }

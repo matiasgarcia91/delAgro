@@ -6,8 +6,6 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     height: 450,
-    borderBottomWidth: 2,
-    borderBottomColor: colors.lightGrey,
     justifyContent: 'flex-start',
     backgroundColor: colors.creamBackground,
   },

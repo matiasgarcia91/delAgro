@@ -63,5 +63,5 @@ VideoPlayer.propTypes = {
 VideoPlayer.defaultProps = {
   id: null,
   paused: true,
-  uri: 'https://player.vimeo.com/external/255985812.m3u8?s=68efe184a31448142948def47515696ef3cb4ec6',
+  uri: '',
 };

@@ -4,9 +4,9 @@ import { colors } from '../../styles';
 export default StyleSheet.create({
   bar: {
     backgroundColor: colors.creamBackground,
-    height: 80,
+    flex: 1,
     flexDirection: 'row',
-    paddingTop: 40,
+    paddingTop: 35,
     paddingBottom: 20,
     justifyContent: 'space-between',
     borderBottomWidth: 1,

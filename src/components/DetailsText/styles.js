@@ -11,18 +11,29 @@ export default StyleSheet.create({
   textContainer: {
     flex: 3,
     justifyContent: 'flex-start',
-    alignItems: 'center',
+    alignItems: 'flex-start',
+    paddingLeft: 15,
   },
   buttonsContainer: {
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'center',
+    marginTop: 30,
+    marginBottom: 30,
   },
   caption: {
     fontWeight: 'bold',
-    fontSize: 13,
+    fontSize: 15,
+  },
+  row: {
+    flexDirection: 'row',
+    marginVertical: 3,
   },
   text: {
-    fontSize: 12,
+    fontSize: 15,
+    marginLeft: 5,
+  },
+  button: {
+    width: 150,
   },
 });
