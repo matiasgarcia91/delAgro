@@ -5,6 +5,15 @@ import PropTypes from 'prop-types';
 import NavBarHome from '../../containers/NavBarHomeContainer';
 import CardItem from '../CardItem';
 
+const lots = [
+  { key: 'a', quantity: 103, weight: 400, price: '1.24', location: 'Paysandu', breed: 'Hereford', inspectionDate: '12/01/91', comments: 'Some Comments', uri: 'https://player.vimeo.com/external/255985812.m3u8?s=68efe184a31448142948def47515696ef3cb4ec6' },
+  { key: 'b', quantity: 103, weight: 400, price: '1.24', location: 'Paysandu', breed: 'Hereford', inspectionDate: '12/01/91', comments: 'Some Comments', uri: 'https://player.vimeo.com/external/255985812.m3u8?s=68efe184a31448142948def47515696ef3cb4ec6' },
+  { key: 'c', quantity: 103, weight: 400, price: '1.24', location: 'Paysandu', breed: 'Hereford', inspectionDate: '12/01/91', comments: 'Some Comments', uri: 'https://player.vimeo.com/external/255985812.m3u8?s=68efe184a31448142948def47515696ef3cb4ec6' },
+  { key: 'd', quantity: 103, weight: 400, price: '1.24', location: 'Paysandu', breed: 'Hereford', inspectionDate: '12/01/91', comments: 'Some Comments', uri: 'https://player.vimeo.com/external/255985812.m3u8?s=68efe184a31448142948def47515696ef3cb4ec6' },
+  { key: 'e', quantity: 103, weight: 400, price: '1.24', location: 'Paysandu', breed: 'Hereford', inspectionDate: '12/01/91', comments: 'Some Comments', uri: 'https://player.vimeo.com/external/255985812.m3u8?s=68efe184a31448142948def47515696ef3cb4ec6' },
+  { key: 'f', quantity: 103, weight: 400, price: '1.24', location: 'Paysandu', breed: 'Hereford', inspectionDate: '12/01/91', comments: 'Some Comments', uri: 'https://player.vimeo.com/external/255985812.m3u8?s=68efe184a31448142948def47515696ef3cb4ec6' },
+];
+
 export default class Home extends PureComponent {
   constructor(props) {
     super(props);
@@ -17,15 +26,15 @@ export default class Home extends PureComponent {
     this.props.changeVisibleItemsChange(visibleItems);
   }
 
-  renderItem({ item: { key, navigation } }) {
+  renderItem({ item: { key, navigation, lot } }) {
     return (
-      <CardItem id={key} key={key} navigation={navigation} />
+      <CardItem id={key} key={key} navigation={navigation} lot={lot} />
     );
   }
 
   render() {
-    const keys = [{ key: 'a' }, { key: 'b' }, { key: 'c' }, { key: 'd' }, { key: 'e' }, { key: 'f' }];
-    const data = keys.map(item => ({ key: item.key, navigation: this.props.navigation }));
+    const data =
+      lots.map(item => ({ key: item.key, navigation: this.props.navigation, lot: item }));
     return (
       <View style={{ flex: 1 }}>
         <View style={{ flex: 1 }}>

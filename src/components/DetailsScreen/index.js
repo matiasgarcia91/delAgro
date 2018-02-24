@@ -25,14 +25,6 @@ export default class DetailsScreen extends PureComponent {
         </View>
         <View style={{ flex: 8 }}>
           <CardItem />
-          <DetailsText
-            quantity={quantity}
-            location={location}
-            breed={breed}
-            weight={weight}
-            inspectionDate={inspectionDate}
-            comments={comments}
-          />
         </View>
       </View>
     );
