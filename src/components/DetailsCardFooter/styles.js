@@ -8,7 +8,9 @@ export default StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: colors.creamBackground,
     paddingBottom: 5,
-    maxHeight: 80,
+    maxHeight: 70,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.lightGrey,
   },
   textContainer: {
     flex: 1,
@@ -17,26 +19,32 @@ export default StyleSheet.create({
     paddingLeft: 15,
     paddingVertical: 5,
   },
-  buttonContainer: {
-    justifyContent: 'center',
-    paddingLeft: 15,
+  favContainer: {
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-end',
+    paddingRight: 25,
     flex: 1,
+  },
+  favStar: {
+    height: 38,
+    width: 38,
+    marginRight: 4,
+  },
+  favText: {
+    fontSize: 10,
+    marginTop: 3,
+    marginRight: 3,
   },
   countText: {
     fontSize: global.midFontSize,
-    flex: 1,
     fontWeight: 'bold',
     color: colors.darkGreen,
-  },
-  weightText: {
-    color: colors.darkGreen,
-    fontSize: global.midFontSize,
-    flex: 1,
   },
   priceText: {
     fontSize: global.midFontSize,
     fontWeight: 'bold',
-    flex: 1,
     color: colors.lightGreen,
+    marginTop: 1,
   },
 });
