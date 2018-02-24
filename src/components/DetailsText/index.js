@@ -6,7 +6,19 @@ import MainButton from '../MainButton';
 
 import styles from './styles';
 
-const DetailsText = ({ lot: { quantity, state, weight, inspectionDate, description }, breed, category }) => (
+const DetailsText = ({
+  lot: {
+    quantity,
+    state,
+    breed,
+    weight,
+    inspectionDate,
+    description,
+  },
+  breed,
+  category,
+  toggleModal },
+) => (
   <View style={styles.container}>
     <View style={styles.textContainer}>
       <View style={styles.row} >
@@ -32,7 +44,7 @@ const DetailsText = ({ lot: { quantity, state, weight, inspectionDate, descripti
       </View>
     </View>
     <View style={styles.buttonsContainer}>
-      <MainButton onPress={() => {}} title={'Contactar'} style={styles.button} />
+      <MainButton onPress={toggleModal} title={'Contactar'} style={styles.button} />
     </View>
   </View>
 );
@@ -47,6 +59,7 @@ DetailsText.propTypes = {
   }).isRequired,
   breed: PropTypes.string.isRequired,
   category: PropTypes.string.isRequired,
+  toggleModal: PropTypes.func.isRequired,
 };
 
 export default DetailsText;
