@@ -1,43 +1,25 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Text, Picker, View } from 'react-native';
+import { Text, View } from 'react-native';
 import { Dropdown } from 'react-native-material-dropdown';
 
 import styles from './styles';
 
-const data = [{
-  value: 'Banana',
-}, {
-  value: 'Mango',
-}, {
-  value: 'Pear',
-}];
-
 export default class DropDown extends PureComponent {
   constructor(props) {
     super(props);
-    this.state = {
-      renderPicker: false,
-    };
-    this.renderPicker = this.renderPicker.bind(this);
+    this.renderSelected = this.renderSelected.bind(this);
   }
 
-  generateItems(values) {
-    return values.reduce((acc, val) =>
-      ([...acc, <Picker.Item label={val.name} value={val.id} />]),
-    []);
-  }
-
-  renderPicker() {
-    this.setState({ renderPicker: true });
+  renderSelected() {
+    const { selected } = this.props;
+    return selected ?
+      (<View style={styles.selectedText}><Text>{selected.name}</Text></View>) :
+      (<View style={styles.selectedText}><Text>Seleccionar</Text></View>);
   }
 
   render() {
-    const { disabled, label, values, onChange, selected } = this.props;
-    const { renderPicker } = this.state;
-    const items = values.reduce((acc, val) =>
-      ([...acc, <Picker.Item label={val.name} value={val.id} />]),
-    []);
+    const { label, values, onChange } = this.props;
     return (
       <View style={styles.container}>
         { label &&
@@ -45,10 +27,13 @@ export default class DropDown extends PureComponent {
         }
         <Dropdown
           label=''
-          data={data}
+          data={values}
           onChangeText={onChange}
-          dropdownOffset={{ top: 90 }}
-          renderBase={() => (<View style={styles.textInput}><Text>{data[0].value}</Text></View>)}
+          dropdownOffset={{ top: 90, left: 0 }}
+          rippleInsets={{ top: 0 }}
+          renderBase={this.renderSelected}
+          valueExtractor={item => item.id}
+          labelExtractor={item => item.name}
         />
       </View>
     );
@@ -57,15 +42,11 @@ export default class DropDown extends PureComponent {
 
 DropDown.propTypes = {
   label: PropTypes.string.isRequired,
-  values: PropTypes.shape().isRequired,
-  selected: PropTypes.number,
-  disabled: PropTypes.bool,
+  values: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  selected: PropTypes.shape(),
   onChange: PropTypes.func.isRequired,
 };
 
 DropDown.defaultProps = {
-  style: 0,
-  icon: '',
-  disabled: false,
   selected: null,
 };

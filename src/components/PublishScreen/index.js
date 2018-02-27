@@ -12,11 +12,10 @@ export default class PublishScreen extends PureComponent {
   constructor() {
     super();
     this.state = {
-      categoryId: null,
-      breedId: null,
-      stateId: null,
-      cellphone: '',
-      state: '',
+      category: null,
+      breed: null,
+      state: null,
+      quantity: '',
       dob: '',
       email: '',
       password: '',
@@ -24,61 +23,55 @@ export default class PublishScreen extends PureComponent {
     };
     this.onChangeBreed = this.onChangeBreed.bind(this);
     this.onChangeCategory = this.onChangeCategory.bind(this);
-    this.onChangeCellphone = this.onChangeCellphone.bind(this);
+    this.onChangePrice = this.onChangePrice.bind(this);
     this.onChangeState = this.onChangeState.bind(this);
-    this.onChangeDOB = this.onChangeDOB.bind(this);
     this.onChangeWeight = this.onChangeWeight.bind(this);
-    this.onChangePassword = this.onChangePassword.bind(this);
-    this.onChangeConfirmPassword = this.onChangeConfirmPassword.bind(this);
+    this.onChangeComments = this.onChangeComments.bind(this);
+    this.onChangeQuantity = this.onChangeQuantity.bind(this);
+  }
+  onChangeCategory(value, index, data) {
+    const category = data.find(item => item.id === value);
+    this.setState({ category });
   }
 
-  onChangeBreed(index) {
-    this.setState({ breedId: index });
+  onChangeQuantity(quantity) {
+    this.setState({ quantity });
   }
 
-  onChangeCategory(categoryId, index, data) {
-    console.log(categoryId);
-    console.log(index);
-    console.log(data);
-    this.setState({ categoryId });
-  }
-
-  onChangeCellphone(cellphone) {
-    this.setState({ cellphone });
-  }
-
-  onChangeState(state) {
-    this.setState({ state });
-  }
-
-  onChangeDOB(dob) {
-    this.setState({ dob });
+  onChangeBreed(value, index, data) {
+    const breed = data.find(item => item.id === value);
+    this.setState({ breed });
   }
 
   onChangeWeight(weight) {
     this.setState({ weight });
   }
 
-  onChangePassword(password) {
-    this.setState({ password });
+  onChangeState(value, index, data) {
+    const state = data.find(item => item.id === value);
+    this.setState({ state });
   }
 
-  onChangeConfirmPassword(confirmPassword) {
-    this.setState({ confirmPassword });
+  onChangePrice(price) {
+    this.setState({ price });
+  }
+
+  onChangeComments(comments) {
+    this.setState({ comments });
   }
 
   render() {
-    const { breedId, categoryId, stateId } = this.state;
+    const { breed, category, state } = this.state;
     return (
       <View style={styles.container}>
         <NavBarPublish navigation={this.props.navigation} />
         <ScrollView>
           <View style={styles.formContainer}>
-            <DropDown label={'Categoria:'} selected={categoryId} values={CATEGORIAS} onChange={this.onChangeCategory} />
-            <FormInput label={'Cantidad:'} onChangeText={this.onChangeLName} />
-            <DropDown label={'Raza:'} selected={breedId} values={RAZAS} onChange={this.onChangeBreed} />
+            <DropDown label={'Categoria:'} selected={category} values={CATEGORIAS} onChange={this.onChangeCategory} />
+            <FormInput label={'Cantidad:'} onChangeText={this.onChangeQuantity} />
+            <DropDown label={'Raza:'} selected={breed} values={RAZAS} onChange={this.onChangeBreed} />
             <FormInput label={'Peso:'} onChangeText={this.onChangeWeight} />
-            <FormInput label={'Departamento:'} selected={stateId} values={DEPARTAMENTOS} onChangeText={this.onChangeState} />
+            <DropDown label={'Departamento:'} selected={state} values={DEPARTAMENTOS} onChange={this.onChangeState} />
             <FormInput label={'Precio por Kg:'} onChangeText={this.onChangeEmail} />
             <FormInput label={'Comentarios:'} onChangeText={this.onChangePassword} />
           </View>
