@@ -15,8 +15,10 @@ export default StyleSheet.create({
     height: 35,
     borderWidth: 1,
     borderColor: colors.darkGreen,
-    paddingLeft: 10,
+    paddingHorizontal: 10,
     paddingTop: 8,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   label: {
     marginBottom: 5,
