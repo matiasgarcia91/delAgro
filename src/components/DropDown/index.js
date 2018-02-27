@@ -1,9 +1,17 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Text, TouchableOpacity, Picker, View } from 'react-native';
-import ModalDropdown from 'react-native-modal-dropdown';
+import { Text, Picker, View } from 'react-native';
+import { Dropdown } from 'react-native-material-dropdown';
 
 import styles from './styles';
+
+const data = [{
+  value: 'Banana',
+}, {
+  value: 'Mango',
+}, {
+  value: 'Pear',
+}];
 
 export default class DropDown extends PureComponent {
   constructor(props) {
@@ -32,12 +40,15 @@ export default class DropDown extends PureComponent {
     []);
     return (
       <View style={styles.container}>
-        <ModalDropdown
-          selectedValue={selected}
-          onValueChange={onChange}
-          style={styles.textInput}
-          options={['1', '2']}
-          onSelect={onChange}
+        { label &&
+          <Text style={styles.label}>{label}</Text>
+        }
+        <Dropdown
+          label=''
+          data={data}
+          onChangeText={onChange}
+          dropdownOffset={{ top: 90 }}
+          renderBase={() => (<View style={styles.textInput}><Text>{data[0].value}</Text></View>)}
         />
       </View>
     );

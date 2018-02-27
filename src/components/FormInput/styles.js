@@ -11,9 +11,8 @@ export default StyleSheet.create({
   },
   textInput: {
     borderRadius: global.baseBorderRadius,
-    flex: 1,
     backgroundColor: colors.white,
-    height: 50,
+    height: 35,
     borderWidth: 1,
     borderColor: colors.darkGreen,
     paddingLeft: 10,

@@ -36,7 +36,10 @@ export default class PublishScreen extends PureComponent {
     this.setState({ breedId: index });
   }
 
-  onChangeCategory(categoryId) {
+  onChangeCategory(categoryId, index, data) {
+    console.log(categoryId);
+    console.log(index);
+    console.log(data);
     this.setState({ categoryId });
   }
 
@@ -71,7 +74,7 @@ export default class PublishScreen extends PureComponent {
         <NavBarPublish navigation={this.props.navigation} />
         <ScrollView>
           <View style={styles.formContainer}>
-            <DropDown label={'Categoria:'} selected={categoryId} values={CATEGORIAS} onChange={this.onChangeBreed} />
+            <DropDown label={'Categoria:'} selected={categoryId} values={CATEGORIAS} onChange={this.onChangeCategory} />
             <FormInput label={'Cantidad:'} onChangeText={this.onChangeLName} />
             <DropDown label={'Raza:'} selected={breedId} values={RAZAS} onChange={this.onChangeBreed} />
             <FormInput label={'Peso:'} onChangeText={this.onChangeWeight} />
