@@ -8,12 +8,14 @@ import Register from '../containers/RegisterScreen';
 import Home from '../containers/HomeScreenContainer';
 import Details from '../components/DetailsScreen';
 import Camera from '../components/CameraScreen';
+import Publish from '../components/PublishScreen';
 import { addListener } from '../utils/redux';
 
 // Si se rompe algo probar hacer navs separados para los stacks de logged in/out;
 const homeStack = StackNavigator({
   Home: { screen: Home },
   Details: { screen: Details },
+  Publish: { screen: Publish },
 }, { headerMode: 'none' });
 
 export const AppNavigator = StackNavigator({
