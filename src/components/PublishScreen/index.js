@@ -73,7 +73,7 @@ export default class PublishScreen extends PureComponent {
             <FormInput label={'Peso:'} onChangeText={this.onChangeWeight} />
             <DropDown label={'Departamento:'} selected={state} values={DEPARTAMENTOS} onChange={this.onChangeState} />
             <FormInput label={'Precio por Kg:'} onChangeText={this.onChangeEmail} />
-            <FormInput label={'Comentarios:'} onChangeText={this.onChangePassword} />
+            <FormInput label={'Comentarios:'} onChangeText={this.onChangePassword} multiline />
           </View>
         </ScrollView>
       </View>
