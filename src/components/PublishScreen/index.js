@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { View, ScrollView } from 'react-native';
 import PropTypes from 'prop-types';
 
-import NavBarPublish from '../NavBarPublish';
+import NavBarPublish from '../../containers/NavBarPublishContainer';
 import styles from './styles';
 import FormInput from '../FormInput';
 import DropDown from '../DropDown';

@@ -68,8 +68,6 @@ export default class CameraScreen extends PureComponent {
     };
 
     ImagePicker.launchImageLibrary(options, (response) => {
-      console.log('Response = ', response);
-
       if (response.didCancel) {
         console.log('User cancelled video picker');
       } else if (response.error) {
@@ -88,7 +86,7 @@ export default class CameraScreen extends PureComponent {
     const progress = elapsed / 180;
     return (
       <View style={styles.container}>
-        <NavBarCamara navigation={this.props.navigation} />
+        <NavBarCamara navigation={this.props.navigation} video={video} />
         { video ?
           (<View style={styles.preview}><VideoPlayer uri={video} paused={false} /></View>) :
           (<RNCamera
