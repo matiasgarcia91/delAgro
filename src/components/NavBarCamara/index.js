@@ -9,6 +9,7 @@ export default class NavBarCamara extends PureComponent {
   navigate = () => {
     const navigateToDetails = NavigationActions.navigate({
       routeName: 'Publish',
+      params: { video: this.props.video },
     });
     this.props.navigation.dispatch(navigateToDetails);
   };
@@ -32,8 +33,10 @@ export default class NavBarCamara extends PureComponent {
 
 NavBarCamara.propTypes = {
   navigation: PropTypes.shape(),
+  video: PropTypes.string,
 };
 
 NavBarCamara.defaultProps = {
   navigation: {},
+  video: '',
 };
