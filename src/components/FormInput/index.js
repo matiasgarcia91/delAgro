@@ -6,7 +6,7 @@ import styles from './styles';
 
 class FormInput extends PureComponent {
   render() {
-    const { label, multiline } = this.props;
+    const { label, multiline, autoCapitalize } = this.props;
     const extraHeight = multiline ? { height: 120 } : null;
     return (
       <View style={[styles.container, extraHeight]}>
@@ -20,6 +20,7 @@ class FormInput extends PureComponent {
           underlineColorAndroid="transparent"
           ref={this.props.inputRef}
           {...this.props}
+          autoCapitalize={autoCapitalize}
         />
       </View>
     );
@@ -30,12 +31,14 @@ FormInput.propTypes = {
   inputRef: PropTypes.func,
   label: PropTypes.string,
   multiline: PropTypes.bool,
+  autoCapitalize: PropTypes.string,
 };
 
 FormInput.defaultProps = {
   inputRef: () => {},
   label: null,
   multiline: false,
+  autoCapitalize: 'sentences',
 };
 
 export default FormInput;
