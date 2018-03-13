@@ -13,8 +13,8 @@ export default class RegisterScreen extends PureComponent {
   constructor() {
     super();
     this.state = {
-      fname: '',
-      lname: '',
+      firstName: '',
+      lastName: '',
       cellphone: '',
       state: '',
       dob: '',
@@ -30,14 +30,15 @@ export default class RegisterScreen extends PureComponent {
     this.onChangeEmail = this.onChangeEmail.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
     this.onChangeConfirmPassword = this.onChangeConfirmPassword.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
-  onChangeName(fname) {
-    this.setState({ fname });
+  onChangeName(firstName) {
+    this.setState({ firstName });
   }
 
-  onChangeLName(lname) {
-    this.setState({ lname });
+  onChangeLName(lastName) {
+    this.setState({ lastName });
   }
 
   onChangeCellphone(cellphone) {
@@ -64,6 +65,24 @@ export default class RegisterScreen extends PureComponent {
     this.setState({ confirmPassword });
   }
 
+  onSubmit() {
+    const {
+      firstName,
+      lastName,
+      cellphone,
+      state,
+      dob,
+      email,
+      password,
+      confirmPassword,
+    } = this.state;
+    if (password !== confirmPassword) {
+      // TODO: hacer algo cuando los password son distintos.
+      return null;
+    }
+    return this.props.registerUser({ firstName, lastName, cellphone, state, dob, email, password });
+  }
+
   navigate = () => {
     const navigateToDetails = NavigationActions.navigate({
       routeName: 'Login',
@@ -88,7 +107,7 @@ export default class RegisterScreen extends PureComponent {
             <FormInput label={'Correo electrónico:'} onChangeText={this.onChangeEmail} />
             <FormInput label={'Contraseña:'} onChangeText={this.onChangePassword} />
             <FormInput label={'Repetir contraseña:'} onChangeText={this.onChangeConfirmPassword} />
-            <MainButton onPress={() => console.log('pressed')} title={'Registrarse'} style={styles.bigButton} />
+            <MainButton onPress={this.onSubmit} title={'Registrarse'} style={styles.bigButton} />
           </View>
           <View style={{ flex: 1 }}>
             <LoginFooter text={'TIENES UNA CUENTA? '} linkText={'INICIAR SESION'} link={this.navigate} />
@@ -101,4 +120,5 @@ export default class RegisterScreen extends PureComponent {
 
 RegisterScreen.propTypes = {
   navigation: PropTypes.func.isRequired,
+  registerUser: PropTypes.func.isRequired,
 };

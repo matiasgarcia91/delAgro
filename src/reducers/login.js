@@ -60,3 +60,14 @@ export function toRegister() {
     dispatch(navigateToRegister());
   };
 }
+
+export function registerUser({ firstName, lastName, email, password, dob, cellphone }) {
+  return (dispatch) => {
+    dispatch(loginPending());
+    return axios.post('/auth/sign_up')
+      .then((response) => {
+        console.log(response);
+      })
+      .catch(e => console.log(e));
+  };
+}
