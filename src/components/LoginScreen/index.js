@@ -13,16 +13,16 @@ export default class LoginScreen extends PureComponent {
   constructor() {
     super();
     this.state = {
-      username: '',
+      email: '',
       password: '',
     };
-    this.onUsernameChanged = this.onUsernameChanged.bind(this);
+    this.onEmailChanged = this.onEmailChanged.bind(this);
     this.onPasswordChanged = this.onPasswordChanged.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-  onUsernameChanged(username) {
-    this.setState({ username });
+  onEmailChanged(email) {
+    this.setState({ email });
   }
 
   onPasswordChanged(password) {
@@ -30,7 +30,11 @@ export default class LoginScreen extends PureComponent {
   }
 
   onSubmit() {
-    this.props.login();
+    const { email: email2, password: password2 } = this.state;
+    // TODO: Remove test credentials
+    const email = email2 === '' ? 'diego_abreu@delagro.com' : email2;
+    const password = password2 === '' ? 'password' : password2;
+    this.props.login({ email, password });
   }
 
   navigate = () => {
@@ -41,7 +45,7 @@ export default class LoginScreen extends PureComponent {
   };
 
   render() {
-    const { username, password } = this.state;
+    const { email, password } = this.state;
     return (
       <KeyboardAvoidingView style={styles.container} behaviour='padding' keyboardVerticalOffset={(Platform.OS === 'android') ? -500 : 0}>
         <View style={styles.logoContainer}>
@@ -51,15 +55,17 @@ export default class LoginScreen extends PureComponent {
           <Text style={styles.titleText}>Iniciar Sesión</Text>
           <FormInput
             label={'Usuario:'}
-            value={username}
+            value={email}
             autoFocus
-            onChangeText={this.onUsernameChanged}
+            onChangeText={this.onEmailChanged}
+            autoCapitalize={'none'}
           />
           <FormInput
             label={'Contraseña:'}
             placeholder={password}
             value={password}
             onChangeText={this.onPasswordChanged}
+            autoCapitalize={'none'}
           />
           <MainButton onPress={this.onSubmit} title={'INGRESAR'} style={styles.bigButton} />
         </View>
