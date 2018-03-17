@@ -20,7 +20,7 @@ module.exports = {
     'jsx-quotes': ['off'],
     'react/prefer-stateless-function': [0],
     'jsx-a11y/no-autofocus': ['off'],
-    'camelcase': ["error", { properties: "never" }],
+    'camelcase': ["off"],
     'react/jsx-filename-extension': [1, { 'extensions': ['.js', '.jsx'] }],
     'import/no-extraneous-dependencies': ['error', {
       devDependencies: false,
