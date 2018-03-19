@@ -1,3 +1,5 @@
+export const PUBLIC_KEY = '42215bb2182812ea28b8d41d9b28';
+
 export const CATEGORIAS = [
   { id: 1, name: 'Vaquillonas' },
   { id: 2, name: 'Preñado' },
