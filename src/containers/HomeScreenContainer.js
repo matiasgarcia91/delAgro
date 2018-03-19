@@ -7,4 +7,7 @@ import HomeScreen from '../components/HomeScreen';
 function mapStateToProps({ lots: { allLots } }) {
   return { allLots };
 }
-export default connect(mapStateToProps, { changeVisibleItemsChange, fetchAllLots })(HomeScreen);
+export default connect(
+  mapStateToProps,
+  { changeVisibleItemsChange, fetchAllLots },
+)(HomeScreen);
