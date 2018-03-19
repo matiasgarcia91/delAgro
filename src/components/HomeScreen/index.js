@@ -21,6 +21,10 @@ export default class Home extends PureComponent {
     this.renderItem = this.renderItem.bind(this);
   }
 
+  componentDidMount() {
+    this.props.fetchAllLots();
+  }
+
   onViewableItemsChanged({ viewableItems }) {
     const visibleItems = viewableItems.map(item => item.key);
     this.props.changeVisibleItemsChange(visibleItems);
@@ -55,4 +59,5 @@ export default class Home extends PureComponent {
 Home.propTypes = {
   navigation: PropTypes.shape().isRequired,
   changeVisibleItemsChange: PropTypes.func.isRequired,
+  fetchAllLots: PropTypes.func.isRequired,
 };
