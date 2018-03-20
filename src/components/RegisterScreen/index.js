@@ -66,7 +66,7 @@ export default class RegisterScreen extends PureComponent {
   }
 
   onSubmit() {
-  /*  const {
+    const {
       firstName,
       lastName,
       cellphone,
@@ -79,12 +79,26 @@ export default class RegisterScreen extends PureComponent {
     if (password !== confirmPassword) {
       // TODO: hacer algo cuando los password son distintos.
       return null;
-    } */
-    const firstName = 'pruebaApp';
-    const lastName = 'pruebaApp';
-    const email = 'aa@dd.com';
-    const password = '123456';
-    return this.props.registerUser({ firstName, lastName, email, password });
+    }
+    const user = {
+      firstName,
+      lastName,
+      cellphone,
+      state,
+      dob,
+      email,
+      password,
+      confirmPassword,
+    };
+
+    const fakeRegister = {
+      firstName: 'pruebaApp',
+      lastName: 'pruebaApp',
+      email: 'aadd.com',
+      password: '123456',
+    };
+    // TODO: switch to user and delete fakeRegister
+    return this.props.registerUser(fakeRegister);
   }
 
   navigate = () => {
