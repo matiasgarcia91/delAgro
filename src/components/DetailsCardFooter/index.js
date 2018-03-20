@@ -22,14 +22,14 @@ export default class DetailsCardFooter extends PureComponent {
   }
 
   render() {
-    const { lot: { quantity, price } } = this.props;
+    const { lot: { quantity, price }, category } = this.props;
     const { favourite } = this.state;
     const src = favourite ? favouriteYellow : favouriteBlank;
     const favText = favourite ? 'Favorito' : 'Guardar';
     return (
       <View style={styles.container}>
         <View style={styles.textContainer}>
-          <Text style={styles.countText}>{quantity} Vaquillonas</Text>
+          <Text style={styles.countText}>{quantity} {category}</Text>
           <Text style={styles.priceText}>${price}/kg</Text>
         </View>
         <View style={styles.favContainer}>
@@ -46,8 +46,10 @@ export default class DetailsCardFooter extends PureComponent {
 DetailsCardFooter.propTypes = {
   lot: PropTypes.shape().isRequired,
   favourite: PropTypes.bool,
+  category: PropTypes.string,
 };
 
 DetailsCardFooter.defaultProps = {
   favourite: false,
+  category: '',
 };

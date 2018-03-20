@@ -8,7 +8,7 @@ import DetailsText from '../DetailsText';
 
 export default class DetailsScreen extends PureComponent {
   render() {
-    const lot = this.props.selected || this.props.navigation.state.params.selectedLot;
+    const { selected, breed, category } = this.props;
     return (
       <View style={{ flex: 1 }}>
         <View style={{ flex: 1 }}>
@@ -16,8 +16,8 @@ export default class DetailsScreen extends PureComponent {
         </View>
         <View style={{ flex: 8 }}>
           <ScrollView>
-            <CardItem lot={lot} details />
-            <DetailsText lot={lot} />
+            <CardItem lot={selected} category={category} details />
+            <DetailsText lot={selected} category={category} breed={breed} />
           </ScrollView>
         </View>
       </View>
@@ -28,8 +28,12 @@ export default class DetailsScreen extends PureComponent {
 DetailsScreen.propTypes = {
   navigation: PropTypes.shape().isRequired,
   selected: PropTypes.shape(),
+  breed: PropTypes.string,
+  category: PropTypes.string,
 };
 
 DetailsScreen.defaultProps = {
   selected: null,
+  breed: '',
+  category: '',
 };
