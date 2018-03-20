@@ -6,17 +6,14 @@ import MainButton from '../MainButton';
 
 import styles from './styles';
 
-const DetailsText = ({ lot: { quantity, location, breed, weight, inspectionDate, comments } }) => (
+const DetailsText = ({ lot: { quantity, state, breed, weight, inspectionDate, description } }) => (
   <View style={styles.container}>
     <View style={styles.textContainer}>
       <View style={styles.row} >
         <Text style={styles.caption}>Cantidad:</Text><Text style={styles.text}>{quantity}</Text>
       </View>
       <View style={styles.row} >
-        <Text style={styles.caption}>Ubicacion:</Text><Text style={styles.text}>{location}</Text>
-      </View>
-      <View style={styles.row} >
-        <Text style={styles.caption}>Ubicacion:</Text><Text style={styles.text}>{location}</Text>
+        <Text style={styles.caption}>Ubicacion:</Text><Text style={styles.text}>{state}</Text>
       </View>
       <View style={styles.row} >
         <Text style={styles.caption}>Raza:</Text><Text style={styles.text}>{breed}</Text>
@@ -29,7 +26,9 @@ const DetailsText = ({ lot: { quantity, location, breed, weight, inspectionDate,
         <Text style={styles.text}>{inspectionDate}</Text>
       </View>
       <View style={styles.row} >
-        <Text style={styles.caption}>Comentarios:</Text><Text style={styles.text}>{comments}</Text>
+        <Text style={styles.caption}>Comentarios:</Text><Text style={styles.text}>
+          {description}
+        </Text>
       </View>
     </View>
     <View style={styles.buttonsContainer}>
@@ -43,7 +42,7 @@ DetailsText.propTypes = {
     quantity: PropTypes.number,
     location: PropTypes.string,
     breed: PropTypes.string,
-    weight: PropTypes.number,
+    weight: PropTypes.string,
     inspectionDate: PropTypes.string,
     comments: PropTypes.string,
   }).isRequired,

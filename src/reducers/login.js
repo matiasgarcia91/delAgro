@@ -1,7 +1,11 @@
 import { AsyncStorage } from 'react-native';
+import axios from 'axios';
 
-import axios from '../utils/axios';
 import { navigateToHome, navigateToLogin, navigateToRegister } from '../reducers/rootNavigatorReducer';
+
+const axiosInstance = axios.create({
+  baseURL: 'http://delagro-api.herokuapp.com/api/v1/',
+});
 
 const initialState = {
   loggedIn: false,
@@ -47,7 +51,7 @@ export function loginFailure(error) {
 export function login({ email, password }) {
   return (dispatch) => {
     dispatch(loginPending());
-    return axios.post('/auth/sign_in', { email, password })
+    return axiosInstance.post('/auth/sign_in', { email, password })
       .then((response) => {
         const { data: { data: { first_name, email: uid } } } = response;
         const token = response.headers['access-token'];
@@ -77,7 +81,7 @@ export function toRegister() {
 export function registerUser({ firstName, lastName, email, password, dob, cellphone }) {
   return (dispatch) => {
     dispatch(loginPending());
-    return axios.post('/auth', {
+    return axiosInstance.post('/auth', {
       first_name: firstName,
       last_name: lastName,
       email,

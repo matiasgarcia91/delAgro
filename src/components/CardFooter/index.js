@@ -7,15 +7,26 @@ import MainButton from '../MainButton';
 import styles from './styles';
 
 export default class CardFooter extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.onPressDetails = this.onPressDetails.bind(this);
+  }
+  onPressDetails() {
+    const { lot } = this.props;
+    this.props.selectLot(lot);
+    this.navigate();
+  }
+
   navigate = () => {
     const navigateToDetails = NavigationActions.navigate({
       routeName: 'Details',
+      params: { selectedLot: this.props.lot },
     });
     this.props.navigation.dispatch(navigateToDetails);
   };
 
   render() {
-    const { lot: { quantity, weight, price } } = this.props;
+    const { lot: { weight, price, quantity } } = this.props;
     return (
       <View style={styles.container}>
         <View style={styles.textContainer}>
@@ -24,7 +35,7 @@ export default class CardFooter extends PureComponent {
           <Text style={styles.priceText}>${price}/kg</Text>
         </View>
         <View style={styles.buttonContainer}>
-          <MainButton title={'DETALLES'} onPress={this.navigate} />
+          <MainButton title={'DETALLES'} onPress={this.onPressDetails} />
         </View>
       </View>
     );
@@ -34,4 +45,5 @@ export default class CardFooter extends PureComponent {
 CardFooter.propTypes = {
   navigation: PropTypes.shape().isRequired,
   lot: PropTypes.shape().isRequired,
+  selectLot: PropTypes.func.isRequired,
 };

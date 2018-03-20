@@ -3,18 +3,19 @@ import { View } from 'react-native';
 import PropTypes from 'prop-types';
 
 import VideoPlayer from '../../containers/VideoPlayerContainer';
-import CardFooter from '../CardFooter';
-import DetailsCardFooter from '../DetailsCardFooter';
+import CardFooter from '../../containers/CardFooterContainer';
+import DetailsCardFooter from '../../containers/DetailsCardFooterContainer';
 
 import styles from './styles';
 
 export default class CardItem extends PureComponent {
   render() {
     const { lot, details } = this.props;
+    const uri = 'https://player.vimeo.com/external/255985812.m3u8?s=68efe184a31448142948def47515696ef3cb4ec6';
     return (
       <View style={styles.container}>
         <View style={styles.videoContainer}>
-          <VideoPlayer id={this.props.id} uri={lot.uri} />
+          <VideoPlayer id={this.props.lot.id} uri={uri} />
         </View>
         <View style={styles.footer}>
           { details ?
