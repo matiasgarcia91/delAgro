@@ -1,5 +1,3 @@
-import { NavigationActions } from 'react-navigation';
-
 import axios from '../utils/axios';
 
 const initialState = {
@@ -93,4 +91,12 @@ export function fetchCategories() {
       })
       .catch(error => dispatch(setError({ error })))
   );
+}
+
+export function getStaticData() {
+  return (dispatch) => {
+    dispatch(fetching());
+    dispatch(fetchBreeds(dispatch));
+    dispatch(fetchCategories(dispatch));
+  };
 }
