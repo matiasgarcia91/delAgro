@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { changeVisibleItemsChange } from '../actions/homeScreen';
-import { fetchAllLots } from '../reducers/lots';
+import { fetchAllLots, getStaticData } from '../reducers/lots';
 
 import HomeScreen from '../components/HomeScreen';
 
@@ -9,5 +9,5 @@ function mapStateToProps({ lots: { allLots } }) {
 }
 export default connect(
   mapStateToProps,
-  { changeVisibleItemsChange, fetchAllLots },
+  { changeVisibleItemsChange, fetchAllLots, getStaticData },
 )(HomeScreen);

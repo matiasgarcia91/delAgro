@@ -6,7 +6,7 @@ import { addNavigationHelpers, StackNavigator, DrawerNavigator } from 'react-nav
 import Login from '../containers/LoginScreen';
 import Register from '../containers/RegisterScreen';
 import Home from '../containers/HomeScreenContainer';
-import Details from '../components/DetailsScreen';
+import Details from '../containers/DetailsScreenContainer';
 import Camera from '../components/CameraScreen';
 import Publish from '../components/PublishScreen';
 import { addListener } from '../utils/redux';
