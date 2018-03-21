@@ -4,6 +4,7 @@ function findBreed(breedId, breeds) {
 }
 
 function findCategory(breedId, categories) {
+  if (!categories) return '';
   const selected = categories.find(element => element.id === breedId);
   return selected.name;
 }
