@@ -6,7 +6,7 @@ import NavBarPublish from '../../containers/NavBarPublishContainer';
 import styles from './styles';
 import FormInput from '../FormInput';
 import DropDown from '../DropDown';
-import { RAZAS, CATEGORIAS, DEPARTAMENTOS } from '../../constants';
+import { DEPARTAMENTOS } from '../../constants';
 
 export default class PublishScreen extends PureComponent {
   constructor() {
@@ -16,10 +16,8 @@ export default class PublishScreen extends PureComponent {
       breed: null,
       state: null,
       quantity: '',
-      dob: '',
-      email: '',
-      password: '',
-      confirmPassword: '',
+      price: '',
+      description: '',
     };
     this.onChangeBreed = this.onChangeBreed.bind(this);
     this.onChangeCategory = this.onChangeCategory.bind(this);
@@ -28,6 +26,7 @@ export default class PublishScreen extends PureComponent {
     this.onChangeWeight = this.onChangeWeight.bind(this);
     this.onChangeComments = this.onChangeComments.bind(this);
     this.onChangeQuantity = this.onChangeQuantity.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
   onChangeCategory(value, index, data) {
     const category = data.find(item => item.id === value);
@@ -57,23 +56,45 @@ export default class PublishScreen extends PureComponent {
   }
 
   onChangeComments(comments) {
-    this.setState({ comments });
+    this.setState({ description: comments });
+  }
+
+  onSubmit(video) {
+    const {
+      category,
+      breed,
+      state,
+      quantity,
+      price,
+      description,
+    } = this.state;
+    console.log({ category, breed });
+    this.props.submitLot({
+      category_id: category.id,
+      breed_id: breed.id,
+      state,
+      quantity,
+      video,
+      price,
+      description,
+    });
   }
 
   render() {
     const { breed, category, state } = this.state;
+    const { categories, breeds } = this.props;
     return (
       <View style={styles.container}>
-        <NavBarPublish navigation={this.props.navigation} />
+        <NavBarPublish navigation={this.props.navigation} submitLot={this.onSubmit} />
         <ScrollView>
           <View style={styles.formContainer}>
-            <DropDown label={'Categoria:'} selected={category} values={CATEGORIAS} onChange={this.onChangeCategory} />
+            <DropDown label={'Categoria:'} selected={category} values={categories} onChange={this.onChangeCategory} />
             <FormInput label={'Cantidad:'} onChangeText={this.onChangeQuantity} />
-            <DropDown label={'Raza:'} selected={breed} values={RAZAS} onChange={this.onChangeBreed} />
+            <DropDown label={'Raza:'} selected={breed} values={breeds} onChange={this.onChangeBreed} />
             <FormInput label={'Peso:'} onChangeText={this.onChangeWeight} />
             <DropDown label={'Departamento:'} selected={state} values={DEPARTAMENTOS} onChange={this.onChangeState} />
-            <FormInput label={'Precio por Kg:'} onChangeText={this.onChangeEmail} />
-            <FormInput label={'Comentarios:'} onChangeText={this.onChangePassword} multiline />
+            <FormInput label={'Precio por Kg:'} onChangeText={this.onChangePrice} />
+            <FormInput label={'Comentarios:'} onChangeText={this.onChangeComments} multiline />
           </View>
         </ScrollView>
       </View>
@@ -83,4 +104,7 @@ export default class PublishScreen extends PureComponent {
 
 PublishScreen.propTypes = {
   navigation: PropTypes.shape().isRequired,
+  submitLot: PropTypes.func.isRequired,
+  categories: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  breeds: PropTypes.arrayOf(PropTypes.shape()).isRequired,
 };

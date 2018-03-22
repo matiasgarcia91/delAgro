@@ -1,9 +1,10 @@
 import axios from '../utils/axios';
+import { navigateToHome } from '../reducers/rootNavigatorReducer';
 
 const initialState = {
   allLots: [],
-  categories: [],
-  breeds: [],
+  categories: null,
+  breeds: null,
   selected: null,
 };
 
@@ -99,4 +100,25 @@ export function getStaticData() {
     dispatch(fetchBreeds(dispatch));
     dispatch(fetchCategories(dispatch));
   };
+}
+
+export function submitLot({
+  category_id,
+  breed_id,
+  state,
+  quantity,
+  price,
+  video,
+}) {
+  return dispatch => (
+    axios.post('/', {
+      category_id,
+      breed_id,
+      state,
+      quantity,
+      price,
+      video,
+    }).then(() => dispatch(navigateToHome()))
+      .catch(error => console.log(error))
+  );
 }
