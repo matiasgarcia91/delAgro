@@ -8,7 +8,7 @@ import Register from '../containers/RegisterScreen';
 import Home from '../containers/HomeScreenContainer';
 import Details from '../containers/DetailsScreenContainer';
 import Camera from '../components/CameraScreen';
-import Publish from '../components/PublishScreen';
+import Publish from '../containers/PublishScreenContainer';
 import { addListener } from '../utils/redux';
 
 // Si se rompe algo probar hacer navs separados para los stacks de logged in/out;

@@ -14,7 +14,7 @@ export default class NavBarPublish extends PureComponent {
   };
 
   render() {
-    const { uploadVideo, navigation } = this.props;
+    const { submitLot, navigation } = this.props;
     return (
       <View style={styles.bar} >
         <TouchableHighlight onPress={this.navigate}>
@@ -23,7 +23,7 @@ export default class NavBarPublish extends PureComponent {
         <TouchableHighlight>
           <Text style={styles.title} >Completar datos</Text>
         </TouchableHighlight>
-        <TouchableHighlight onPress={() => uploadVideo(navigation.state.params.video)}>
+        <TouchableHighlight onPress={() => submitLot(navigation.state.params.video)}>
           <Text style={styles.sideButtons}>Subir</Text>
         </TouchableHighlight>
       </View>
@@ -33,7 +33,7 @@ export default class NavBarPublish extends PureComponent {
 
 NavBarPublish.propTypes = {
   navigation: PropTypes.shape(),
-  uploadVideo: PropTypes.func.isRequired,
+  submitLot: PropTypes.func.isRequired,
 };
 
 NavBarPublish.defaultProps = {
