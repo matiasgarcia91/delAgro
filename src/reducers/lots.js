@@ -1,4 +1,7 @@
-import axios from '../utils/axios';
+import axios from 'axios';
+import { AsyncStorage } from 'react-native';
+
+import axiosCustom from '../utils/axios';
 import { navigateToHome } from '../reducers/rootNavigatorReducer';
 
 const initialState = {
@@ -66,7 +69,7 @@ export function selectLot(lot) {
 export function fetchAllLots() {
   return (dispatch) => {
     dispatch(fetching());
-    return axios.get('/lots')
+    return axiosCustom.get('/lots')
       .then((response) => {
         dispatch(allLotsSuccess(response.data));
       })
@@ -76,7 +79,7 @@ export function fetchAllLots() {
 
 export function fetchBreeds() {
   return dispatch => (
-    axios.get('/breeds')
+    axiosCustom.get('/breeds')
       .then((response) => {
         dispatch(breedsSuccess(response.data));
       })
@@ -86,7 +89,7 @@ export function fetchBreeds() {
 
 export function fetchCategories() {
   return dispatch => (
-    axios.get('/categories')
+    axiosCustom.get('/categories')
       .then((response) => {
         dispatch(categoriesSuccess(response.data));
       })
@@ -110,8 +113,20 @@ export function submitLot({
   price,
   video,
 }) {
-  return dispatch => (
-    axios.post('/', {
+  return (dispatch) => {
+    const token = AsyncStorage.getItem('delAgro:token');
+    const client = AsyncStorage.getItem('delAgro:client');
+    const uid = AsyncStorage.getItem('delAgro:uid');
+    const headers = {
+      'access-token': token,
+      'client': client,
+      'uid': uid,
+    };
+    const axiosInstance = axios.create({
+      baseURL: 'http://delagro-api.herokuapp.com/api/v1/',
+      headers,
+    });
+    return axiosInstance.post('/', {
       category_id,
       breed_id,
       state,
@@ -119,6 +134,6 @@ export function submitLot({
       price,
       video,
     }).then(() => dispatch(navigateToHome()))
-      .catch(error => console.log(error))
-  );
+      .catch(error => console.log(error));
+  };
 }
