@@ -4,7 +4,7 @@ import { View, Image, TouchableHighlight } from 'react-native';
 
 import menuIcon from '../../assets/images/icons/menu-icon.png';
 import uploadIcon from '../../assets/images/icons/upload-icon.png';
-import delAgroLogo from '../../assets/images/icons/delagroLogo.png';
+import delAgroLogo from '../../assets/images/icons/icon.png';
 import styles from './styles';
 
 export default class NavBarHome extends PureComponent {
