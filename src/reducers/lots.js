@@ -105,18 +105,26 @@ export function getStaticData() {
   };
 }
 
+function buildVideoForm(video) {
+  const data = new FormData();
+  data.append('file', {
+    uri: video,
+    name: 'video',
+  });
+  return data;
+}
+
 export function submitLot({
   category_id,
   breed_id,
-  state,
   quantity,
   price,
-  video,
+  video: videoUrl,
+  weight,
+  description,
 }) {
-  return (dispatch) => {
-    const token = AsyncStorage.getItem('delAgro:token');
-    const client = AsyncStorage.getItem('delAgro:client');
-    const uid = AsyncStorage.getItem('delAgro:uid');
+  return (dispatch, getState) => {
+    const { token, uid, client } = getState().session.creds;
     const headers = {
       'access-token': token,
       'client': client,
@@ -126,13 +134,22 @@ export function submitLot({
       baseURL: 'http://delagro-api.herokuapp.com/api/v1/',
       headers,
     });
-    return axiosInstance.post('/', {
-      category_id,
-      breed_id,
-      state,
-      quantity,
-      price,
-      video,
+    const data = new FormData();
+    data.append('category_id', category_id);
+    data.append('breed_id', breed_id);
+    data.append('state', 'artigas');
+    data.append('quantity', quantity);
+    data.append('price', price);
+    data.append('weight', weight);
+    data.append('description', description);
+    data.append('video', {
+      uri: videoUrl,
+      type: 'video/mov',
+    });
+    fetch('http://delagro-api.herokuapp.com/api/v1//lots', {
+      method: 'post',
+      headers,
+      body: data,
     }).then(() => dispatch(navigateToHome()))
       .catch(error => console.log(error));
   };

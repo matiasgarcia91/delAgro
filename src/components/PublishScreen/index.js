@@ -66,6 +66,7 @@ export default class PublishScreen extends PureComponent {
       state,
       quantity,
       price,
+      weight,
       description,
     } = this.state;
     console.log({ category, breed });
@@ -74,6 +75,7 @@ export default class PublishScreen extends PureComponent {
       breed_id: breed.id,
       state,
       quantity,
+      weight,
       video,
       price,
       description,
