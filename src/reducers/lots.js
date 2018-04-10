@@ -129,6 +129,7 @@ export function submitLot({
       'access-token': token,
       'client': client,
       'uid': uid,
+      'Content-Type': 'multipart/form-data',
     };
     const axiosInstance = axios.create({
       baseURL: 'http://delagro-api.herokuapp.com/api/v1/',
@@ -146,7 +147,7 @@ export function submitLot({
       uri: videoUrl,
       type: 'video/mov',
     });
-    fetch('http://delagro-api.herokuapp.com/api/v1//lots', {
+    return fetch('http://delagro-api.herokuapp.com/api/v1/lots', {
       method: 'post',
       headers,
       body: data,
