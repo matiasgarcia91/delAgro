@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { AsyncStorage } from 'react-native';
+import RNFetchBlob from 'react-native-fetch-blob'
 
 import axiosCustom from '../utils/axios';
 import { navigateToHome } from '../reducers/rootNavigatorReducer';
@@ -124,17 +125,14 @@ export function submitLot({
   description,
 }) {
   return (dispatch, getState) => {
+    global.FormData = global.originalFormData;
     const { token, uid, client } = getState().session.creds;
     const headers = {
       'access-token': token,
       'client': client,
       'uid': uid,
-      'Content-Type': 'multipart/form-data',
+
     };
-    const axiosInstance = axios.create({
-      baseURL: 'http://delagro-api.herokuapp.com/api/v1/',
-      headers,
-    });
     const data = new FormData();
     data.append('category_id', category_id);
     data.append('breed_id', breed_id);
@@ -147,11 +145,14 @@ export function submitLot({
       uri: videoUrl,
       type: 'video/quicktime',
     });
-    return fetch('http://delagro-api.herokuapp.com/api/v1/lots', {
+    return RNFetchBlob.fetch('POST', 'http://delagro-api.herokuapp.com/api/v1/lots', headers, data)
+      .then(() => dispatch(navigateToHome()))
+      .catch(error => console.log(error));
+  /*  return fetch('http://delagro-api.herokuapp.com/api/v1/lots', {
       method: 'post',
       headers,
       body: data,
     }).then(() => dispatch(navigateToHome()))
-      .catch(error => console.log(error));
+      .catch(error => console.log(error)); */
   };
 }
