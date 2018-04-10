@@ -125,7 +125,6 @@ export function submitLot({
   description,
 }) {
   return (dispatch, getState) => {
-    global.FormData = global.originalFormData;
     const { token, uid, client } = getState().session.creds;
     const headers = {
       'access-token': token,
@@ -142,7 +141,7 @@ export function submitLot({
     data.append('weight', weight);
     data.append('description', description);
     data.append('video', {
-      uri: videoUrl,
+      uri: RNFetchBlob.wrap(videoUrl),
       type: 'video/quicktime',
     });
     return RNFetchBlob.fetch('POST', 'http://delagro-api.herokuapp.com/api/v1/lots', headers, data)
