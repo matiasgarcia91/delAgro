@@ -130,7 +130,7 @@ export function submitLot({
       'access-token': token,
       'client': client,
       'uid': uid,
-
+      'Content-Type': 'multipart/form-data',
     };
     const data = new FormData();
     data.append('category_id', category_id);
@@ -144,7 +144,9 @@ export function submitLot({
       uri: RNFetchBlob.wrap(videoUrl),
       type: 'video/quicktime',
     });
-    return RNFetchBlob.fetch('POST', 'http://delagro-api.herokuapp.com/api/v1/lots', headers, data)
+    return RNFetchBlob.fetch('POST', 'http://delagro-api.herokuapp.com/api/v1/lots', headers, [
+      { name: 'video', data: RNFetchBlob.wrap(videoUrl) },
+    ])
       .then(() => dispatch(navigateToHome()))
       .catch(error => console.log(error));
   /*  return fetch('http://delagro-api.herokuapp.com/api/v1/lots', {
