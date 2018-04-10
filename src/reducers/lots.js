@@ -145,7 +145,7 @@ export function submitLot({
     data.append('description', description);
     data.append('video', {
       uri: videoUrl,
-      type: 'video/mov',
+      type: 'video/quicktime',
     });
     return fetch('http://delagro-api.herokuapp.com/api/v1/lots', {
       method: 'post',
