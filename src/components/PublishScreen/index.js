@@ -69,7 +69,7 @@ export default class PublishScreen extends PureComponent {
       weight,
       description,
     } = this.state;
-    console.log({ category, breed });
+
     this.props.submitLot({
       category_id: category.id,
       breed_id: breed.id,

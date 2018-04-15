@@ -63,7 +63,6 @@ export function login({ email, password }) {
         const { data: { data: { first_name, email: uid } } } = response;
         const token = response.headers['access-token'];
         const client = response.headers.client;
-        console.log(token);
         AsyncStorage.setItem('delAgro:token', token)
           .then(() => {
             AsyncStorage.setItem('delAgro:client', client)
