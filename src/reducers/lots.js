@@ -1,5 +1,5 @@
-import axios from 'axios';
 import { AsyncStorage } from 'react-native';
+import RNFetchBlob from 'react-native-fetch-blob';
 
 import axiosCustom from '../utils/axios';
 import { navigateToHome } from '../reducers/rootNavigatorReducer';
@@ -18,6 +18,9 @@ export const BREEDS_SUCCESS = 'BREEDS_SUCCESS';
 export const CATEGORIES_SUCCESS = 'CATEGORIES_SUCCESS';
 export const SET_ERROR = 'SET_ERROR';
 export const SELECT_LOT = 'SELECT_LOT';
+export const UPLOAD_PENDING = 'UPLOAD_PENDING';
+export const UPLOAD_SUCCESS = 'UPLOAD_SUCCESS';
+export const UPLOAD_FAILURE = 'UPLOAD_FAILURE';
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
@@ -37,6 +40,12 @@ export default function reducer(state = initialState, action) {
       return { ...state, error: action.error };
     case SELECT_LOT:
       return { ...state, selected: action.lot };
+    case UPLOAD_PENDING:
+      return { ...state, uploading: true };
+    case UPLOAD_SUCCESS:
+      return { ...state, uploading: false };
+    case UPLOAD_FAILURE:
+      return { ...state, uploading: false, uploadFailure: true, uploadError: action.uploadError };
     default:
       return state;
   }
@@ -65,6 +74,19 @@ export function setError({ error }) {
 export function selectLot(lot) {
   return { type: SELECT_LOT, lot };
 }
+
+export function uploadSuccess() {
+  return { type: UPLOAD_SUCCESS };
+}
+
+export function uploadPending() {
+  return { type: UPLOAD_PENDING };
+}
+
+export function uploadFailure(error) {
+  return { type: UPLOAD_SUCCESS, uploadError: error };
+}
+
 
 export function fetchAllLots() {
   return (dispatch) => {
@@ -108,32 +130,33 @@ export function getStaticData() {
 export function submitLot({
   category_id,
   breed_id,
-  state,
   quantity,
   price,
-  video,
+  video: videoUrl,
+  weight,
+  description,
 }) {
-  return (dispatch) => {
-    const token = AsyncStorage.getItem('delAgro:token');
-    const client = AsyncStorage.getItem('delAgro:client');
-    const uid = AsyncStorage.getItem('delAgro:uid');
+  return (dispatch, getState) => {
+    const { token, uid, client } = getState().session.creds;
     const headers = {
       'access-token': token,
       'client': client,
       'uid': uid,
+      'Content-Type': 'multipart/form-data',
     };
-    const axiosInstance = axios.create({
-      baseURL: 'http://delagro-api.herokuapp.com/api/v1/',
-      headers,
-    });
-    return axiosInstance.post('/', {
-      category_id,
-      breed_id,
-      state,
-      quantity,
-      price,
-      video,
-    }).then(() => dispatch(navigateToHome()))
-      .catch(error => console.log(error));
+    const cutVideo = videoUrl.slice(7);
+    RNFetchBlob.fetch('POST', 'http://delagro-api.herokuapp.com/api/v1/lots', headers, [
+      { name: 'video', data: RNFetchBlob.wrap(cutVideo), type: 'video/quicktime', filename: 'avatar-png.png' },
+      { name: 'breed_id', data: breed_id },
+      { name: 'quantity', data: quantity },
+      { name: 'price', data: price },
+      { name: 'weight', data: weight },
+      { name: 'state', data: 'artigas' },
+      { name: 'category_id', data: category_id },
+      { name: 'description', data: description },
+    ])
+      .then(() => dispatch(uploadSuccess()))
+      .catch(error => uploadFailure(error));
+    return dispatch(navigateToHome());
   };
 }

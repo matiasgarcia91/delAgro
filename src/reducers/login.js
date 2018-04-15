@@ -15,6 +15,7 @@ const initialState = {
 export const LOGIN_PENDING = 'LOGIN_PENDING';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const SAVE_CREDENTIALS = 'SAVE_CREDENTIALS';
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
@@ -29,6 +30,8 @@ export default function reducer(state = initialState, action) {
       };
     case LOGIN_FAILURE:
       return { ...state, token: null, loggedIn: false, error: action.error };
+    case SAVE_CREDENTIALS:
+      return { ...state, creds: action.creds };
     default:
       return state;
   }
@@ -46,6 +49,10 @@ export function loginFailure(error) {
   return { type: LOGIN_FAILURE, error };
 }
 
+export function saveCredentials({ token, uid, client }) {
+  return { type: SAVE_CREDENTIALS, creds: { token, uid, client } };
+}
+
 // Thunk actions
 
 export function login({ email, password }) {
@@ -56,11 +63,18 @@ export function login({ email, password }) {
         const { data: { data: { first_name, email: uid } } } = response;
         const token = response.headers['access-token'];
         const client = response.headers.client;
-        AsyncStorage.setItem('delAgro:token', token);
-        AsyncStorage.setItem('delAgro:client', client);
-        AsyncStorage.setItem('delAgro:uid', uid);
-        dispatch(loginSuccess({ username: first_name, token, uid, client }));
-        dispatch(navigateToHome());
+        AsyncStorage.setItem('delAgro:token', token)
+          .then(() => {
+            AsyncStorage.setItem('delAgro:client', client)
+              .then(() => {
+                AsyncStorage.setItem('delAgro:uid', uid)
+                  .then(() => {
+                    dispatch(loginSuccess({ username: first_name, token, uid, client }));
+                    dispatch(saveCredentials({ token, uid, client }));
+                    dispatch(navigateToHome());
+                  });
+              });
+          });
       })
       .catch(e => dispatch(loginFailure(e)));
   };
