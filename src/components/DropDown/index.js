@@ -15,7 +15,7 @@ export default class DropDown extends PureComponent {
   renderSelected() {
     const { selected } = this.props;
     return selected ?
-      (<View style={styles.selectedText}><Text>{selected.name}</Text><Icon name={'angle-down'} size={20} /></View>) :
+      (<View style={styles.selectedText}><Text>Hola</Text><Icon name={'angle-down'} size={20} /></View>) :
       (<View style={styles.selectedText}><Text>Seleccionar</Text><Icon name={'angle-down'} size={20} /></View>);
   }
 

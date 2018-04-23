@@ -10,7 +10,6 @@ const DetailsText = ({
   lot: {
     quantity,
     state,
-    breed,
     weight,
     inspectionDate,
     description,
