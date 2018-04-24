@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import NavBarBack from '../../components/NavBarBack';
 import CardItem from '../CardItem';
 import DetailsText from '../DetailsText';
-import ContactModal from '../ContactModal';
+import ContactModal from '../../containers/ContactModal';
 
 export default class DetailsScreen extends PureComponent {
   constructor(props) {
@@ -32,7 +32,12 @@ export default class DetailsScreen extends PureComponent {
         <View style={{ flex: 8 }}>
           <ScrollView>
             <CardItem lot={selected} category={category} details />
-            <DetailsText lot={selected} category={category} breed={breed} toggleModal={this.toggleModal} />
+            <DetailsText
+              lot={selected}
+              category={category}
+              breed={breed}
+              toggleModal={this.toggleModal}
+            />
           </ScrollView>
         </View>
       </View>
