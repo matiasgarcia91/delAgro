@@ -4,7 +4,7 @@ import { View, Image, TouchableHighlight } from 'react-native';
 
 import menuIcon from '../../assets/images/icons/menu-icon.png';
 import uploadIcon from '../../assets/images/icons/upload-icon.png';
-import delAgroLogo from '../../assets/images/icons/delagroLogo.png';
+import delAgroLogo from '../../assets/images/icons/icon.png';
 import styles from './styles';
 
 export default class NavBarHome extends PureComponent {
@@ -18,17 +18,17 @@ export default class NavBarHome extends PureComponent {
             style={styles.icon}
           />
         </TouchableHighlight>
-        <TouchableHighlight>
+        <View style={styles.logoContainer}>
           <Image
             source={delAgroLogo}
-            style={styles.icon}
+            style={styles.logo}
           />
-        </TouchableHighlight>
+        </View>
         {isLoggedIn ?
           <TouchableHighlight onPress={() => this.props.navigation.navigate('Camera')}>
             <Image
               source={uploadIcon}
-              style={styles.icon}
+              style={styles.upload}
             />
           </TouchableHighlight> :
           <View style={styles.ghost} />
