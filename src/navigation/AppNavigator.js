@@ -16,21 +16,20 @@ const homeStack = StackNavigator({
   Home: { screen: Home },
   Details: { screen: Details },
   Publish: { screen: Publish },
+  Camera: { screen: Camera },
 }, { headerMode: 'none' });
 
 export const AppNavigator = StackNavigator({
   loggedOutFlow: {
     screen: DrawerNavigator({
-      Home: { screen: homeStack, navigationOptions: { drawerLabel: 'Inicio' } },
-      Camera: { screen: Camera, navigationOptions: { drawerLabel: 'Publicar lote' } },
+      HomeLoggedOut: { screen: homeStack, navigationOptions: { drawerLabel: 'Inicio' } },
       Login: { screen: Login, navigationOptions: { drawerLabel: 'Iniciar sesion' } },
       Register: { screen: Register, navigationOptions: { drawerLabel: 'Registrarse' } },
     }, { headerMode: 'none', drawerWidth: 200 }),
   },
   loggedInFlow: {
     screen: DrawerNavigator({
-      Home: { screen: homeStack, navigationOptions: { drawerLabel: 'Inicio' } },
-      Camera: { screen: Camera, navigationOptions: { drawerLabel: 'Publicar lote' } },
+      HomeLoggedIn: { screen: homeStack, navigationOptions: { drawerLabel: 'Inicio' } },
     }, { headerMode: 'none', drawerWidth: 200 }),
   },
 }, { initialRouteName: 'loggedOutFlow', headerMode: 'none' });

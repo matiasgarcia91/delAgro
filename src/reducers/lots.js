@@ -1,8 +1,8 @@
-import { AsyncStorage } from 'react-native';
+// import { AsyncStorage } from 'react-native';
 import RNFetchBlob from 'react-native-fetch-blob';
 
 import axiosCustom from '../utils/axios';
-import { navigateToHome } from '../reducers/rootNavigatorReducer';
+import { navigateToHomeLoggedIn } from '../reducers/rootNavigatorReducer';
 
 const initialState = {
   allLots: [],
@@ -157,6 +157,6 @@ export function submitLot({
     ])
       .then(() => dispatch(uploadSuccess()))
       .catch(error => uploadFailure(error));
-    return dispatch(navigateToHome());
+    return dispatch(navigateToHomeLoggedIn());
   };
 }

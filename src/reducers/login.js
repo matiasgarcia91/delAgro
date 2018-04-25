@@ -1,7 +1,7 @@
 import { AsyncStorage } from 'react-native';
 import axios from 'axios';
 
-import { navigateToHome, navigateToLogin, navigateToRegister } from '../reducers/rootNavigatorReducer';
+import { navigateToHomeLoggedIn, navigateToLogin, navigateToRegister } from '../reducers/rootNavigatorReducer';
 
 const axiosInstance = axios.create({
   baseURL: 'http://delagro-api.herokuapp.com/api/v1/',
@@ -71,7 +71,7 @@ export function login({ email, password }) {
                   .then(() => {
                     dispatch(loginSuccess({ username: first_name, token, uid, client }));
                     dispatch(saveCredentials({ token, uid, client }));
-                    dispatch(navigateToHome());
+                    dispatch(navigateToHomeLoggedIn());
                   });
               });
           });
@@ -112,7 +112,7 @@ export function registerUser({ firstName, lastName, email, password, dob, cellph
         AsyncStorage.setItem('delAgro:client', client);
         AsyncStorage.setItem('delAgro:uid', uid);
         dispatch(loginSuccess({ username: first_name, token, uid, client }));
-        dispatch(navigateToHome());
+        dispatch(navigateToHomeLoggedIn()); // TODO: aca a donde vamos?
       })
       .catch(e => console.log(e));
   };
