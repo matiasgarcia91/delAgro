@@ -6,7 +6,6 @@ import NavBarPublish from '../../containers/NavBarPublishContainer';
 import styles from './styles';
 import FormInput from '../FormInput';
 import DropDown from '../DropDown';
-import { DEPARTAMENTOS } from '../../constants';
 
 export default class PublishScreen extends PureComponent {
   constructor() {
@@ -84,7 +83,8 @@ export default class PublishScreen extends PureComponent {
 
   render() {
     const { breed, category, state } = this.state;
-    const { categories, breeds } = this.props;
+    const { categories, breeds, states } = this.props;
+    const mapStates = states.map(item => ({ id: item, name: item }));
     return (
       <View style={styles.container}>
         <NavBarPublish navigation={this.props.navigation} submitLot={this.onSubmit} />
@@ -94,7 +94,7 @@ export default class PublishScreen extends PureComponent {
             <FormInput label={'Cantidad:'} onChangeText={this.onChangeQuantity} />
             <DropDown label={'Raza:'} selected={breed} values={breeds} onChange={this.onChangeBreed} />
             <FormInput label={'Peso:'} onChangeText={this.onChangeWeight} />
-            <DropDown label={'Departamento:'} selected={state} values={DEPARTAMENTOS} onChange={this.onChangeState} />
+            <DropDown label={'Departamento:'} selected={state} values={mapStates} onChange={this.onChangeState} />
             <FormInput label={'Precio por Kg:'} onChangeText={this.onChangePrice} />
             <FormInput label={'Comentarios:'} onChangeText={this.onChangeComments} multiline />
           </View>
@@ -109,4 +109,5 @@ PublishScreen.propTypes = {
   submitLot: PropTypes.func.isRequired,
   categories: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   breeds: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  states: PropTypes.arrayOf(PropTypes.string).isRequired
 };
