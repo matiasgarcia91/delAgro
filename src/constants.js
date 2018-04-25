@@ -1,20 +1,5 @@
 export const PUBLIC_KEY = '42215bb2182812ea28b8d41d9b28';
 
-export const CATEGORIAS = [
-  { id: 1, name: 'Vaquillonas' },
-  { id: 2, name: 'Preñado' },
-];
-
-export const RAZAS = [
-  { id: 1, name: 'Hereford' },
-  { id: 2, name: 'Angus' },
-];
-
-export const DEPARTAMENTOS = [
-  { id: 1, name: 'Durazno' },
-  { id: 2, name: 'Paysandu' },
-];
-
 export const LOTE = {
   id: 12,
   quantity: 103,
