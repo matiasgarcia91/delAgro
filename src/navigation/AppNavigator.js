@@ -17,7 +17,7 @@ const CustomDrawerContentComponent = (props) => {
   const nav = props.nav; // eslint-disable-line
 
   return (
-    <View>
+    <View style={{ marginTop: 25 }}>
       <ScrollView>
         <DrawerItems
           {...props}
