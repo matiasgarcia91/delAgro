@@ -52,7 +52,7 @@ export const AppNavigator = StackNavigator({
   loggedInFlow: {
     screen: DrawerNavigator({
       HomeLoggedIn: { screen: homeStack, navigationOptions: { drawerLabel: 'Inicio' } },
-      LogOut: { screen: logout, navigationOptions: { drawerLabel: 'Cerrar sesion' } },
+      LogOut: { screen: () => {}, navigationOptions: { drawerLabel: 'Cerrar sesion' } },
     }, { headerMode: 'none', drawerWidth: 200, contentComponent: CustomDrawerContentComponent }),
   },
 }, { initialRouteName: 'loggedOutFlow', headerMode: 'none' });

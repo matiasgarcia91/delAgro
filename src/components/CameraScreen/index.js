@@ -13,10 +13,6 @@ import VideoPlayer from '../../containers/VideoPlayerContainer';
 import styles from './styles';
 
 export default class CameraScreen extends PureComponent {
-  static navigationOptions = {
-    drawerLabel: null,
-  }
-
   constructor() {
     super();
     this.state = {
