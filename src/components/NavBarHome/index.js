@@ -9,6 +9,7 @@ import styles from './styles';
 
 export default class NavBarHome extends PureComponent {
   render() {
+    const { isLoggedIn } = this.props;
     return (
       <View style={styles.bar} >
         <TouchableHighlight onPress={() => this.props.navigation.navigate('DrawerOpen')}>
@@ -23,12 +24,15 @@ export default class NavBarHome extends PureComponent {
             style={styles.icon}
           />
         </TouchableHighlight>
-        <TouchableHighlight onPress={() => this.props.navigation.navigate('Camera')}>
-          <Image
-            source={uploadIcon}
-            style={styles.icon}
-          />
-        </TouchableHighlight>
+        {isLoggedIn ?
+          <TouchableHighlight onPress={() => this.props.navigation.navigate('Camera')}>
+            <Image
+              source={uploadIcon}
+              style={styles.icon}
+            />
+          </TouchableHighlight> :
+          <View style={styles.ghost} />
+        }
       </View>
     );
   }
@@ -36,6 +40,7 @@ export default class NavBarHome extends PureComponent {
 
 NavBarHome.propTypes = {
   navigation: PropTypes.shape(),
+  isLoggedIn: PropTypes.bool.isRequired,
 };
 
 NavBarHome.defaultProps = {

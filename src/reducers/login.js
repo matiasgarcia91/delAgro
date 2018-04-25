@@ -1,7 +1,8 @@
 import { AsyncStorage } from 'react-native';
 import axios from 'axios';
 
-import { navigateToHome, navigateToLogin, navigateToRegister } from '../reducers/rootNavigatorReducer';
+import { store } from '../containers/App';
+import { navigateToHomeLoggedIn, navigateToHomeLoggedOut, navigateToLogin, navigateToRegister } from '../reducers/rootNavigatorReducer';
 
 const axiosInstance = axios.create({
   baseURL: 'http://delagro-api.herokuapp.com/api/v1/',
@@ -15,6 +16,7 @@ const initialState = {
 export const LOGIN_PENDING = 'LOGIN_PENDING';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGOUT = 'LOGOUT';
 export const SAVE_CREDENTIALS = 'SAVE_CREDENTIALS';
 
 export default function reducer(state = initialState, action) {
@@ -32,6 +34,8 @@ export default function reducer(state = initialState, action) {
       return { ...state, token: null, loggedIn: false, error: action.error };
     case SAVE_CREDENTIALS:
       return { ...state, creds: action.creds };
+    case LOGOUT:
+      return { ...initialState };
     default:
       return state;
   }
@@ -53,6 +57,11 @@ export function saveCredentials({ token, uid, client }) {
   return { type: SAVE_CREDENTIALS, creds: { token, uid, client } };
 }
 
+export function logout() {
+  store.dispatch(navigateToHomeLoggedOut());
+  return store.dispatch({ type: LOGOUT });
+}
+
 // Thunk actions
 
 export function login({ email, password }) {
@@ -71,7 +80,7 @@ export function login({ email, password }) {
                   .then(() => {
                     dispatch(loginSuccess({ username: first_name, token, uid, client }));
                     dispatch(saveCredentials({ token, uid, client }));
-                    dispatch(navigateToHome());
+                    dispatch(navigateToHomeLoggedIn());
                   });
               });
           });
@@ -112,7 +121,7 @@ export function registerUser({ firstName, lastName, email, password, dob, cellph
         AsyncStorage.setItem('delAgro:client', client);
         AsyncStorage.setItem('delAgro:uid', uid);
         dispatch(loginSuccess({ username: first_name, token, uid, client }));
-        dispatch(navigateToHome());
+        dispatch(navigateToHomeLoggedIn()); // TODO: aca a donde vamos?
       })
       .catch(e => console.log(e));
   };

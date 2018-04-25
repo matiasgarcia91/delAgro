@@ -1,8 +1,8 @@
-import { AsyncStorage } from 'react-native';
+// import { AsyncStorage } from 'react-native';
 import RNFetchBlob from 'react-native-fetch-blob';
 
 import axiosCustom from '../utils/axios';
-import { navigateToHome } from '../reducers/rootNavigatorReducer';
+import { navigateToHomeLoggedIn } from '../reducers/rootNavigatorReducer';
 
 const initialState = {
   allLots: [],
@@ -140,8 +140,8 @@ export function submitLot({
     const { token, uid, client } = getState().session.creds;
     const headers = {
       'access-token': token,
-      'client': client,
-      'uid': uid,
+      'client': client, // eslint-disable-line
+      'uid': uid, // eslint-disable-line
       'Content-Type': 'multipart/form-data',
     };
     const cutVideo = videoUrl.slice(7);
@@ -157,6 +157,6 @@ export function submitLot({
     ])
       .then(() => dispatch(uploadSuccess()))
       .catch(error => uploadFailure(error));
-    return dispatch(navigateToHome());
+    return dispatch(navigateToHomeLoggedIn());
   };
 }
