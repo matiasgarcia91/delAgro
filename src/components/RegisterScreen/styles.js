@@ -8,8 +8,19 @@ export default StyleSheet.create({
     backgroundColor: colors.creamBackground,
   },
   logoContainer: {
+
+    marginTop: 40,
+    marginBottom: 40,
     flex: 1,
-    marginTop: -40,
+         flexDirection: 'column',
+         justifyContent: 'center',
+         alignItems: 'center',
+         width: 100,
+         height: 100,
+     paddingLeft:260,
+         resizeMode: 'contain',
+
+
   },
   formContainer: {
     flex: 2,

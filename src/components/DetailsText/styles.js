@@ -35,5 +35,5 @@ export default StyleSheet.create({
   },
   button: {
     width: 150,
-  },
+  }
 });
