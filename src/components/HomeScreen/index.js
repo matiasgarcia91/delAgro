@@ -24,7 +24,7 @@ export default class Home extends PureComponent {
 
   renderItem({ item: { key, navigation, lot } }) {
     return (
-      <CardItem id={key} key={key} navigation={navigation} lot={lot} />
+      <CardItem key={key} navigation={navigation} lot={lot} />
     );
   }
 
@@ -32,7 +32,7 @@ export default class Home extends PureComponent {
     const list = this.props.allLots;
     const isLoggedIn = !!this.props.token;
     const data =
-      list.map(item => ({ key: item.key, navigation: this.props.navigation, lot: item }));
+      list.map(item => ({ key: `${item.id}`, navigation: this.props.navigation, lot: item }));
     return (
       <View style={{ flex: 1 }}>
         <View style={{ flex: 1 }}>

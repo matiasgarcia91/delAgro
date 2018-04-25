@@ -31,7 +31,7 @@ export default class NavBarHome extends PureComponent {
               style={styles.icon}
             />
           </TouchableHighlight> :
-          <View style={styles.icon} />
+          <View style={styles.ghost} />
         }
       </View>
     );

@@ -48,5 +48,9 @@ CardFooter.propTypes = {
   navigation: PropTypes.shape().isRequired,
   lot: PropTypes.shape().isRequired,
   selectLot: PropTypes.func.isRequired,
-  categories: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  categories: PropTypes.arrayOf(PropTypes.shape()),
+};
+
+CardFooter.defaultProps = {
+  categories: [],
 };

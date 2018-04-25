@@ -23,4 +23,10 @@ export default StyleSheet.create({
     flex: 1,
     marginHorizontal: 8,
   },
+  ghost: {
+    alignSelf: 'center',
+    width: 100,
+    flex: 1,
+    marginHorizontal: 8,
+  },
 });

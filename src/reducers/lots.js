@@ -140,8 +140,8 @@ export function submitLot({
     const { token, uid, client } = getState().session.creds;
     const headers = {
       'access-token': token,
-      'client': client,
-      'uid': uid,
+      'client': client, // eslint-disable-line
+      'uid': uid, // eslint-disable-line
       'Content-Type': 'multipart/form-data',
     };
     const cutVideo = videoUrl.slice(7);
