@@ -40,7 +40,7 @@ export default class CameraScreen extends PureComponent {
 
   tick() {
     const { elapsed: last } = this.state;
-    if (last + 1 === 180) return this.stopRecording();
+    if (last + 1 === 90) return this.stopRecording();
     return this.setState({ elapsed: last + 1 });
   }
 
@@ -64,7 +64,7 @@ export default class CameraScreen extends PureComponent {
   selectVideoTapped() {
     const options = {
       mediaType: 'video',
-      durationLimit: 180,
+      durationLimit: 90,
     };
 
     ImagePicker.launchImageLibrary(options, (response) => {
@@ -83,7 +83,7 @@ export default class CameraScreen extends PureComponent {
   render() {
     const { elapsed, video } = this.state;
     const timer = elapsed ? parseTime(elapsed) : null;
-    const progress = elapsed / 180;
+    const progress = elapsed / 90;
     return (
       <View style={styles.container}>
         <NavBarCamara navigation={this.props.navigation} video={video} />
