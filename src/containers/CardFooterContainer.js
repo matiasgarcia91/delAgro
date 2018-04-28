@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import CardFooter from '../components/CardFooter';
 import { selectLot } from '../reducers/lots';
 
-function mapStateToProps({ lots: { categories, breeds } }) {
+function mapStateToProps({ staticData: { categories, breeds } }) {
   return { categories, breeds };
 }
 

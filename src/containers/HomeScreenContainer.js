@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { changeVisibleItemsChange } from '../actions/homeScreen';
-import { fetchAllLots, getStaticData } from '../reducers/lots';
+import { fetchAllLots } from '../reducers/lots';
+import { getStaticData } from '../reducers/staticData';
 
 import HomeScreen from '../components/HomeScreen';
 
