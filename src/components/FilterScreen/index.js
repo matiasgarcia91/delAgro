@@ -6,7 +6,6 @@ import { NavigationActions } from 'react-navigation';
 import styles from './styles';
 import FormInput from '../FormInput';
 import MainButton from '../MainButton';
-import LoginFooter from '../LoginFooter';
 
 export default class FilterScreen extends PureComponent {
   constructor() {
@@ -28,20 +27,13 @@ export default class FilterScreen extends PureComponent {
   }
 
   onSubmit() {
-    const {
-      firstName,
-      lastName
-    } = this.state;
-    const user = {
-      firstName,
-      lastName
-    };
+    // TODO: set filters on redux, (own reducer);
+    this.navigate();
   }
-
 
   navigate = () => {
     const navigateToDetails = NavigationActions.navigate({
-      routeName: 'Login',
+      routeName: 'FilteredHome',
     });
     this.props.navigation.dispatch(navigateToDetails);
   };
@@ -50,8 +42,6 @@ export default class FilterScreen extends PureComponent {
     return (
       <View style={styles.container}>
         <ScrollView>
-        <View></View>
-          <View style = {styles.lineStyle} />
           <Text style={styles.titleText}>Filtrar Búsqueda</Text>
           <View style={styles.formContainer}>
             <FormInput label={'Nombre:'} onChangeText={this.onChangeName} />

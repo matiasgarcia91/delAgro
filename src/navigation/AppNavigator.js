@@ -43,7 +43,8 @@ const homeStack = StackNavigator({
   Details: { screen: Details },
   Publish: { screen: Publish },
   Camera: { screen: Camera },
-  Filter: {screen: Filter}
+  Filter: { screen: Filter },
+  FilteredHome: { screen: () => {} },
 }, { headerMode: 'none' });
 
 export const AppNavigator = StackNavigator({
