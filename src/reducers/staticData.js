@@ -6,6 +6,7 @@ const initialState = {
   categories: null,
   breeds: null,
   states: null,
+  contacts: null,
 };
 
 export const BREEDS_SUCCESS = 'BREEDS_SUCCESS';
@@ -22,6 +23,8 @@ export default function reducer(state = initialState, action) {
       return { ...state, states: action.states };
     case BREEDS_SUCCESS:
       return { ...state, breeds: action.breeds };
+    case SET_CONTACTS:
+      return { ...state, contacts: action.contacts };
     case SET_ERROR:
       return { ...state, error: action.error };
     default:

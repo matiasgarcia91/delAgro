@@ -40,8 +40,6 @@ export default function reducer(state = initialState, action) {
       return { ...state, uploading: false };
     case UPLOAD_FAILURE:
       return { ...state, uploading: false, uploadFailure: true, uploadError: action.uploadError };
-    case SET_CONTACTS:
-      return { ...state, contacts: action.contacts };
     default:
       return state;
   }

@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import ContactModal from '../components/ContactModal';
 
-function mapStateToProps({ lots: { contacts } }) {
+function mapStateToProps({ staticData: { contacts } }) {
   return { contacts };
 }
 
