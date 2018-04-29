@@ -137,6 +137,6 @@ export default class RegisterScreen extends PureComponent {
 }
 
 RegisterScreen.propTypes = {
-  navigation: PropTypes.func.isRequired,
+  navigation: PropTypes.shape().isRequired,
   registerUser: PropTypes.func.isRequired,
 };

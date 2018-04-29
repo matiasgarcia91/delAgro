@@ -7,6 +7,7 @@ import { addNavigationHelpers, StackNavigator, DrawerNavigator, DrawerItems } fr
 import Login from '../containers/LoginScreen';
 import Register from '../containers/RegisterScreen';
 import Home from '../containers/HomeScreenContainer';
+import Filter from '../containers/FilterScreen';
 import Details from '../containers/DetailsScreenContainer';
 import Camera from '../components/CameraScreen';
 import Publish from '../containers/PublishScreenContainer';
@@ -24,6 +25,9 @@ const CustomDrawerContentComponent = (props) => {
           onItemPress={
             ({ route, focused }) => {
               if (route.key === 'LogOut') return logout();
+
+              if (route.key === 'favorites' || route.key === 'terms' || route.key === 'help' || route.key === 'myProfile' || route.key === 'myLots') return null;
+
               return props.onItemPress({ route, focused }) // eslint-disable-line
             }
           }
@@ -39,6 +43,8 @@ const homeStack = StackNavigator({
   Details: { screen: Details },
   Publish: { screen: Publish },
   Camera: { screen: Camera },
+  Filter: { screen: Filter },
+  FilteredHome: { screen: () => {} },
 }, { headerMode: 'none' });
 
 export const AppNavigator = StackNavigator({
@@ -52,7 +58,12 @@ export const AppNavigator = StackNavigator({
   loggedInFlow: {
     screen: DrawerNavigator({
       HomeLoggedIn: { screen: homeStack, navigationOptions: { drawerLabel: 'Inicio' } },
-      LogOut: { screen: () => {}, navigationOptions: { drawerLabel: 'Cerrar sesion' } },
+      myProfile: { screen: () => {}, navigationOptions: { drawerLabel: 'Mi perfil' } },
+      myLots: { screen: () => {}, navigationOptions: { drawerLabel: 'Mis publicaciones' } },
+      favorites: { screen: () => {}, navigationOptions: { drawerLabel: 'Favoritos' } },
+      help: { screen: () => {}, navigationOptions: { drawerLabel: 'Ayuda' } },
+      terms: { screen: () => {}, navigationOptions: { drawerLabel: 'Terminos y condiciones' } },
+      LogOut: { screen: () => {}, navigationOptions: { drawerLabel: 'Cerrar sesión' } },
     }, { headerMode: 'none', drawerWidth: 200, contentComponent: CustomDrawerContentComponent }),
   },
 }, { initialRouteName: 'loggedOutFlow', headerMode: 'none' });

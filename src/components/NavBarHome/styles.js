@@ -26,15 +26,22 @@ export default StyleSheet.create({
     paddingLeft: 20,
     marginRight: 30,
   },
-  upload: {
-    alignSelf: 'flex-start',
+  filter: {
     resizeMode: 'contain',
-    width: 100,
+    width: 50,
     height: 50,
     marginTop: 15,
     flex: 1,
     paddingLeft: 20,
     marginLeft: 30,
+  },
+  upload: {
+    alignSelf: 'flex-start',
+    resizeMode: 'contain',
+    width: 50,
+    height: 50,
+    marginTop: 15,
+    flex: 1,
   },
   logoContainer: {
     flex: 1,
@@ -44,11 +51,6 @@ export default StyleSheet.create({
     height: 50,
     resizeMode: 'contain',
     alignSelf: 'center',
-  },
-  ghost: {
-    alignSelf: 'center',
-    width: 100,
-    flex: 1,
-    marginHorizontal: 8,
+    justifyContent: 'center',
   },
 });
