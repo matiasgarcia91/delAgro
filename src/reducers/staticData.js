@@ -6,13 +6,14 @@ const initialState = {
   categories: null,
   breeds: null,
   states: null,
+  contacts: null,
 };
 
 export const BREEDS_SUCCESS = 'BREEDS_SUCCESS';
 export const STATES_SUCCESS = 'STATES_SUCCESS';
 export const CATEGORIES_SUCCESS = 'CATEGORIES_SUCCESS';
 export const SET_ERROR = 'static/SET_ERROR';
-
+export const SET_CONTACTS = 'SET_CONTACTS';
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
@@ -22,6 +23,8 @@ export default function reducer(state = initialState, action) {
       return { ...state, states: action.states };
     case BREEDS_SUCCESS:
       return { ...state, breeds: action.breeds };
+    case SET_CONTACTS:
+      return { ...state, contacts: action.contacts };
     case SET_ERROR:
       return { ...state, error: action.error };
     default:
@@ -43,6 +46,10 @@ export function statesSuccess(states) {
 
 export function categoriesSuccess(categories) {
   return { type: CATEGORIES_SUCCESS, categories };
+}
+
+export function setContacts(contacts) {
+  return { type: SET_CONTACTS, contacts };
 }
 
 export function fetchBreeds() {
@@ -75,10 +82,21 @@ export function fetchCategories() {
   );
 }
 
+export function fetchContacts() {
+  return dispatch => (
+    axiosCustom.get('/contacts')
+      .then((response) => {
+        dispatch(setContacts(response.data));
+      })
+      .catch(error => dispatch(setError({ error })))
+  );
+}
+
 export function getStaticData() {
   return (dispatch) => {
     dispatch(fetchBreeds(dispatch));
     dispatch(fetchStates(dispatch));
     dispatch(fetchCategories(dispatch));
+    dispatch(fetchContacts(dispatch));
   };
 }

@@ -7,6 +7,7 @@ import { navigateToHomeLoggedIn } from '../reducers/rootNavigatorReducer';
 const initialState = {
   allLots: [],
   selected: null,
+  contacts: [],
 };
 
 export const IS_FETCHING = 'IS_FETCHING';
@@ -17,6 +18,7 @@ export const SELECT_LOT = 'SELECT_LOT';
 export const UPLOAD_PENDING = 'UPLOAD_PENDING';
 export const UPLOAD_SUCCESS = 'UPLOAD_SUCCESS';
 export const UPLOAD_FAILURE = 'UPLOAD_FAILURE';
+export const SET_CONTACTS = 'SET_CONTACTS';
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
@@ -71,6 +73,9 @@ export function uploadFailure(error) {
   return { type: UPLOAD_SUCCESS, uploadError: error };
 }
 
+export function setContacts(contacts) {
+  return { type: SET_CONTACTS, contacts };
+}
 
 export function fetchAllLots() {
   return (dispatch) => {
