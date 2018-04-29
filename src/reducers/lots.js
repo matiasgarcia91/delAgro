@@ -2,12 +2,13 @@
 import RNFetchBlob from 'react-native-fetch-blob';
 
 import axiosCustom from '../utils/axios';
+import loggedAxios from '../utils/loggedAxios';
 import { navigateToHomeLoggedIn } from '../reducers/rootNavigatorReducer';
 
 const initialState = {
   allLots: [],
   selected: null,
-  contacts: [],
+  myLots: [],
 };
 
 export const IS_FETCHING = 'IS_FETCHING';
@@ -18,7 +19,7 @@ export const SELECT_LOT = 'SELECT_LOT';
 export const UPLOAD_PENDING = 'UPLOAD_PENDING';
 export const UPLOAD_SUCCESS = 'UPLOAD_SUCCESS';
 export const UPLOAD_FAILURE = 'UPLOAD_FAILURE';
-export const SET_CONTACTS = 'SET_CONTACTS';
+export const MY_LOTS_SUCCESS = 'MY_LOTS_SUCCESS';
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
@@ -40,6 +41,8 @@ export default function reducer(state = initialState, action) {
       return { ...state, uploading: false };
     case UPLOAD_FAILURE:
       return { ...state, uploading: false, uploadFailure: true, uploadError: action.uploadError };
+    case MY_LOTS_SUCCESS:
+      return { ...state, myLots: action.myLots };
     default:
       return state;
   }
@@ -73,8 +76,8 @@ export function uploadFailure(error) {
   return { type: UPLOAD_SUCCESS, uploadError: error };
 }
 
-export function setContacts(contacts) {
-  return { type: SET_CONTACTS, contacts };
+export function myLotsSuccess(myLots) {
+  return { type: MY_LOTS_SUCCESS, myLots };
 }
 
 export function fetchAllLots() {
@@ -83,6 +86,18 @@ export function fetchAllLots() {
     return axiosCustom.get('/lots')
       .then((response) => {
         dispatch(allLotsSuccess(response.data));
+      })
+      .catch(error => dispatch(setError({ error })));
+  };
+}
+
+export function fetchMyLots() {
+  return (dispatch, getState) => {
+    dispatch(fetching());
+    const { token, client, uid } = getState().session;
+    return loggedAxios({ token, client, uid }).get('/my_lots')
+      .then((response) => {
+        dispatch(myLotsSuccess(response.data));
       })
       .catch(error => dispatch(setError({ error })));
   };
