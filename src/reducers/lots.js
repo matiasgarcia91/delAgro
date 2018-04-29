@@ -6,17 +6,12 @@ import { navigateToHomeLoggedIn } from '../reducers/rootNavigatorReducer';
 
 const initialState = {
   allLots: [],
-  categories: null,
-  breeds: null,
   selected: null,
 };
 
 export const IS_FETCHING = 'IS_FETCHING';
 export const ALL_LOTS_SUCCESS = 'ALL_LOTS_SUCCESS';
 export const ALL_LOTS_FAILURE = 'ALL_LOTS_FAILURE';
-export const BREEDS_SUCCESS = 'BREEDS_SUCCESS';
-export const STATES_SUCCESS = 'STATES_SUCCESS';
-export const CATEGORIES_SUCCESS = 'CATEGORIES_SUCCESS';
 export const SET_ERROR = 'SET_ERROR';
 export const SELECT_LOT = 'SELECT_LOT';
 export const UPLOAD_PENDING = 'UPLOAD_PENDING';
@@ -33,12 +28,6 @@ export default function reducer(state = initialState, action) {
       };
     case ALL_LOTS_FAILURE:
       return { ...state, token: null, loggedIn: false, error: action.error };
-    case CATEGORIES_SUCCESS:
-      return { ...state, categories: action.categories };
-    case STATES_SUCCESS:
-      return { ...state, states: action.states };
-    case BREEDS_SUCCESS:
-      return { ...state, breeds: action.breeds };
     case SET_ERROR:
       return { ...state, error: action.error };
     case SELECT_LOT:
@@ -60,18 +49,6 @@ export function fetching() {
 
 export function allLotsSuccess(lots) {
   return { type: ALL_LOTS_SUCCESS, lots };
-}
-
-export function breedsSuccess(breeds) {
-  return { type: BREEDS_SUCCESS, breeds };
-}
-
-export function statesSuccess(states) {
-  return { type: STATES_SUCCESS, states };
-}
-
-export function categoriesSuccess(categories) {
-  return { type: CATEGORIES_SUCCESS, categories };
 }
 
 export function setError({ error }) {
@@ -103,45 +80,6 @@ export function fetchAllLots() {
         dispatch(allLotsSuccess(response.data));
       })
       .catch(error => dispatch(setError({ error })));
-  };
-}
-
-export function fetchBreeds() {
-  return dispatch => (
-    axiosCustom.get('/breeds')
-      .then((response) => {
-        dispatch(breedsSuccess(response.data));
-      })
-      .catch(error => dispatch(setError({ error })))
-  );
-}
-
-export function fetchStates() {
-  return dispatch => (
-    axiosCustom.get('/states')
-      .then((response) => {
-        dispatch(statesSuccess(response.data.states));
-      })
-      .catch(error => dispatch(setError({ error })))
-  );
-}
-
-export function fetchCategories() {
-  return dispatch => (
-    axiosCustom.get('/categories')
-      .then((response) => {
-        dispatch(categoriesSuccess(response.data));
-      })
-      .catch(error => dispatch(setError({ error })))
-  );
-}
-
-export function getStaticData() {
-  return (dispatch) => {
-    dispatch(fetching());
-    dispatch(fetchBreeds(dispatch));
-    dispatch(fetchStates(dispatch));
-    dispatch(fetchCategories(dispatch));
   };
 }
 

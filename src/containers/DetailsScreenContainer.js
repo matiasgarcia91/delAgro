@@ -4,7 +4,7 @@ import DetailsScreen from '../components/DetailsScreen';
 import { getStaticData } from '../reducers/lots';
 import filters from '../helpers/filterStaticData';
 
-function mapStateToProps({ lots: { categories, breeds, selected } }) {
+function mapStateToProps({ lots: { selected }, staticData: { categories, breeds } }) {
   const { breed_id, category_id } = selected;
   const breed = breed_id ? filters.findBreed(breed_id, breeds) : '';
   const category = category_id ? filters.findCategory(category_id, categories) : '';
