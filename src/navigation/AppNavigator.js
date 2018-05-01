@@ -28,7 +28,7 @@ const CustomDrawerContentComponent = (props) => {
             ({ route, focused }) => {
               if (route.key === 'LogOut') return logout();
 
-              if (route.key === 'favorites' || route.key === 'terms' || route.key === 'help' || route.key === 'myProfile') return null;
+              if (route.key === 'terms' || route.key === 'help' || route.key === 'myProfile') return null;
 
               return props.onItemPress({ route, focused }) // eslint-disable-line
             }

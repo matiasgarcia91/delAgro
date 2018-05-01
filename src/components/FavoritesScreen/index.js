@@ -49,7 +49,7 @@ export default class FavoritesScreen extends PureComponent {
   }
 }
 
-FavoritesScreen.Page.propTypes = {
+FavoritesScreen.propTypes = {
   navigation: PropTypes.shape().isRequired,
   changeVisibleItemsChange: PropTypes.func.isRequired,
   fetchFavorites: PropTypes.func.isRequired,

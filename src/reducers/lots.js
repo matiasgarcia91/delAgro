@@ -126,7 +126,7 @@ export function fetchFavorites() {
 export function setFavorite({ lotId }) {
   return (dispatch, getState) => {
     const { token, client, uid } = getState().session;
-    return loggedAxios({ token, client, uid }).post('/favorites', { lotId })
+    return loggedAxios({ token, client, uid }).post('/favorites', { lot_id: lotId })
       .then((response) => {
         console.log(response);
       })
