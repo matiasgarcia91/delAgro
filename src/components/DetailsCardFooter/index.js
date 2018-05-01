@@ -19,7 +19,9 @@ export default class DetailsCardFooter extends PureComponent {
 
   toggleFavourite() {
     const { favourite } = this.state;
+    const { lot, setFavorite } = this.props;
     this.setState({ favourite: !favourite });
+    setFavorite({ lotId: lot.id });
   }
 
   render() {
@@ -49,6 +51,7 @@ DetailsCardFooter.propTypes = {
   lot: PropTypes.shape().isRequired,
   favourite: PropTypes.bool,
   category: PropTypes.string,
+  setFavorite: PropTypes.func.isRequired,
 };
 
 DetailsCardFooter.defaultProps = {
