@@ -8,7 +8,7 @@ class RootContainer extends Component {
   render() {
     return (
       <View style={{ flex: 1 }}>
-        <StatusBar barStyle="default" />
+        <StatusBar barStyle="dark-content" />
         <AppWithNavigationState />
       </View>
     );

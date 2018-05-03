@@ -4,7 +4,7 @@ export default StyleSheet.create({
   logo: {
     alignSelf: 'center',
     resizeMode: 'contain',
-    width: 200,
+    width: 300,
     flex: 1,
   },
 });

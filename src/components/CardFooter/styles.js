@@ -8,6 +8,9 @@ export default StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: colors.creamBackground,
     paddingBottom: 5,
+    maxHeight: 80,
+    borderBottomWidth: 2,
+    borderBottomColor: colors.lightGrey,
   },
   textContainer: {
     flex: 1,

@@ -4,11 +4,15 @@ import { View, Image, TouchableHighlight } from 'react-native';
 
 import menuIcon from '../../assets/images/icons/menu-icon.png';
 import uploadIcon from '../../assets/images/icons/upload-icon.png';
-import delAgroLogo from '../../assets/images/icons/delagroLogo.png';
+import filterIcon from '../../assets/images/icons/filter_icon.png';
+import delAgroLogo from '../../assets/images/icons/icon.png';
 import styles from './styles';
 
 export default class NavBarHome extends PureComponent {
   render() {
+    const { isLoggedIn } = this.props;
+    const centerLogo = isLoggedIn ? null : { marginRight: 40 };
+    const centerFilter = isLoggedIn ? null : { marginRight: 20 };
     return (
       <View style={styles.bar} >
         <TouchableHighlight onPress={() => this.props.navigation.navigate('DrawerOpen')}>
@@ -17,18 +21,28 @@ export default class NavBarHome extends PureComponent {
             style={styles.icon}
           />
         </TouchableHighlight>
-        <TouchableHighlight>
+        <View style={styles.logoContainer}>
           <Image
             source={delAgroLogo}
-            style={styles.icon}
+            style={[styles.logo, centerLogo]}
           />
-        </TouchableHighlight>
-        <TouchableHighlight onPress={() => this.props.navigation.navigate('Camera')}>
+        </View>
+
+        <TouchableHighlight onPress={() => this.props.navigation.navigate('Filter')}>
           <Image
-            source={uploadIcon}
-            style={styles.icon}
+            source={filterIcon}
+            style={[styles.filter, centerFilter]}
           />
         </TouchableHighlight>
+
+        {isLoggedIn &&
+          <TouchableHighlight onPress={() => this.props.navigation.navigate('Camera')}>
+            <Image
+              source={uploadIcon}
+              style={styles.upload}
+            />
+          </TouchableHighlight>
+        }
       </View>
     );
   }
@@ -36,6 +50,7 @@ export default class NavBarHome extends PureComponent {
 
 NavBarHome.propTypes = {
   navigation: PropTypes.shape(),
+  isLoggedIn: PropTypes.bool.isRequired,
 };
 
 NavBarHome.defaultProps = {

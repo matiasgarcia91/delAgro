@@ -9,6 +9,12 @@ export default class Home extends PureComponent {
   constructor(props) {
     super(props);
     this.onViewableItemsChanged = this.onViewableItemsChanged.bind(this);
+    this.renderItem = this.renderItem.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.fetchAllLots();
+    this.props.getStaticData();
   }
 
   onViewableItemsChanged({ viewableItems }) {
@@ -16,27 +22,28 @@ export default class Home extends PureComponent {
     this.props.changeVisibleItemsChange(visibleItems);
   }
 
-  renderItem({ item: { key } }) {
+  renderItem({ item: { key, navigation, lot } }) {
     return (
-      <CardItem id={key} key={key} />
+      <CardItem key={key} navigation={navigation} lot={lot} />
     );
   }
 
   render() {
-    const keys = [{ key: 'a' }, { key: 'b' }, { key: 'c' }, { key: 'd' }, { key: 'e' }, { key: 'f' }];
-
+    const list = this.props.allLots;
+    const isLoggedIn = !!this.props.token;
+    const data =
+      list.map(item => ({ key: `${item.id}`, navigation: this.props.navigation, lot: item }));
     return (
       <View style={{ flex: 1 }}>
         <View style={{ flex: 1 }}>
-          <NavBarHome navigation={this.props.navigation} />
+          <NavBarHome navigation={this.props.navigation} isLoggedIn={isLoggedIn} />
         </View>
         <View style={{ flex: 8 }}>
           <FlatList
-            data={keys}
+            data={data}
             renderItem={this.renderItem}
             onViewableItemsChanged={this.onViewableItemsChanged}
           />
-          <CardItem />
         </View>
       </View>
     );
@@ -46,4 +53,12 @@ export default class Home extends PureComponent {
 Home.propTypes = {
   navigation: PropTypes.shape().isRequired,
   changeVisibleItemsChange: PropTypes.func.isRequired,
+  fetchAllLots: PropTypes.func.isRequired,
+  getStaticData: PropTypes.func.isRequired,
+  allLots: PropTypes.arrayOf(PropTypes.shape).isRequired,
+  token: PropTypes.string,
+};
+
+Home.defaultProps = {
+  token: null,
 };

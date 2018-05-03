@@ -6,7 +6,7 @@ import AppReducer from '../reducers';
 import RootContainer from './RootContainer';
 import { enhancers } from '../utils/redux';
 
-const store = createStore(
+export const store = createStore(
   AppReducer,
   ...enhancers,
 );
