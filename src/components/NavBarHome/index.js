@@ -28,7 +28,7 @@ export default class NavBarHome extends PureComponent {
           />
         </View>
 
-        <TouchableHighlight onPress={() => this.props.navigation.navigate('Filter')}>
+        <TouchableHighlight /*onPress={() => this.props.navigation.navigate('Filter')}*/>
           <Image
             source={filterIcon}
             style={[styles.filter, centerFilter]}

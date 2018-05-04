@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react';
 import { View, Text, KeyboardAvoidingView, Platform } from 'react-native';
 import PropTypes from 'prop-types';
 import { NavigationActions } from 'react-navigation';
-
 import FormInput from '../FormInput';
 import MainButton from '../MainButton';
 import Logo from '../Logo';
@@ -47,7 +46,7 @@ export default class LoginScreen extends PureComponent {
   render() {
     const { email, password } = this.state;
     return (
-      <KeyboardAvoidingView style={styles.container} behaviour='padding' keyboardVerticalOffset={(Platform.OS === 'android') ? -500 : 0}>
+      <KeyboardAvoidingView style={styles.container} behaviour='padding'keyboardVerticalOffset={(Platform.OS === 'android') ? -500 : 0}>
         <View style={styles.logoContainer}>
           <Logo />
         </View>
@@ -55,6 +54,7 @@ export default class LoginScreen extends PureComponent {
           <Text style={styles.titleText}>Iniciar Sesión</Text>
           <FormInput
             label={'Usuario:'}
+            editable={false}
             value={email}
             autoFocus
             onChangeText={this.onEmailChanged}
@@ -62,7 +62,9 @@ export default class LoginScreen extends PureComponent {
           />
           <FormInput
             label={'Contraseña:'}
+            editable={false}
             placeholder={password}
+            secureTextEntry={true}
             value={password}
             onChangeText={this.onPasswordChanged}
             autoCapitalize={'none'}
