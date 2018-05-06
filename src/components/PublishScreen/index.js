@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { View, ScrollView } from 'react-native';
+import { View, ScrollView, KeyboardAvoidingView } from 'react-native';
 import PropTypes from 'prop-types';
 
 import NavBarPublish from '../../containers/NavBarPublishContainer';
@@ -86,7 +86,7 @@ export default class PublishScreen extends PureComponent {
     const { categories, breeds, states } = this.props;
     const mapStates = states.map(item => ({ id: item, name: item }));
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView style={styles.container}   behavior="padding">
         <NavBarPublish navigation={this.props.navigation} submitLot={this.onSubmit} />
         <ScrollView>
           <View style={styles.formContainer}>
@@ -99,7 +99,7 @@ export default class PublishScreen extends PureComponent {
             <FormInput label={'Comentarios:'} onChangeText={this.onChangeComments} multiline />
           </View>
         </ScrollView>
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }
