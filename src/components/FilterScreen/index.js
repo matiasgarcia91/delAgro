@@ -4,26 +4,44 @@ import PropTypes from 'prop-types';
 import { NavigationActions } from 'react-navigation';
 
 import styles from './styles';
-import FormInput from '../FormInput';
+import DropDown from '../DropDown';
 import MainButton from '../MainButton';
+
+import { weights1 } from './constants';
 
 export default class FilterScreen extends PureComponent {
   constructor() {
     super();
     this.state = {
-      firstName: '',
-      lastName: '',
+      category: null,
+      breed: null,
+      state: null,
+      weight: null,
     };
-    this.onChangeName = this.onChangeName.bind(this);
-    this.onChangeLName = this.onChangeLName.bind(this);
+    this.onChangeBreed = this.onChangeBreed.bind(this);
+    this.onChangeCategory = this.onChangeCategory.bind(this);
+    this.onChangeWeight = this.onChangeWeight.bind(this);
+    this.onChangeState = this.onChangeState.bind(this);
   }
 
-  onChangeName(firstName) {
-    this.setState({ firstName });
+  onChangeCategory(value, index, data) {
+    const category = data.find(item => item.id === value);
+    this.setState({ category });
   }
 
-  onChangeLName(lastName) {
-    this.setState({ lastName });
+  onChangeBreed(value, index, data) {
+    const breed = data.find(item => item.id === value);
+    this.setState({ breed });
+  }
+
+  onChangeState(value, index, data) {
+    const state = data.find(item => item.id === value);
+    this.setState({ state });
+  }
+
+  onChangeWeight(value, index, data) {
+    const weight = data.find(item => item.id === value);
+    this.setState({ weight });
   }
 
   onSubmit() {
@@ -39,14 +57,19 @@ export default class FilterScreen extends PureComponent {
   };
 
   render() {
+    const { categories, breeds, states } = this.props;
+    const { breed, category, weight, state } = this.state;
+    const mapWeights = weights1.map(item => ({ id: item, name: item }));
+    const mapStates = states.map(item => ({ id: item, name: item }));
     return (
       <View style={styles.container}>
         <ScrollView>
-          <Text style={styles.titleText}>Filtrar Búsqueda</Text>
+          <Text>Filtrar Busqueda</Text>
           <View style={styles.formContainer}>
-            <FormInput label={'Nombre:'} onChangeText={this.onChangeName} />
-            <FormInput label={'Apellido:'} onChangeText={this.onChangeLName} />
-            <MainButton onPress={this.onSubmit} title={'Filtrar'} style={styles.bigButton} />
+            <DropDown label={'Categoria:'} selected={category} values={categories} onChange={this.onChangeCategory} />
+            <DropDown label={'Raza:'} selected={breed} values={breeds} onChange={this.onChangeBreed} />
+            <DropDown label={'Peso:'} selected={weight} values={mapWeights} onChangeText={this.onChangeWeight} />
+            <DropDown label={'Departamento:'} selected={state} values={mapStates} onChange={this.onChangeState} />
           </View>
         </ScrollView>
       </View>
@@ -56,4 +79,7 @@ export default class FilterScreen extends PureComponent {
 
 FilterScreen.propTypes = {
   navigation: PropTypes.func.isRequired,
+  categories: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  breeds: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  states: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
