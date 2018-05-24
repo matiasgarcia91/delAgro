@@ -86,7 +86,7 @@ export default class PublishScreen extends PureComponent {
     const { categories, breeds, states } = this.props;
     const mapStates = states.map(item => ({ id: item, name: item }));
     return (
-      <KeyboardAvoidingView style={styles.container}   behavior="padding">
+      <KeyboardAvoidingView style={styles.container} behavior="padding">
         <NavBarPublish navigation={this.props.navigation} submitLot={this.onSubmit} />
         <ScrollView>
           <View style={styles.formContainer}>
