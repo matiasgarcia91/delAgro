@@ -3,4 +3,7 @@ import { connect } from 'react-redux';
 import RegisterScreen from '../components/RegisterScreen';
 import { registerUser } from '../reducers/login';
 
-export default connect(null, { registerUser })(RegisterScreen);
+function mapStateToProps({ staticData: { states } }) {
+  return { states };
+}
+export default connect(mapStateToProps, { registerUser })(RegisterScreen);
