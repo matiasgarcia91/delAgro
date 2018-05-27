@@ -1,85 +1,44 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import { View, Text, ScrollView, KeyboardAvoidingView } from 'react-native';
 import PropTypes from 'prop-types';
 import { NavigationActions } from 'react-navigation';
+import { Field, reduxForm } from 'redux-form';
 
 import styles from './styles';
 import Logo from '../Logo';
 import FormInput from '../FormInput';
 import MainButton from '../MainButton';
 import LoginFooter from '../LoginFooter';
+import validate from './validations';
+import DropDown from '../DropDown';
 
-export default class RegisterScreen extends PureComponent {
-  constructor() {
-    super();
+class RegisterScreen extends Component {
+  constructor(props) {
+    super(props);
     this.state = {
-      firstName: '',
-      lastName: '',
-      cellphone: '',
-      state: '',
-      dob: '',
-      email: '',
-      password: '',
-      confirmPassword: '',
+      state: null,
     };
-    this.onChangeName = this.onChangeName.bind(this);
-    this.onChangeLName = this.onChangeLName.bind(this);
-    this.onChangeCellphone = this.onChangeCellphone.bind(this);
     this.onChangeState = this.onChangeState.bind(this);
-    this.onChangeDOB = this.onChangeDOB.bind(this);
-    this.onChangeEmail = this.onChangeEmail.bind(this);
-    this.onChangePassword = this.onChangePassword.bind(this);
-    this.onChangeConfirmPassword = this.onChangeConfirmPassword.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-  onChangeName(firstName) {
-    this.setState({ firstName });
-  }
-
-  onChangeLName(lastName) {
-    this.setState({ lastName });
-  }
-
-  onChangeCellphone(cellphone) {
-    this.setState({ cellphone });
-  }
-
-  onChangeState(state) {
+  onChangeState(value, index, data) {
+    const state = data.find(item => item.id === value);
     this.setState({ state });
   }
 
-  onChangeDOB(dob) {
-    this.setState({ dob });
-  }
-
-  onChangeEmail(email) {
-    this.setState({ email });
-  }
-
-  onChangePassword(password) {
-    this.setState({ password });
-  }
-
-  onChangeConfirmPassword(confirmPassword) {
-    this.setState({ confirmPassword });
-  }
-
-  onSubmit() {
+  onSubmit(values) {
     const {
       firstName,
       lastName,
       cellphone,
-      state,
       dob,
       email,
       password,
       confirmPassword,
-    } = this.state;
-    if (password !== confirmPassword) {
-      // TODO: hacer algo cuando los password son distintos.
-      return null;
-    }
+    } = values;
+    const { state } = this.state;
+
     const user = {
       firstName,
       lastName,
@@ -109,6 +68,21 @@ export default class RegisterScreen extends PureComponent {
   };
 
   render() {
+    const { handleSubmit, states } = this.props;
+    const { state } = this.state;
+    const mapStates = states.map(item => ({ id: item, name: item }));
+    const renderInput = ({ input, label, secureTextEntry, autoFocus, type, meta, capitalize }) => (
+      <FormInput
+        label={label}
+        input={input}
+        autoFocus={autoFocus}
+        secureTextEntry={secureTextEntry}
+        autoCapitalize={capitalize}
+        type={type}
+        meta={meta}
+      />
+    );
+
     return (
       <KeyboardAvoidingView style={styles.container} behavior="padding">
         <ScrollView>
@@ -117,15 +91,57 @@ export default class RegisterScreen extends PureComponent {
           </View>
           <Text style={styles.titleText}>Registrarse</Text>
           <View style={styles.formContainer}>
-            <FormInput label={'Nombre:'} onChangeText={this.onChangeName} />
-            <FormInput label={'Apellido:'} onChangeText={this.onChangeLName} />
-            <FormInput label={'Teléfono móvil:'} onChangeText={this.onChangeCellphone} />
-            <FormInput label={'Departamento:'} onChangeText={this.onChangeState} />
-            <FormInput label={'Fecha de nacimiento:'} onChangeText={this.onChangeDOB} />
-            <FormInput label={'Correo electrónico:'} onChangeText={this.onChangeEmail} />
-            <FormInput label={'Contraseña:'} onChangeText={this.onChangePassword} />
-            <FormInput label={'Repetir contraseña:'} onChangeText={this.onChangeConfirmPassword} />
-            <MainButton onPress={this.onSubmit} title={'Registrarse'} style={styles.bigButton} />
+            <Field
+              name='firstName'
+              type='text'
+              label={'Nombre:'}
+              capitalize={'words'}
+              component={renderInput}
+            />
+            <Field
+              name='lastName'
+              type='text'
+              label={'Apellido:'}
+              capitalize={'words'}
+              component={renderInput}
+            />
+            <Field
+              name='cellphone'
+              type='text'
+              label={'Teléfono móvil:'}
+              component={renderInput}
+            />
+            <DropDown label={'Departamento:'} selected={state} values={mapStates} onChange={this.onChangeState} />
+            <Field
+              name='dob'
+              type='text'
+              label={'Fecha de nacimiento:'}
+              component={renderInput}
+            />
+            <Field
+              name='email'
+              type='email'
+              label={'Correo electrónico:'}
+              capitalize={'none'}
+              component={renderInput}
+            />
+            <Field
+              name='password'
+              type='password'
+              secureTextEntry
+              label={'Contraseña:'}
+              capitalize={'none'}
+              component={renderInput}
+            />
+            <Field
+              name='confirmPassword'
+              type='password'
+              secureTextEntry
+              label={'Repetir contraseña:'}
+              capitalize={'none'}
+              component={renderInput}
+            />
+            <MainButton onPress={handleSubmit(this.onSubmit)} title={'Registrarse'} style={styles.bigButton} />
           </View>
           <View style={{ flex: 1 }}>
             <LoginFooter text={'TIENES UNA CUENTA? '} linkText={'INICIAR SESION'} link={this.navigate} />
@@ -139,4 +155,11 @@ export default class RegisterScreen extends PureComponent {
 RegisterScreen.propTypes = {
   navigation: PropTypes.shape().isRequired,
   registerUser: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  states: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
+
+export default reduxForm({
+  form: 'Register',
+  validate,
+})(RegisterScreen);
