@@ -7,6 +7,7 @@ import NavBarPublish from '../../containers/NavBarPublishContainer';
 import styles from './styles';
 import FormInput from '../FormInput';
 import DropDown from '../DropDown';
+import validate from './validations';
 
 class PublishScreen extends PureComponent {
   constructor() {
@@ -116,7 +117,7 @@ class PublishScreen extends PureComponent {
               name='description'
               type='text'
               label={'Comentarios:'}
-              capitalize={'words'}
+              capitalize={'sentences'}
               component={renderInput}
               multiline
             />
@@ -138,4 +139,5 @@ PublishScreen.propTypes = {
 
 export default reduxForm({
   form: 'Publish',
+  validate,
 })(PublishScreen);
