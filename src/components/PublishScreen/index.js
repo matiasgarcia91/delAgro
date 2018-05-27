@@ -1,30 +1,24 @@
 import React, { PureComponent } from 'react';
 import { View, ScrollView, KeyboardAvoidingView } from 'react-native';
 import PropTypes from 'prop-types';
+import { Field, reduxForm } from 'redux-form';
 
 import NavBarPublish from '../../containers/NavBarPublishContainer';
 import styles from './styles';
 import FormInput from '../FormInput';
 import DropDown from '../DropDown';
 
-export default class PublishScreen extends PureComponent {
+class PublishScreen extends PureComponent {
   constructor() {
     super();
     this.state = {
       category: null,
       breed: null,
       state: null,
-      quantity: '',
-      price: '',
-      description: '',
     };
     this.onChangeBreed = this.onChangeBreed.bind(this);
     this.onChangeCategory = this.onChangeCategory.bind(this);
-    this.onChangePrice = this.onChangePrice.bind(this);
     this.onChangeState = this.onChangeState.bind(this);
-    this.onChangeWeight = this.onChangeWeight.bind(this);
-    this.onChangeComments = this.onChangeComments.bind(this);
-    this.onChangeQuantity = this.onChangeQuantity.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
   onChangeCategory(value, index, data) {
@@ -32,17 +26,9 @@ export default class PublishScreen extends PureComponent {
     this.setState({ category });
   }
 
-  onChangeQuantity(quantity) {
-    this.setState({ quantity });
-  }
-
   onChangeBreed(value, index, data) {
     const breed = data.find(item => item.id === value);
     this.setState({ breed });
-  }
-
-  onChangeWeight(weight) {
-    this.setState({ weight });
   }
 
   onChangeState(value, index, data) {
@@ -50,24 +36,14 @@ export default class PublishScreen extends PureComponent {
     this.setState({ state });
   }
 
-  onChangePrice(price) {
-    this.setState({ price });
-  }
-
-  onChangeComments(comments) {
-    this.setState({ description: comments });
-  }
-
-  onSubmit(video) {
+  onSubmit(values) {
     const {
       category,
       breed,
       state,
-      quantity,
-      price,
-      weight,
-      description,
     } = this.state;
+    const { quantity, price, weight, description } = values;
+    const video = this.props.navigation.state.params.video;
 
     this.props.submitLot({
       category_id: category.id,
@@ -83,20 +59,67 @@ export default class PublishScreen extends PureComponent {
 
   render() {
     const { breed, category, state } = this.state;
-    const { categories, breeds, states } = this.props;
+    const { categories, breeds, states, handleSubmit } = this.props;
     const mapStates = states.map(item => ({ id: item, name: item }));
+    const renderInput = ({
+      input,
+      multiline,
+      label,
+      secureTextEntry,
+      autoFocus,
+      type,
+      meta,
+      capitalize,
+    }) => (
+      <FormInput
+        label={label}
+        input={input}
+        autoFocus={autoFocus}
+        secureTextEntry={secureTextEntry}
+        autoCapitalize={capitalize}
+        type={type}
+        meta={meta}
+        multiline={multiline}
+      />
+    );
     return (
       <KeyboardAvoidingView style={styles.container} behavior="padding">
-        <NavBarPublish navigation={this.props.navigation} submitLot={this.onSubmit} />
+        <NavBarPublish
+          navigation={this.props.navigation}
+          submitLot={this.onSubmit}
+          handleSubmit={handleSubmit}
+        />
         <ScrollView>
           <View style={styles.formContainer}>
             <DropDown label={'Categoria:'} selected={category} values={categories} onChange={this.onChangeCategory} />
-            <FormInput label={'Cantidad:'} onChangeText={this.onChangeQuantity} />
+            <Field
+              name='quantity'
+              type='number'
+              label={'Cantidad:'}
+              component={renderInput}
+            />
             <DropDown label={'Raza:'} selected={breed} values={breeds} onChange={this.onChangeBreed} />
-            <FormInput label={'Peso:'} onChangeText={this.onChangeWeight} />
+            <Field
+              name='weight'
+              type='number'
+              label={'Peso:'}
+              component={renderInput}
+            />
             <DropDown label={'Departamento:'} selected={state} values={mapStates} onChange={this.onChangeState} />
-            <FormInput label={'Precio por Kg:'} onChangeText={this.onChangePrice} />
-            <FormInput label={'Comentarios:'} onChangeText={this.onChangeComments} multiline />
+            <Field
+              name='price'
+              type='number'
+              label={'Precio por Kg:'}
+              component={renderInput}
+            />
+            <Field
+              name='description'
+              type='text'
+              label={'Comentarios:'}
+              capitalize={'words'}
+              component={renderInput}
+              multiline
+            />
           </View>
         </ScrollView>
       </KeyboardAvoidingView>
@@ -109,5 +132,10 @@ PublishScreen.propTypes = {
   submitLot: PropTypes.func.isRequired,
   categories: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   breeds: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-  states: PropTypes.arrayOf(PropTypes.string).isRequired
+  states: PropTypes.arrayOf(PropTypes.string).isRequired,
+  handleSubmit: PropTypes.func.isRequired,
 };
+
+export default reduxForm({
+  form: 'Publish',
+})(PublishScreen);
