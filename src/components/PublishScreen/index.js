@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { View, ScrollView, KeyboardAvoidingView } from 'react-native';
+import { View, ScrollView, KeyboardAvoidingView, Text } from 'react-native';
 import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
 
@@ -83,6 +83,7 @@ class PublishScreen extends PureComponent {
         multiline={multiline}
       />
     );
+    const unit = (category && category.unit) || '';
     return (
       <KeyboardAvoidingView style={styles.container} behavior="padding">
         <NavBarPublish
@@ -110,7 +111,7 @@ class PublishScreen extends PureComponent {
             <Field
               name='price'
               type='number'
-              label={'Precio por Kg:'}
+              label={`Precio ${unit}:`}
               component={renderInput}
             />
             <Field
