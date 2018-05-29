@@ -13,21 +13,21 @@ const DetailsText = ({
     weight,
     inspectionDate,
     description,
+    category,
+    breed,
   },
-  breed,
-  category,
   toggleModal },
 ) => (
   <View style={styles.container}>
     <View style={styles.textContainer}>
       <View style={styles.row} >
-        <Text style={styles.caption}>Cantidad:</Text><Text style={styles.text}>{quantity} {category}</Text>
+        <Text style={styles.caption}>Cantidad:</Text><Text style={styles.text}>{quantity} {category.name}</Text>
       </View>
       <View style={styles.row} >
         <Text style={styles.caption}>Ubicacion:</Text><Text style={styles.text}>{state}</Text>
       </View>
       <View style={styles.row} >
-        <Text style={styles.caption}>Raza:</Text><Text style={styles.text}>{breed}</Text>
+        <Text style={styles.caption}>Raza:</Text><Text style={styles.text}>{breed.name}</Text>
       </View>
       <View style={styles.row} >
         <Text style={styles.caption}>Peso:</Text><Text style={styles.text}>{weight}</Text>
@@ -55,9 +55,9 @@ DetailsText.propTypes = {
     weight: PropTypes.number,
     inspectionDate: PropTypes.string,
     comments: PropTypes.string,
+    category: PropTypes.shape(),
+    breed: PropTypes.shape(),
   }).isRequired,
-  breed: PropTypes.string.isRequired,
-  category: PropTypes.string.isRequired,
   toggleModal: PropTypes.func.isRequired,
 };
 
