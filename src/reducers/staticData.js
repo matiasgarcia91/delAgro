@@ -1,6 +1,7 @@
 // import { AsyncStorage } from 'react-native';
 
 import axiosCustom from '../utils/axios';
+import { addPriceUnit } from '../helpers/priceUnit';
 
 const initialState = {
   categories: null,
@@ -45,7 +46,8 @@ export function statesSuccess(states) {
 }
 
 export function categoriesSuccess(categories) {
-  return { type: CATEGORIES_SUCCESS, categories };
+  const categoriesWithUnit = addPriceUnit(categories);
+  return { type: CATEGORIES_SUCCESS, categories: categoriesWithUnit };
 }
 
 export function setContacts(contacts) {

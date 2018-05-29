@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import styles from './styles';
 import favouriteBlank from '../../assets/images/icons/star.png';
 import favouriteYellow from '../../assets/images/icons/starYellow.png';
+import { getPriceUnit } from '../../helpers/priceUnit';
 
 export default class DetailsCardFooter extends PureComponent {
   // Provisorio para dar aparentar que podes guardar a favoritos
@@ -22,15 +23,16 @@ export default class DetailsCardFooter extends PureComponent {
   }
 
   render() {
-    const { lot: { quantity, price }, category } = this.props;
+    const { lot: { quantity, price, category } } = this.props;
     const { favourite } = this.state;
     const src = favourite ? favouriteYellow : favouriteBlank;
     const favText = favourite ? 'Favorito' : 'Guardar';
+    const unit = getPriceUnit(category.id);
     return (
       <View style={styles.container}>
         <View style={styles.textContainer}>
-          <Text style={styles.countText}>{quantity} {category}</Text>
-          <Text style={styles.priceText}>${price}/kg</Text>
+          <Text style={styles.countText}>{quantity} {category.name}</Text>
+          <Text style={styles.priceText}>${price} {unit}</Text>
         </View>
         <View style={styles.favContainer}>
           <TouchableWithoutFeedback style={styles.favStar} onPress={this.toggleFavourite} >
