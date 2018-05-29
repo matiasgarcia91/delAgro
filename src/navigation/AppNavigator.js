@@ -10,7 +10,7 @@ import Home from '../containers/HomeScreenContainer';
 import Filter from '../containers/FilterScreen';
 import Details from '../containers/DetailsScreenContainer';
 import Camera from '../components/CameraScreen';
-import Welcome from '../components/WelcomeScreen';
+import Welcome from '../containers/WelcomeScreen';
 import Publish from '../containers/PublishScreenContainer';
 import MyLots from '../containers/MyLotsPage';
 import MyProfile from '../containers/MyProfileContainer';
@@ -69,7 +69,8 @@ export const AppNavigator = StackNavigator({
       LogOut: { screen: () => {}, navigationOptions: { drawerLabel: 'Cerrar sesión' } },
     }, { headerMode: 'none', drawerWidth: 200, contentComponent: CustomDrawerContentComponent }),
   },
-}, { initialRouteName: 'loggedOutFlow', headerMode: 'none' });
+  welcomeScreen: { screen: Welcome },
+}, { initialRouteName: 'welcomeScreen', headerMode: 'none' });
 
 class AppWithNavigationState extends Component {
   render() {
