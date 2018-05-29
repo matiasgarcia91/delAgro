@@ -52,7 +52,7 @@ DetailsText.propTypes = {
   lot: PropTypes.shape({
     quantity: PropTypes.number,
     location: PropTypes.string,
-    weight: PropTypes.string,
+    weight: PropTypes.number,
     inspectionDate: PropTypes.string,
     comments: PropTypes.string,
   }).isRequired,
