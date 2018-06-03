@@ -94,5 +94,4 @@ LoginScreen.propTypes = {
 
 export default reduxForm({
   form: 'LoginForm',
-  validate,
 })(LoginScreen);

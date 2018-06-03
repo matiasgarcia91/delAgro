@@ -21,7 +21,7 @@ export default class DetailsScreen extends PureComponent {
     this.setState({ modalVisble: !modalVisble });
   }
   render() {
-    const { selected, breed, category } = this.props;
+    const { selected, breed } = this.props;
     const { modalVisble } = this.state;
     return (
       <View style={{ flex: 1 }}>
@@ -31,10 +31,9 @@ export default class DetailsScreen extends PureComponent {
         </View>
         <View style={{ flex: 8 }}>
           <ScrollView>
-            <CardItem lot={selected} category={category} details />
+            <CardItem lot={selected} details />
             <DetailsText
               lot={selected}
-              category={category}
               breed={breed}
               toggleModal={this.toggleModal}
             />
@@ -49,7 +48,6 @@ DetailsScreen.propTypes = {
   navigation: PropTypes.shape().isRequired,
   selected: PropTypes.shape(),
   breed: PropTypes.string,
-  category: PropTypes.string,
 };
 
 DetailsScreen.defaultProps = {
