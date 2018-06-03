@@ -12,7 +12,6 @@ import Details from '../containers/DetailsScreenContainer';
 import Camera from '../components/CameraScreen';
 import Publish from '../containers/PublishScreenContainer';
 import MyLots from '../containers/MyLotsPage';
-import FavoritesScreen from '../containers/FavoritesScreen';
 import { addListener } from '../utils/redux';
 import { logout } from '../reducers/login';
 
@@ -62,7 +61,6 @@ export const AppNavigator = StackNavigator({
       HomeLoggedIn: { screen: homeStack, navigationOptions: { drawerLabel: 'Inicio' } },
       myProfile: { screen: () => {}, navigationOptions: { drawerLabel: 'Mi perfil' } },
       myLots: { screen: MyLots, navigationOptions: { drawerLabel: 'Mis publicaciones' } },
-      favorites: { screen: FavoritesScreen, navigationOptions: { drawerLabel: 'Favoritos' } },
       help: { screen: () => {}, navigationOptions: { drawerLabel: 'Ayuda' } },
       terms: { screen: () => {}, navigationOptions: { drawerLabel: 'Terminos y condiciones' } },
       LogOut: { screen: () => {}, navigationOptions: { drawerLabel: 'Cerrar sesión' } },

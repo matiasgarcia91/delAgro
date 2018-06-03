@@ -9,7 +9,6 @@ const initialState = {
   allLots: [],
   selected: null,
   myLots: [],
-  favorites: [],
 };
 
 export const IS_FETCHING = 'IS_FETCHING';
@@ -21,7 +20,6 @@ export const UPLOAD_PENDING = 'UPLOAD_PENDING';
 export const UPLOAD_SUCCESS = 'UPLOAD_SUCCESS';
 export const UPLOAD_FAILURE = 'UPLOAD_FAILURE';
 export const MY_LOTS_SUCCESS = 'MY_LOTS_SUCCESS';
-export const FAVORITES_SUCCESS = 'FAVORITES_SUCCESS';
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
@@ -45,8 +43,6 @@ export default function reducer(state = initialState, action) {
       return { ...state, uploading: false, uploadFailure: true, uploadError: action.uploadError };
     case MY_LOTS_SUCCESS:
       return { ...state, myLots: action.myLots };
-    case FAVORITES_SUCCESS:
-      return { ...state, favorites: action.favorites };
     default:
       return state;
   }
@@ -84,10 +80,6 @@ export function myLotsSuccess(myLots) {
   return { type: MY_LOTS_SUCCESS, myLots };
 }
 
-export function favoritesSuccess(favorites) {
-  return { type: FAVORITES_SUCCESS, favorites };
-}
-
 export function fetchAllLots() {
   return (dispatch) => {
     dispatch(fetching());
@@ -106,29 +98,6 @@ export function fetchMyLots() {
     return loggedAxios({ token, client, uid }).get('/my_lots')
       .then((response) => {
         dispatch(myLotsSuccess(response.data));
-      })
-      .catch(error => dispatch(setError({ error })));
-  };
-}
-
-export function fetchFavorites() {
-  return (dispatch, getState) => {
-    dispatch(fetching());
-    const { token, client, uid } = getState().session;
-    return loggedAxios({ token, client, uid }).get('/favorites')
-      .then((response) => {
-        dispatch(favoritesSuccess(response.data));
-      })
-      .catch(error => dispatch(setError({ error })));
-  };
-}
-
-export function setFavorite({ lotId }) {
-  return (dispatch, getState) => {
-    const { token, client, uid } = getState().session;
-    return loggedAxios({ token, client, uid }).post('/favorites', { lot_id: lotId })
-      .then((response) => {
-        console.log(response);
       })
       .catch(error => dispatch(setError({ error })));
   };
@@ -167,3 +136,38 @@ export function submitLot({
     return dispatch(navigateToHomeLoggedIn());
   };
 }
+
+/*
+export const FAVORITES_SUCCESS = 'FAVORITES_SUCCESS';
+
+case FAVORITES_SUCCESS:
+  return { ...state, favorites: action.favorites };
+
+export function favoritesSuccess(favorites) {
+  return { type: FAVORITES_SUCCESS, favorites };
+}
+
+export function fetchFavorites() {
+  return (dispatch, getState) => {
+    dispatch(fetching());
+    const { token, client, uid } = getState().session;
+    return loggedAxios({ token, client, uid }).get('/favorites')
+      .then((response) => {
+        dispatch(favoritesSuccess(response.data));
+      })
+      .catch(error => dispatch(setError({ error })));
+  };
+}
+
+
+export function setFavorite({ lotId }) {
+  return (dispatch, getState) => {
+    const { token, client, uid } = getState().session;
+    return loggedAxios({ token, client, uid }).post('/favorites', { lot_id: lotId })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch(error => dispatch(setError({ error })));
+  };
+}
+*/
