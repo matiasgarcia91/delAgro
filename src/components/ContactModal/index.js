@@ -24,6 +24,7 @@ export default class ContactModal extends PureComponent {
       <TouchableHighlight
         style={{ flex: 1 }}
         onPress={() => call({ number: contact.phone, prompt: false })}
+        key={contact.phone}
       >
         <View>
           <Text style={styles.title}>{`${contact.first_name} ${contact.last_name}`}</Text>
