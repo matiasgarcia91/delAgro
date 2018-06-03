@@ -21,6 +21,7 @@ class PublishScreen extends PureComponent {
     this.onChangeCategory = this.onChangeCategory.bind(this);
     this.onChangeState = this.onChangeState.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.renderInput = this.renderInput.bind(this);
   }
   onChangeCategory(value, index, data) {
     const category = data.find(item => item.id === value);
@@ -58,31 +59,33 @@ class PublishScreen extends PureComponent {
     });
   }
 
+  renderInput({
+    input,
+    multiline,
+    label,
+    secureTextEntry,
+    autoFocus,
+    type,
+    meta,
+    capitalize,
+  }) {
+    return (<FormInput
+      label={label}
+      input={input}
+      autoFocus={autoFocus}
+      secureTextEntry={secureTextEntry}
+      autoCapitalize={capitalize}
+      type={type}
+      meta={meta}
+      multiline={multiline}
+    />
+    );
+  }
+
   render() {
     const { breed, category, state } = this.state;
     const { categories, breeds, states, handleSubmit } = this.props;
     const mapStates = states.map(item => ({ id: item, name: item }));
-    const renderInput = ({
-      input,
-      multiline,
-      label,
-      secureTextEntry,
-      autoFocus,
-      type,
-      meta,
-      capitalize,
-    }) => (
-      <FormInput
-        label={label}
-        input={input}
-        autoFocus={autoFocus}
-        secureTextEntry={secureTextEntry}
-        autoCapitalize={capitalize}
-        type={type}
-        meta={meta}
-        multiline={multiline}
-      />
-    );
     const unit = (category && category.unit) || '';
     return (
       <KeyboardAvoidingView style={styles.container} behavior="padding">
@@ -98,28 +101,28 @@ class PublishScreen extends PureComponent {
               name='quantity'
               type='number'
               label={'Cantidad:'}
-              component={renderInput}
+              component={this.renderInput}
             />
             <DropDown label={'Raza:'} selected={breed} values={breeds} onChange={this.onChangeBreed} />
             <Field
               name='weight'
               type='number'
               label={'Peso:'}
-              component={renderInput}
+              component={this.renderInput}
             />
             <DropDown label={'Departamento:'} selected={state} values={mapStates} onChange={this.onChangeState} />
             <Field
               name='price'
               type='number'
               label={`Precio ${unit}:`}
-              component={renderInput}
+              component={this.renderInput}
             />
             <Field
               name='description'
               type='text'
               label={'Comentarios:'}
               capitalize={'sentences'}
-              component={renderInput}
+              component={this.renderInput}
               multiline
             />
           </View>
