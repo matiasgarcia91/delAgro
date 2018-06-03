@@ -27,7 +27,7 @@ const CustomDrawerContentComponent = (props) => {
             ({ route, focused }) => {
               if (route.key === 'LogOut') return logout();
 
-              if (route.key === 'favorites' || route.key === 'terms' || route.key === 'help' || route.key === 'myProfile') return null;
+              if (route.key === 'terms' || route.key === 'help' || route.key === 'myProfile') return null;
 
               return props.onItemPress({ route, focused }) // eslint-disable-line
             }
@@ -61,7 +61,6 @@ export const AppNavigator = StackNavigator({
       HomeLoggedIn: { screen: homeStack, navigationOptions: { drawerLabel: 'Inicio' } },
       myProfile: { screen: () => {}, navigationOptions: { drawerLabel: 'Mi perfil' } },
       myLots: { screen: MyLots, navigationOptions: { drawerLabel: 'Mis publicaciones' } },
-      favorites: { screen: () => {}, navigationOptions: { drawerLabel: 'Favoritos' } },
       help: { screen: () => {}, navigationOptions: { drawerLabel: 'Ayuda' } },
       terms: { screen: () => {}, navigationOptions: { drawerLabel: 'Terminos y condiciones' } },
       LogOut: { screen: () => {}, navigationOptions: { drawerLabel: 'Cerrar sesión' } },

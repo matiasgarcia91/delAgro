@@ -136,3 +136,38 @@ export function submitLot({
     return dispatch(navigateToHomeLoggedIn());
   };
 }
+
+/*
+export const FAVORITES_SUCCESS = 'FAVORITES_SUCCESS';
+
+case FAVORITES_SUCCESS:
+  return { ...state, favorites: action.favorites };
+
+export function favoritesSuccess(favorites) {
+  return { type: FAVORITES_SUCCESS, favorites };
+}
+
+export function fetchFavorites() {
+  return (dispatch, getState) => {
+    dispatch(fetching());
+    const { token, client, uid } = getState().session;
+    return loggedAxios({ token, client, uid }).get('/favorites')
+      .then((response) => {
+        dispatch(favoritesSuccess(response.data));
+      })
+      .catch(error => dispatch(setError({ error })));
+  };
+}
+
+
+export function setFavorite({ lotId }) {
+  return (dispatch, getState) => {
+    const { token, client, uid } = getState().session;
+    return loggedAxios({ token, client, uid }).post('/favorites', { lot_id: lotId })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch(error => dispatch(setError({ error })));
+  };
+}
+*/
