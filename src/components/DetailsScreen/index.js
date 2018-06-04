@@ -27,7 +27,7 @@ export default class DetailsScreen extends PureComponent {
       <View style={{ flex: 1 }}>
         <ContactModal isVisible={modalVisble} toggleModal={this.toggleModal} />
         <View style={{ flex: 1 }}>
-          <NavBarBack navigation={this.props.navigation} />
+          <NavBarBack navigation={this.props.navigation} title={'Detalles'} />
         </View>
         <View style={{ flex: 8 }}>
           <ScrollView>
