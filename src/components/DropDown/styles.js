@@ -9,6 +9,12 @@ export default StyleSheet.create({
     marginHorizontal: 40,
     marginBottom: 10,
   },
+  doubleContainer: {
+    height: 70,
+    padding: 5,
+    minWidth: 130,
+    marginBottom: 10,
+  },
   selectedText: {
     borderRadius: global.baseBorderRadius,
     backgroundColor: colors.white,

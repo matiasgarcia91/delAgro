@@ -7,6 +7,7 @@ import styles from './styles';
 
 export default class NavBarBack extends PureComponent {
   render() {
+    const { title } = this.props;
     return (
       <View style={styles.bar} >
         <TouchableHighlight style={{ flex: 1 }} onPress={() => this.props.navigation.goBack()}>
@@ -15,7 +16,7 @@ export default class NavBarBack extends PureComponent {
           </Text>
         </TouchableHighlight>
         <View style={{ flex: 1, alignItems: 'center' }}>
-          <Text style={styles.title}>Detalles</Text>
+          <Text style={styles.title}>{title}</Text>
         </View>
         <View style={{ flex: 1 }} />
       </View>
@@ -25,6 +26,7 @@ export default class NavBarBack extends PureComponent {
 
 NavBarBack.propTypes = {
   navigation: PropTypes.shape(),
+  title: PropTypes.string.isRequired,
 };
 
 NavBarBack.defaultProps = {

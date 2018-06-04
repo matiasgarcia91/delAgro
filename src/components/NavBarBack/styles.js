@@ -21,7 +21,7 @@ export default StyleSheet.create({
     fontSize: 15,
   },
   title: {
-    fontSize: 18,
+    fontSize: 17,
     fontWeight: 'bold',
     color: colors.darkGreen,
   },
