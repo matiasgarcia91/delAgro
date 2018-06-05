@@ -13,6 +13,16 @@ const validate = (values) => {
   } else if (!/^(0|[0-9]{9})$/i.test(values.cellphone)) {
     errors.cellphone = 'Numero de celular invalido';
   }
+
+  const { firstName, lastName, password, confirmPassword } = values;
+  if (!firstName) errors.firstName = 'Requerido';
+  if (!lastName) errors.lastName = 'Requerido';
+  if (!password) errors.password = 'Requerido';
+  if (!confirmPassword) errors.confirmPassword = 'Requerido';
+
+  if (confirmPassword !== password) {
+    errors.password = 'Las contraseñas no son iguales';
+  }
   return errors;
 };
 
