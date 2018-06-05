@@ -21,8 +21,14 @@ export default class WelcomeScreen extends PureComponent {
         <View style={styles.logoContainer}>
           <Logo />
         </View>
+        <View style={styles.titleContainer} >
+          <Text style={{fontSize:22, color:'#ff4611',marginBottom:10,marginTop:40}} >¡Bienvenido a Muuu!</Text>
+          <Text> La aplicación donde podrás publicar lotes de {"\n"} ganado en venta y encontrar el que buscas.</Text>
+        </View>
         <View style={styles.formContainer}>
-          <MainButton onPress={this.onViewPress} title={'Ver Fotos'} style={styles.bigButton} />
+          <MainButton onPress={this.onViewPress} title={'VER GANADO EN VENTA'} style={styles.bigButton,{marginTop:50, height: 50,width:250}} />
+
+          <MainButton onPress={this.onViewPress} title={'PUBLICAR UN LOTE'} style={styles.bigButton,{marginTop:50, height:50,width:250}} />
         </View>
       </View>
     );

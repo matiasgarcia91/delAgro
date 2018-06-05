@@ -12,11 +12,19 @@ export default StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'stretch',
     marginBottom: 50,
-    marginTop: 30,
+    marginTop: 20,
+    paddingTop:20
   },
   logoContainer: {
     marginTop: 60,
     flex: 1,
     justifyContent: 'flex-end',
   },
+  titleContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop:30
+
+  }
 });
