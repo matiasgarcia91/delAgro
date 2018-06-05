@@ -33,7 +33,6 @@ class MyProfile extends PureComponent {
 
   onSubmit(values) {
     const { state } = this.state;
-    // TODO: switch to user and delete fakeRegister
     return this.props.updateUserData({ phone: values.phone, state });
   }
 
