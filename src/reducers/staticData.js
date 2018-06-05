@@ -95,10 +95,11 @@ export function fetchContacts() {
 }
 
 export function getStaticData() {
-  return (dispatch) => {
-    dispatch(fetchBreeds(dispatch));
-    dispatch(fetchStates(dispatch));
-    dispatch(fetchCategories(dispatch));
-    dispatch(fetchContacts(dispatch));
+  return (dispatch, getState) => {
+    const { breeds, states, categories, contacts } = getState().staticData;
+    if (!breeds) dispatch(fetchBreeds(dispatch));
+    if (!states) dispatch(fetchStates(dispatch));
+    if (!categories) dispatch(fetchCategories(dispatch));
+    if (!contacts) dispatch(fetchContacts(dispatch));
   };
 }

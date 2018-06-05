@@ -30,7 +30,6 @@ export default class Home extends PureComponent {
 
   render() {
     const list = this.props.allLots;
-    console.log(list);
     const isLoggedIn = !!this.props.token;
     const data =
       list.map(item => ({ key: `${item.id}`, navigation: this.props.navigation, lot: item }));
