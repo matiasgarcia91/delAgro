@@ -11,6 +11,10 @@ const axiosInstance = axios.create({
 const initialState = {
   loggedIn: false,
   token: null,
+  userData: {
+    phone: '094821910',
+    state: 'durazno',
+  },
 };
 
 export const LOGIN_PENDING = 'LOGIN_PENDING';
@@ -125,4 +129,8 @@ export function registerUser({ firstName, lastName, email, password, dob, cellph
       })
       .catch(e => console.log(e));
   };
+}
+
+export function updateUserData({ phone, state }) {
+  return () => console.log({ phone, state });
 }

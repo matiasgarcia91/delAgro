@@ -12,6 +12,7 @@ import Details from '../containers/DetailsScreenContainer';
 import Camera from '../components/CameraScreen';
 import Publish from '../containers/PublishScreenContainer';
 import MyLots from '../containers/MyLotsPage';
+import MyProfile from '../containers/MyProfileContainer';
 import { addListener } from '../utils/redux';
 import { logout } from '../reducers/login';
 
@@ -27,7 +28,7 @@ const CustomDrawerContentComponent = (props) => {
             ({ route, focused }) => {
               if (route.key === 'LogOut') return logout();
 
-              if (route.key === 'terms' || route.key === 'help' || route.key === 'myProfile') return null;
+              if (route.key === 'terms' || route.key === 'help') return null;
 
               return props.onItemPress({ route, focused }) // eslint-disable-line
             }
@@ -59,7 +60,7 @@ export const AppNavigator = StackNavigator({
   loggedInFlow: {
     screen: DrawerNavigator({
       HomeLoggedIn: { screen: homeStack, navigationOptions: { drawerLabel: 'Inicio' } },
-      myProfile: { screen: () => {}, navigationOptions: { drawerLabel: 'Mi perfil' } },
+      myProfile: { screen: MyProfile, navigationOptions: { drawerLabel: 'Mi perfil' } },
       myLots: { screen: MyLots, navigationOptions: { drawerLabel: 'Mis publicaciones' } },
       help: { screen: () => {}, navigationOptions: { drawerLabel: 'Ayuda' } },
       terms: { screen: () => {}, navigationOptions: { drawerLabel: 'Terminos y condiciones' } },
