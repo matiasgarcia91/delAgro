@@ -1,8 +1,7 @@
-import { AsyncStorage } from 'react-native';
 import axios from 'axios';
 
 import { store } from '../containers/App';
-import { navigateToHomeLoggedIn, navigateToHomeLoggedOut, navigateToLogin, navigateToRegister } from '../reducers/rootNavigatorReducer';
+import { navigateToHomeLoggedIn, navigateToHomeLoggedOut, navigateToLogin, navigateToRegister } from './rootNavigatorReducer';
 
 const axiosInstance = axios.create({
   baseURL: 'http://delagro-api.herokuapp.com/api/v1/',
@@ -76,18 +75,9 @@ export function login({ email, password }) {
         const { data: { data: { first_name, email: uid } } } = response;
         const token = response.headers['access-token'];
         const client = response.headers.client;
-        AsyncStorage.setItem('delAgro:token', token)
-          .then(() => {
-            AsyncStorage.setItem('delAgro:client', client)
-              .then(() => {
-                AsyncStorage.setItem('delAgro:uid', uid)
-                  .then(() => {
-                    dispatch(loginSuccess({ username: first_name, token, uid, client }));
-                    dispatch(saveCredentials({ token, uid, client }));
-                    dispatch(navigateToHomeLoggedIn());
-                  });
-              });
-          });
+        dispatch(loginSuccess({ username: first_name, token, uid, client }));
+        dispatch(saveCredentials({ token, uid, client }));
+        dispatch(navigateToHomeLoggedIn());
       })
       .catch(e => dispatch(loginFailure(e)));
   };
@@ -121,9 +111,6 @@ export function registerUser({ firstName, lastName, email, password, dob, cellph
         const { data: { data: { first_name, email: uid } } } = response;
         const token = response.headers['access-token'];
         const client = response.headers.client;
-        AsyncStorage.setItem('delAgro:token', token);
-        AsyncStorage.setItem('delAgro:client', client);
-        AsyncStorage.setItem('delAgro:uid', uid);
         dispatch(loginSuccess({ username: first_name, token, uid, client }));
         dispatch(navigateToHomeLoggedIn()); // TODO: aca a donde vamos?
       })

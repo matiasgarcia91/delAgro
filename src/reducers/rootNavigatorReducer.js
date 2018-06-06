@@ -24,7 +24,7 @@ export default function reducer(state = initialState, action) {
       return AppNavigator.router.getStateForAction(back(), state);
     case NAV_HOME_LOGGED_OUT:
       return AppNavigator.router.getStateForAction(
-        navigate({ routeName: 'HomeLoggedOut' }),
+        navigate({ routeName: 'welcomeScreen' }),
       );
     case NAV_HOME_LOGGED_IN:
       return AppNavigator.router.getStateForAction(

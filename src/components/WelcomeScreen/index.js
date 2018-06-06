@@ -16,17 +16,17 @@ export default class WelcomeScreen extends PureComponent {
   }
 
   navigatePublish = () => {
-    const navigateToDetails = NavigationActions.navigate({
-      routeName: 'Login',
-    });
-    this.props.navigation.dispatch(navigateToDetails);
+    const { navigation, loggedIn } = this.props;
+    const routeName = loggedIn ? 'Camera' : 'Login';
+    const navigateToDetails = NavigationActions.navigate({ routeName });
+    navigation.dispatch(navigateToDetails);
   };
 
   navigateView = () => {
-    const navigateToDetails = NavigationActions.navigate({
-      routeName: 'loggedOutFlow',
-    });
-    this.props.navigation.dispatch(navigateToDetails);
+    const { navigation, loggedIn } = this.props;
+    const routeName = loggedIn ? 'loggedInFlow' : 'loggedOutFlow';
+    const navigateToDetails = NavigationActions.navigate({ routeName });
+    navigation.dispatch(navigateToDetails);
   };
 
   render() {
@@ -37,11 +37,10 @@ export default class WelcomeScreen extends PureComponent {
         </View>
         <View style={styles.titleContainer} >
           <Text style={styles.titleText} >¡Bienvenido a Muuu!</Text>
-          <Text> La aplicación donde podrás publicar lotes de {"\n"} ganado en venta y encontrar el que buscas.</Text>
+          <Text> La aplicación donde podrás publicar lotes de {'\n'} ganado en venta y encontrar el que buscas.</Text>
         </View>
         <View style={styles.formContainer}>
           <MainButton onPress={this.navigateView} title={'VER GANADO EN VENTA'} style={styles.bigButton} />
-
           <MainButton onPress={this.navigatePublish} title={'PUBLICAR UN LOTE'} style={styles.bigButton} />
         </View>
       </View>
@@ -51,4 +50,5 @@ export default class WelcomeScreen extends PureComponent {
 
 WelcomeScreen.propTypes = {
   navigation: PropTypes.shape().isRequired,
+  loggedIn: PropTypes.bool.isRequired,
 };
