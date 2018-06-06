@@ -18,7 +18,7 @@ export default class WelcomeScreen extends PureComponent {
   navigatePublish = () => {
     const { navigation, loggedIn } = this.props;
     const routeName = loggedIn ? 'Camera' : 'Login';
-    const navigateToDetails = NavigationActions.navigate({ routeName });
+    const navigateToDetails = NavigationActions.navigate({ routeName, params: { previous: 'welcome' } });
     navigation.dispatch(navigateToDetails);
   };
 

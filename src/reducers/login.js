@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import { store } from '../containers/App';
-import { navigateToHomeLoggedIn, navigateToHomeLoggedOut, navigateToLogin, navigateToRegister } from './rootNavigatorReducer';
+import { navigateToHomeLoggedIn, navigateToHomeLoggedOut, navigateToLogin, navigateToRegister, navigateToCamera } from './rootNavigatorReducer';
 
 const axiosInstance = axios.create({
   baseURL: 'http://delagro-api.herokuapp.com/api/v1/',
@@ -67,7 +67,7 @@ export function logout() {
 
 // Thunk actions
 
-export function login({ email, password }) {
+export function login({ email, password, previous = null }) {
   return (dispatch) => {
     dispatch(loginPending());
     return axiosInstance.post('/auth/sign_in', { email, password })
@@ -77,7 +77,8 @@ export function login({ email, password }) {
         const client = response.headers.client;
         dispatch(loginSuccess({ username: first_name, token, uid, client }));
         dispatch(saveCredentials({ token, uid, client }));
-        dispatch(navigateToHomeLoggedIn());
+        if (!previous) dispatch(navigateToHomeLoggedIn());
+        if (previous === 'welcome') dispatch(navigateToCamera());
       })
       .catch(e => dispatch(loginFailure(e)));
   };

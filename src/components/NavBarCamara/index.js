@@ -14,10 +14,17 @@ export default class NavBarCamara extends PureComponent {
     this.props.navigation.dispatch(navigateToDetails);
   };
 
+  navigateBack = () => {
+    const navigateHome = NavigationActions.navigate({
+      routeName: 'HomeLoggedIn',
+    });
+    this.props.navigation.dispatch(navigateHome);
+  }
+
   render() {
     return (
       <View style={styles.bar} >
-        <TouchableHighlight onPress={() => this.props.navigation.goBack()}>
+        <TouchableHighlight onPress={this.navigateBack}>
           <Text style={styles.sideButtons}>Cancelar</Text>
         </TouchableHighlight>
         <TouchableHighlight>

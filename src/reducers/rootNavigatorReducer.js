@@ -10,6 +10,7 @@ const NAV_HOME_LOGGED_OUT = 'NAV_HOME_LOGGED_OUT';
 const NAV_HOME_LOGGED_IN = 'NAV_HOME_LOGGED_IN';
 const NAV_LOGIN = 'NAV_LOGIN';
 const NAV_REGISTER = 'NAV_REGISTER';
+const CAMERA = 'CAMERA';
 
 // Reducer
 
@@ -29,6 +30,10 @@ export default function reducer(state = initialState, action) {
     case NAV_HOME_LOGGED_IN:
       return AppNavigator.router.getStateForAction(
         navigate({ routeName: 'HomeLoggedIn' }),
+      );
+    case CAMERA:
+      return AppNavigator.router.getStateForAction(
+        navigate({ routeName: 'Camera' }),
       );
     case NAV_LOGIN:
       return AppNavigator.router.getStateForAction(
@@ -59,4 +64,8 @@ export function navigateToLogin() {
 
 export function navigateToRegister() {
   return { type: NAV_REGISTER };
+}
+
+export function navigateToCamera() {
+  return { type: CAMERA };
 }
