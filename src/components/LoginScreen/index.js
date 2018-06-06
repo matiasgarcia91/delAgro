@@ -10,16 +10,6 @@ import Logo from '../Logo';
 import LoginFooter from '../LoginFooter';
 import styles from './styles';
 
-const validate = (values) => {
-  const errors = {};
-  if (!values.email) {
-    errors.email = 'Required';
-  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    errors.email = 'Dirección de email invalida';
-  }
-  return errors;
-};
-
 class LoginScreen extends PureComponent {
   constructor(props) {
     super(props);
@@ -27,11 +17,13 @@ class LoginScreen extends PureComponent {
   }
 
   onSubmit(values) {
+    const { state } = this.props.navigation;
+    const previous = state.params && state.params.previous;
     const { email: email2, password: password2 } = values;
     // TODO: Remove test credentials
     const email = !email2 || email2 === '' ? 'diego_abreu@delagro.com' : email2;
     const password = !password2 || password2 === '' ? 'password' : password2;
-    this.props.login({ email, password });
+    this.props.login({ email, password, previous });
   }
 
   navigate = () => {
