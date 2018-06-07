@@ -15,6 +15,10 @@ export default class WelcomeScreen extends PureComponent {
     this.navigateView = this.navigateView.bind(this);
   }
 
+  componentDidMount() {
+    this.props.getStaticData();
+  }
+
   navigatePublish = () => {
     const { navigation, loggedIn } = this.props;
     const routeName = loggedIn ? 'Camera' : 'Login';
@@ -51,4 +55,5 @@ export default class WelcomeScreen extends PureComponent {
 WelcomeScreen.propTypes = {
   navigation: PropTypes.shape().isRequired,
   loggedIn: PropTypes.bool.isRequired,
+  getStaticData: PropTypes.func.isRequired,
 };

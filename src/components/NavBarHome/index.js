@@ -28,7 +28,7 @@ export default class NavBarHome extends PureComponent {
           />
         </View>
 
-        <TouchableHighlight onPress={() => this.props.navigation.navigate('welcomeScreen')}>
+        <TouchableHighlight onPress={() => this.props.navigation.navigate('Filter')}>
           <Image
             source={filterIcon}
             style={[styles.filter, centerFilter]}
@@ -36,7 +36,7 @@ export default class NavBarHome extends PureComponent {
         </TouchableHighlight>
 
         {isLoggedIn &&
-          <TouchableHighlight onPress={() => this.props.navigation.navigate('Camera')}>
+          <TouchableHighlight onPress={() => this.props.navigation.navigate('welcomeScreen')}>
             <Image
               source={uploadIcon}
               style={styles.upload}

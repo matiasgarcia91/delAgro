@@ -14,7 +14,6 @@ export default class Home extends PureComponent {
 
   componentDidMount() {
     this.props.fetchAllLots();
-    this.props.getStaticData();
   }
 
   onViewableItemsChanged({ viewableItems }) {
@@ -54,7 +53,6 @@ Home.propTypes = {
   navigation: PropTypes.shape().isRequired,
   changeVisibleItemsChange: PropTypes.func.isRequired,
   fetchAllLots: PropTypes.func.isRequired,
-  getStaticData: PropTypes.func.isRequired,
   allLots: PropTypes.arrayOf(PropTypes.shape).isRequired,
   token: PropTypes.string,
 };
