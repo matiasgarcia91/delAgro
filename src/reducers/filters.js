@@ -1,4 +1,5 @@
 import axiosCustom from '../utils/axios';
+import { navigateToFilteredHome } from './rootNavigatorReducer';
 
 const initialState = {
   filteredLots: null,
@@ -45,6 +46,7 @@ export function fetchFilteredLots({ categoryId, breedId, stateId, weightMin, wei
     axiosCustom.get(`/lots?${queryString}`)
       .then((response) => {
         dispatch(setFilteredLots(response.data));
+        dispatch(navigateToFilteredHome());
       })
       .catch(error => dispatch(setError({ error })))
   );

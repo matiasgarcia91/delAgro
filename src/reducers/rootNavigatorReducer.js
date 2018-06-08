@@ -11,7 +11,7 @@ const NAV_HOME_LOGGED_IN = 'NAV_HOME_LOGGED_IN';
 const NAV_LOGIN = 'NAV_LOGIN';
 const NAV_REGISTER = 'NAV_REGISTER';
 const CAMERA = 'CAMERA';
-
+const FILTERED_HOME = 'FILTERED_HOME';
 // Reducer
 
 const initialState = AppNavigator.router.getStateForAction(
@@ -43,6 +43,10 @@ export default function reducer(state = initialState, action) {
       return AppNavigator.router.getStateForAction(
         navigate({ routeName: 'Register' }),
       );
+    case FILTERED_HOME:
+      return AppNavigator.router.getStateForAction(
+        navigate({ routeName: 'FilteredHome' }),
+      );
     default:
       return newState || state;
   }
@@ -68,4 +72,8 @@ export function navigateToRegister() {
 
 export function navigateToCamera() {
   return { type: CAMERA };
+}
+
+export function navigateToFilteredHome() {
+  return { type: FILTERED_HOME };
 }

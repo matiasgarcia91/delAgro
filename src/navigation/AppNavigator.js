@@ -14,12 +14,13 @@ import Welcome from '../containers/WelcomeScreen';
 import Publish from '../containers/PublishScreenContainer';
 import MyLots from '../containers/MyLotsPage';
 import MyProfile from '../containers/MyProfileContainer';
+import FilteredHome from '../containers/FilteredHomeContainer';
+
 import { addListener } from '../utils/redux';
 import { logout } from '../reducers/login';
 
 const CustomDrawerContentComponent = (props) => {
   const nav = props.nav; // eslint-disable-line
-
   return (
     <View style={{ marginTop: 25 }}>
       <ScrollView>
@@ -48,7 +49,7 @@ const homeStack = StackNavigator({
   Camera: { screen: Camera },
   Filter: { screen: Filter },
   Welcome: { screen: Welcome },
-  FilteredHome: { screen: () => {} },
+  FilteredHome: { screen: FilteredHome },
 }, { headerMode: 'none' });
 
 export const AppNavigator = StackNavigator({
