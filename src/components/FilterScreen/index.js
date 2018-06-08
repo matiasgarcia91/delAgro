@@ -75,6 +75,7 @@ export default class FilterScreen extends PureComponent {
     const { breed, category, weightMin, weightMax, state } = this.state;
     const mapWeights = weights1.map(item => ({ id: item, name: item }));
     const mapStates = states.map(item => ({ id: item, name: item }));
+    const disabled = breed || category || weightMin || weightMax || state;
     return (
       <View style={{ flex: 1 }}>
         <View style={{ flex: 1 }}>
@@ -105,7 +106,7 @@ export default class FilterScreen extends PureComponent {
                 </View>
               </View>
               <DropDown label={'Departamento:'} selected={state} values={mapStates} onChange={this.onChangeState} />
-              <MainButton onPress={this.onSubmit} title={'FILTRAR'} style={styles.bigButton} />
+              <MainButton onPress={this.onSubmit} title={'FILTRAR'} style={styles.bigButton} disabled={!disabled} />
             </View>
           </ScrollView>
         </View>
