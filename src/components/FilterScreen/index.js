@@ -71,13 +71,6 @@ export default class FilterScreen extends PureComponent {
     fetchFilteredLots({ categoryId, breedId, stateId, weightMin, weightMax });
   }
 
-  navigate = () => {
-    const navigateToDetails = NavigationActions.navigate({
-      routeName: 'FilteredHome',
-    });
-    this.props.navigation.dispatch(navigateToDetails);
-  };
-
   render() {
     const { categories, breeds, states } = this.props;
     const { breed, category, weightMin, weightMax, state } = this.state;
@@ -128,4 +121,5 @@ FilterScreen.propTypes = {
   breeds: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   states: PropTypes.arrayOf(PropTypes.string).isRequired,
   fetchFilteredLots: PropTypes.func.isRequired,
+  loggedIn: PropTypes.bool.isRequired,
 };

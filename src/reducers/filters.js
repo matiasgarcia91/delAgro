@@ -27,6 +27,7 @@ export function setError({ error }) {
   return { type: SET_ERROR, error };
 }
 
+
 export function setFilteredLots(filteredLots) {
   return { type: LOTS_SUCCESS, filteredLots };
 }
@@ -43,14 +44,15 @@ export function fetchFilteredLots({ categoryId, breedId, stateId, weightMin, wei
   if (stateId) queryString = `${queryString}scope[state]=${stateId}&`;
   if (weightMin) queryString = `${queryString}scope[weight_min]=${weightMin}&`;
   if (weightMax) queryString = `${queryString}scope[weight_max]=${weightMax}`;
-  return dispatch => (
-    axiosCustom.get(`/lots?${queryString}`)
+  return (dispatch, getState) => {
+    const { loggedIn } = getState().session;
+    return axiosCustom.get(`/lots?${queryString}`)
       .then((response) => {
         dispatch(setFilteredLots(response.data));
-        dispatch(navigateToFilteredHome());
+        dispatch(navigateToFilteredHome(loggedIn));
       })
-      .catch(error => dispatch(setError({ error })))
-  );
+      .catch(error => dispatch(setError({ error })));
+  };
 }
 
 export function clearFilters() {

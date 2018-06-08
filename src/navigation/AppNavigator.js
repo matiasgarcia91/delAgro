@@ -42,27 +42,34 @@ const CustomDrawerContentComponent = (props) => {
 };
 
 // Si se rompe algo probar hacer navs separados para los stacks de logged in/out;
-const homeStack = StackNavigator({
+const loggedHomeStack = StackNavigator({
   Home: { screen: Home },
   Details: { screen: Details },
   Publish: { screen: Publish },
   Camera: { screen: Camera },
   Filter: { screen: Filter },
-  Welcome: { screen: Welcome },
-  FilteredHome: { screen: FilteredHome },
+  FilteredHomeIn: { screen: FilteredHome },
 }, { headerMode: 'none' });
+
+const guestHomeStack = StackNavigator({
+  Home: { screen: Home },
+  Details: { screen: Details },
+  Filter: { screen: Filter },
+  FilteredHomeOut: { screen: FilteredHome },
+}, { headerMode: 'none' });
+
 
 export const AppNavigator = StackNavigator({
   loggedOutFlow: {
     screen: DrawerNavigator({
-      HomeLoggedOut: { screen: homeStack, navigationOptions: { drawerLabel: 'Inicio' } },
+      HomeLoggedOut: { screen: guestHomeStack, navigationOptions: { drawerLabel: 'Inicio' } },
       Login: { screen: Login, navigationOptions: { drawerLabel: 'Iniciar sesion' } },
       Register: { screen: Register, navigationOptions: { drawerLabel: 'Registrarse' } },
     }, { headerMode: 'none', drawerWidth: 200 }),
   },
   loggedInFlow: {
     screen: DrawerNavigator({
-      HomeLoggedIn: { screen: homeStack, navigationOptions: { drawerLabel: 'Inicio' } },
+      HomeLoggedIn: { screen: loggedHomeStack, navigationOptions: { drawerLabel: 'Inicio' } },
       myProfile: { screen: MyProfile, navigationOptions: { drawerLabel: 'Mi perfil' } },
       myLots: { screen: MyLots, navigationOptions: { drawerLabel: 'Mis publicaciones' } },
       help: { screen: () => {}, navigationOptions: { drawerLabel: 'Ayuda' } },
