@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import { View, Text, ScrollView } from 'react-native';
 import PropTypes from 'prop-types';
-import { NavigationActions } from 'react-navigation';
 
 import styles from './styles';
 import DropDown from '../DropDown';
@@ -121,5 +120,4 @@ FilterScreen.propTypes = {
   breeds: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   states: PropTypes.arrayOf(PropTypes.string).isRequired,
   fetchFilteredLots: PropTypes.func.isRequired,
-  loggedIn: PropTypes.bool.isRequired,
 };

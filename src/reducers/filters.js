@@ -27,7 +27,6 @@ export function setError({ error }) {
   return { type: SET_ERROR, error };
 }
 
-
 export function setFilteredLots(filteredLots) {
   return { type: LOTS_SUCCESS, filteredLots };
 }
