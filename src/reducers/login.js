@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import { store } from '../containers/App';
-import { navigateToHomeLoggedIn, navigateToHomeLoggedOut, navigateToLogin, navigateToRegister, navigateToCamera } from './rootNavigatorReducer';
+import { navigateToHomeLoggedIn, navigateToWelcomeScreen, navigateToLogin, navigateToRegister, navigateToCamera } from './rootNavigatorReducer';
 
 const axiosInstance = axios.create({
   baseURL: 'http://delagro-api.herokuapp.com/api/v1/',
@@ -61,7 +61,7 @@ export function saveCredentials({ token, uid, client }) {
 }
 
 export function logout() {
-  store.dispatch(navigateToHomeLoggedOut());
+  store.dispatch(navigateToWelcomeScreen());
   return store.dispatch({ type: LOGOUT });
 }
 

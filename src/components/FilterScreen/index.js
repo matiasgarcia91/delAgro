@@ -11,20 +11,21 @@ import NavBarBack from '../NavBarBack';
 import { weights1 } from './constants';
 
 export default class FilterScreen extends PureComponent {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       category: null,
       breed: null,
       state: null,
-      weight: null,
-      weight2: null,
+      weightMin: null,
+      weightMax: null,
     };
     this.onChangeBreed = this.onChangeBreed.bind(this);
     this.onChangeCategory = this.onChangeCategory.bind(this);
-    this.onChangeWeight = this.onChangeWeight.bind(this);
-    this.onChangeWeight2 = this.onChangeWeight2.bind(this);
+    this.onChangeWeightMin = this.onChangeWeightMin.bind(this);
+    this.onChangeWeightMax = this.onChangeWeightMax.bind(this);
     this.onChangeState = this.onChangeState.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
   onChangeCategory(value, index, data) {
@@ -42,31 +43,37 @@ export default class FilterScreen extends PureComponent {
     this.setState({ state });
   }
 
-  onChangeWeight(value, index, data) {
-    const weight = data.find(item => item.id === value);
-    this.setState({ weight });
+  onChangeWeightMin(value, index, data) {
+    const weightMin = data.find(item => item.id === value);
+    this.setState({ weightMin });
   }
 
-  onChangeWeight2(value, index, data) {
-    const weight2 = data.find(item => item.id === value);
-    this.setState({ weight2 });
+  onChangeWeightMax(value, index, data) {
+    const weightMax = data.find(item => item.id === value);
+    this.setState({ weightMax });
   }
 
   onSubmit() {
-    // TODO: set filters on redux, (own reducer);
-    this.navigate();
-  }
+    const { fetchFilteredLots } = this.props;
+    const {
+      category,
+      breed,
+      state,
+      weightMin: min,
+      weightMax: max,
+    } = this.state;
+    const categoryId = category && category.id;
+    const breedId = breed && breed.id;
+    const stateId = state && state.id;
+    const weightMin = min && min.id;
+    const weightMax = max && max.id;
 
-  navigate = () => {
-    const navigateToDetails = NavigationActions.navigate({
-      routeName: 'FilteredHome',
-    });
-    this.props.navigation.dispatch(navigateToDetails);
-  };
+    fetchFilteredLots({ categoryId, breedId, stateId, weightMin, weightMax });
+  }
 
   render() {
     const { categories, breeds, states } = this.props;
-    const { breed, category, weight, weight2, state } = this.state;
+    const { breed, category, weightMin, weightMax, state } = this.state;
     const mapWeights = weights1.map(item => ({ id: item, name: item }));
     const mapStates = states.map(item => ({ id: item, name: item }));
     return (
@@ -83,17 +90,17 @@ export default class FilterScreen extends PureComponent {
               <View style={styles.priceContainer}>
                 <DropDown
                   label={'Peso entre:'}
-                  selected={weight}
+                  selected={weightMin}
                   values={mapWeights}
-                  onChange={this.onChangeWeight}
+                  onChange={this.onChangeWeightMin}
                   double
                 />
                 <Text style={styles.priceText}> y </Text>
                 <View style={{ paddingTop: 3 }}>
                   <DropDown
-                    selected={weight2}
+                    selected={weightMax}
                     values={mapWeights}
-                    onChange={this.onChangeWeight2}
+                    onChange={this.onChangeWeightMax}
                     double
                   />
                 </View>
@@ -113,4 +120,6 @@ FilterScreen.propTypes = {
   categories: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   breeds: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   states: PropTypes.arrayOf(PropTypes.string).isRequired,
+  fetchFilteredLots: PropTypes.func.isRequired,
+  loggedIn: PropTypes.bool.isRequired,
 };

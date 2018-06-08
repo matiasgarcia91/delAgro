@@ -8,6 +8,7 @@ import homeScreenReducer from './homeScreenReducer';
 import loginReducer from './login';
 import lotsReducer from './lots';
 import staticDataReducer from './staticData';
+import filtersReducer from './filters';
 
 
 const persistConfig = {
@@ -24,6 +25,7 @@ const rootReducer = combineReducers({
   lots: lotsReducer,
   staticData: staticDataReducer,
   form: formReducer,
+  filters: filtersReducer,
 });
 
 export default rootReducer;
