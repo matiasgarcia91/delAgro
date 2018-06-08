@@ -62,6 +62,11 @@ export function navigateToHomeLoggedIn() {
   return { type: NAV_HOME_LOGGED_IN };
 }
 
+export function navigateHome(isLoggedIn) {
+  const action = isLoggedIn ? NAV_HOME_LOGGED_IN : NAV_HOME_LOGGED_OUT;
+  return { type: action };
+}
+
 export function navigateToLogin() {
   return { type: NAV_LOGIN };
 }

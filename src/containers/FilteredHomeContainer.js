@@ -1,6 +1,8 @@
 import { connect } from 'react-redux';
 import { changeVisibleItemsChange } from '../actions/homeScreen';
 
+import { clearFilters } from '../reducers/filters';
+
 import FilteredHome from '../components/FilteredHome';
 
 function mapStateToProps({ filters: { filteredLots }, session: { token } }) {
@@ -8,5 +10,5 @@ function mapStateToProps({ filters: { filteredLots }, session: { token } }) {
 }
 export default connect(
   mapStateToProps,
-  { changeVisibleItemsChange },
+  { changeVisibleItemsChange, clearFilters },
 )(FilteredHome);

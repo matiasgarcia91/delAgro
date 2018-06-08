@@ -60,7 +60,7 @@ export default class FilteredHome extends PureComponent {
         <View style={{ flex: 8 }}>
           <View style={styles.bar}>
             <Text style={styles.text}>Filtros Activados</Text>
-            <Button title={'Desactivar'} onPress={() => {}} />
+            <Button title={'Desactivar'} onPress={this.props.clearFilters} />
           </View>
           <FlatList
             data={data}
@@ -76,6 +76,7 @@ export default class FilteredHome extends PureComponent {
 FilteredHome.propTypes = {
   navigation: PropTypes.shape().isRequired,
   changeVisibleItemsChange: PropTypes.func.isRequired,
+  clearFilters: PropTypes.func.isRequired,
   filteredLots: PropTypes.arrayOf(PropTypes.shape).isRequired,
   token: PropTypes.string,
 };
