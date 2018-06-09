@@ -1,9 +1,11 @@
 import React, { PureComponent } from 'react';
-import { View, FlatList } from 'react-native';
+import { View, FlatList, Text } from 'react-native';
 import PropTypes from 'prop-types';
 
 import NavBarHome from '../NavBarHome';
 import CardItem from '../CardItem';
+
+import styles from './styles';
 
 export default class MyLotsPage extends PureComponent {
   constructor(props) {
@@ -37,6 +39,9 @@ export default class MyLotsPage extends PureComponent {
           <NavBarHome navigation={this.props.navigation} />
         </View>
         <View style={{ flex: 8 }}>
+          <View style={styles.bar}>
+            <Text style={styles.text}>Mis Publicaciones</Text>
+          </View>
           <FlatList
             data={data}
             renderItem={this.renderItem}
