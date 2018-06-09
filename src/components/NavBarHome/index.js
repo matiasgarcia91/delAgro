@@ -1,48 +1,40 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { View, Image, TouchableHighlight } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
-import menuIcon from '../../assets/images/icons/menu-icon.png';
-import uploadIcon from '../../assets/images/icons/upload-icon.png';
-import filterIcon from '../../assets/images/icons/filter_icon.png';
-import delAgroLogo from '../../assets/images/icons/icon.png';
+import muuLogo from '../../assets/images/icons/icon.png';
 import styles from './styles';
 
 export default class NavBarHome extends PureComponent {
   render() {
-    const { isLoggedIn } = this.props;
-    const centerLogo = isLoggedIn ? null : { marginRight: 40 };
-    const centerFilter = isLoggedIn ? null : { marginRight: 20 };
     return (
       <View style={styles.bar} >
         <TouchableHighlight onPress={() => this.props.navigation.navigate('DrawerOpen')}>
-          <Image
-            source={menuIcon}
-            style={styles.icon}
-          />
+          <View style={styles.icon}>
+            <Icon name={'bars'} size={30} style={styles.menuIcon} />
+          </View>
         </TouchableHighlight>
         <View style={styles.logoContainer}>
           <Image
-            source={delAgroLogo}
-            style={[styles.logo, centerLogo]}
+            source={muuLogo}
+            style={styles.logo}
           />
         </View>
 
-        <TouchableHighlight onPress={() => this.props.navigation.navigate('Filter')}>
-          <Image
-            source={filterIcon}
-            style={[styles.filter, centerFilter]}
-          />
-        </TouchableHighlight>
-
-        {isLoggedIn &&
-          <TouchableHighlight onPress={() => this.props.navigation.navigate('welcomeScreen')}>
-            <Image
-              source={uploadIcon}
-              style={styles.upload}
-            />
+        <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'flex-end' }}>
+          <TouchableHighlight onPress={() => this.props.navigation.navigate('Filter')}>
+            <View style={styles.icon}>
+              <Icon name={'search'} size={30} style={styles.iconn} />
+            </View>
           </TouchableHighlight>
-        }
+
+          <TouchableHighlight onPress={() => this.props.navigation.navigate('welcomeScreen')}>
+            <View style={styles.icon}>
+              <Icon name={'home'} size={30} style={styles.iconn} />
+            </View>
+          </TouchableHighlight>
+        </View>
       </View>
     );
   }
@@ -50,7 +42,6 @@ export default class NavBarHome extends PureComponent {
 
 NavBarHome.propTypes = {
   navigation: PropTypes.shape(),
-  isLoggedIn: PropTypes.bool.isRequired,
 };
 
 NavBarHome.defaultProps = {

@@ -18,7 +18,6 @@ export default StyleSheet.create({
   },
   sideButtons: {
     marginLeft: 20,
-    fontSize: 15,
   },
   title: {
     fontSize: 17,
