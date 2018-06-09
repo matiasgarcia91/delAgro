@@ -113,7 +113,7 @@ export function registerUser({ firstName, lastName, email, password, dob, cellph
         const token = response.headers['access-token'];
         const client = response.headers.client;
         dispatch(loginSuccess({ username: first_name, token, uid, client }));
-        dispatch(navigateToHomeLoggedIn()); // TODO: aca a donde vamos?
+        dispatch(navigateToHomeLoggedIn());
       })
       .catch(e => console.log(e));
   };
