@@ -1,9 +1,22 @@
 import React, { PureComponent } from 'react';
-import { View, FlatList } from 'react-native';
+import { View, FlatList, Text, ActivityIndicator } from 'react-native';
 import PropTypes from 'prop-types';
 
 import NavBarHome from '../NavBarHome';
 import CardItem from '../CardItem';
+
+import styles from './styles';
+
+const UploadBanner = () => (
+  <View style={styles.bar}>
+    <View style={{ flex: 3, alignItems: 'center' }}>
+      <Text style={styles.text}>Subiendo Publicación</Text>
+    </View>
+    <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'flex-end', marginRight: 40 }}>
+      <ActivityIndicator size="small" color="#ff5000" />
+    </View>
+  </View>
+);
 
 export default class Home extends PureComponent {
   constructor(props) {
@@ -29,14 +42,16 @@ export default class Home extends PureComponent {
 
   render() {
     const list = this.props.allLots;
+    const { navigation, uploading } = this.props;
     const data =
-      list.map(item => ({ key: `${item.id}`, navigation: this.props.navigation, lot: item }));
+      list.map(item => ({ key: `${item.id}`, navigation, lot: item }));
     return (
       <View style={{ flex: 1 }}>
         <View style={{ flex: 1 }}>
-          <NavBarHome navigation={this.props.navigation} />
+          <NavBarHome navigation={navigation} />
         </View>
         <View style={{ flex: 8 }}>
+          {uploading && <UploadBanner />}
           <FlatList
             data={data}
             renderItem={this.renderItem}
@@ -53,6 +68,7 @@ Home.propTypes = {
   changeVisibleItemsChange: PropTypes.func.isRequired,
   fetchAllLots: PropTypes.func.isRequired,
   allLots: PropTypes.arrayOf(PropTypes.shape).isRequired,
+  uploading: PropTypes.bool.isRequired,
 };
 
 Home.defaultProps = {

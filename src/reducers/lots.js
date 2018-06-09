@@ -9,6 +9,7 @@ const initialState = {
   allLots: [],
   selected: null,
   myLots: [],
+  uploading: false,
 };
 
 export const IS_FETCHING = 'IS_FETCHING';

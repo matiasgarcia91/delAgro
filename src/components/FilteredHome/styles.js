@@ -5,7 +5,7 @@ export default StyleSheet.create({
   bar: {
     backgroundColor: colors.creamBackground,
     flexDirection: 'row',
-    height: 60,
+    height: 55,
     justifyContent: 'center',
     alignItems: 'center',
     borderBottomWidth: 1,
@@ -31,5 +31,6 @@ export default StyleSheet.create({
   },
   text: {
     fontSize: 20,
+    fontWeight: '400',
   },
 });
