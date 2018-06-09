@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { changeVisibleItemsChange } from '../actions/homeScreen';
+import { changeVisibleItemsChange } from '../reducers/homeScreenReducer';
 
 import { clearFilters } from '../reducers/filters';
 

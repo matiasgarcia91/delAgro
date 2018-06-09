@@ -6,12 +6,16 @@ import { NavigationActions } from 'react-navigation';
 import styles from './styles';
 
 export default class NavBarPublish extends PureComponent {
-  navigate = () => {
+  constructor(props) {
+    super(props);
+    this.navigate = this.navigate.bind(this);
+  }
+  navigate() {
     const navigateToDetails = NavigationActions.navigate({
-      routeName: 'Home',
+      routeName: 'HomeIn',
     });
     this.props.navigation.dispatch(navigateToDetails);
-  };
+  }
 
   render() {
     const { submitLot, handleSubmit } = this.props;
