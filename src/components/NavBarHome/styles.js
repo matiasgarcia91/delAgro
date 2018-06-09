@@ -18,13 +18,17 @@ export default StyleSheet.create({
   },
   icon: {
     alignSelf: 'flex-start',
-    resizeMode: 'contain',
-    width: 100,
+    width: 50,
     height: 50,
-    marginTop: 15,
+    marginTop: 12,
     flex: 1,
+  },
+  menuIcon: {
     paddingLeft: 20,
-    marginRight: 30,
+    color: colors.darkGreen,
+  },
+  iconn: {
+    color: colors.darkGreen,
   },
   filter: {
     resizeMode: 'contain',
@@ -45,6 +49,9 @@ export default StyleSheet.create({
   },
   logoContainer: {
     flex: 1,
+    alignItems: 'center',
+    marginLeft: 70,
+    marginTop: 1,
   },
   logo: {
     width: 50,

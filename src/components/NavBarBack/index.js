@@ -11,9 +11,9 @@ export default class NavBarBack extends PureComponent {
     return (
       <View style={styles.bar} >
         <TouchableHighlight style={{ flex: 1 }} onPress={() => this.props.navigation.goBack()}>
-          <Text style={styles.sideButtons}>
+          <View style={styles.sideButtons}>
             <Icon name={'chevron-left'} size={30} />
-          </Text>
+          </View>
         </TouchableHighlight>
         <View style={{ flex: 1, alignItems: 'center' }}>
           <Text style={styles.title}>{title}</Text>
