@@ -16,9 +16,17 @@ export default StyleSheet.create({
     paddingTop: 20,
   },
   logoContainer: {
-    marginTop: 60,
+    marginTop: 30,
     flex: 1,
     justifyContent: 'flex-end',
+  },
+  logoBottomContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingBottom:40,
+    width:350,
+    height:200
   },
   titleContainer: {
     flex: 1,
@@ -27,10 +35,14 @@ export default StyleSheet.create({
     marginTop: 30,
   },
   titleText: {
-    fontSize: 22,
-    color: '#ff4611',
     marginBottom: 10,
     marginTop: 40,
+    fontSize:30,
+    flex:1,
+    justifyContent: 'flex-start',
+    justifyContent: 'center',
+    alignItems: 'center'
+
   },
   bigButton: {
     marginTop: 50,

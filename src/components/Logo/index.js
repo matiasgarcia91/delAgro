@@ -1,7 +1,7 @@
 import React from 'react';
 import { Image } from 'react-native';
 
-import logo from '../../assets/images/icon.png';
+import logo from '../../assets/images/logo_muuu.png';
 import styles from './styles';
 
 function Logo() {

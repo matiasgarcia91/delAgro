@@ -1,10 +1,11 @@
 import React, { PureComponent } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text,Image } from 'react-native';
 import PropTypes from 'prop-types';
 import { NavigationActions } from 'react-navigation';
 
 import MainButton from '../MainButton';
 import Logo from '../Logo';
+import LogoDelAgro from '../../assets/images/delagroicon.png';
 
 import styles from './styles';
 
@@ -36,17 +37,24 @@ export default class WelcomeScreen extends PureComponent {
   render() {
     return (
       <View style={styles.container}>
+        <View style = {styles.titleContainer}>
+          <Text style={{marginBottom:10,marginTop:40,fontSize:16}}>Para comercializar tu ganado usa:</Text>
+        </View>
         <View style={styles.logoContainer}>
           <Logo />
         </View>
-        <View style={styles.titleContainer} >
-          <Text style={styles.titleText} >¡Bienvenido a Muuu!</Text>
-          <Text> La aplicación donde podrás publicar lotes de {'\n'} ganado en venta y encontrar el que buscas.</Text>
+        <View style = {styles.titleContainer}>
+          <Text style={{marginBottom:10,marginTop:40,fontSize:16}}>¡Cuanto más la usas menos pagás!</Text>
         </View>
         <View style={styles.formContainer}>
           <MainButton onPress={this.navigateView} title={'VER GANADO EN VENTA'} style={styles.bigButton} />
           <MainButton onPress={this.navigatePublish} title={'PUBLICAR UN LOTE'} style={styles.bigButton} />
         </View>
+        <View style={styles.logoBottomContainer}>
+            <Image style= {styles.logoBottomContainer}source={LogoDelAgro} />
+        </View>
+
+
       </View>
     );
   }
