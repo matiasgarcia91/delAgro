@@ -12,7 +12,10 @@ export default StyleSheet.create({
     borderColor: colors.lightGrey,
   },
   text: {
-    fontSize: 22,
+    fontSize: 20,
     fontWeight: '300',
+  },
+  spinner: {
+    color: colors.lightGrey,
   },
 });
