@@ -35,7 +35,6 @@ class RegisterScreen extends Component {
       dob,
       email,
       password,
-      confirmPassword,
     } = values;
     const { state } = this.state;
 
@@ -43,21 +42,13 @@ class RegisterScreen extends Component {
       firstName,
       lastName,
       cellphone,
-      state,
+      state: state.id,
       dob,
       email,
       password,
-      confirmPassword,
     };
 
-    const fakeRegister = {
-      firstName: 'pruebaApp',
-      lastName: 'pruebaApp',
-      email: 'aadd.com',
-      password: '123456',
-    };
-    // TODO: switch to user and delete fakeRegister
-    return this.props.registerUser(fakeRegister);
+    return this.props.registerUser(user);
   }
 
   navigate = () => {

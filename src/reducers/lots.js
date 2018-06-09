@@ -95,7 +95,7 @@ export function fetchAllLots() {
 export function fetchMyLots() {
   return (dispatch, getState) => {
     dispatch(fetching());
-    const { token, client, uid } = getState().session;
+    const { token, client, uid } = getState().session.creds;
     return loggedAxios({ token, client, uid }).get('/my_lots')
       .then((response) => {
         dispatch(myLotsSuccess(response.data));
