@@ -16,7 +16,7 @@ export default class NavBarCamara extends PureComponent {
 
   navigateBack = () => {
     const navigateHome = NavigationActions.navigate({
-      routeName: 'HomeLoggedIn',
+      routeName: 'HomeIn',
     });
     this.props.navigation.dispatch(navigateHome);
   }

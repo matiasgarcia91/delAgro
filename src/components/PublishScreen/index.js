@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react';
-import { View, ScrollView, KeyboardAvoidingView, Text } from 'react-native';
+import { View, ScrollView, KeyboardAvoidingView } from 'react-native';
 import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
 
-import NavBarPublish from '../../containers/NavBarPublishContainer';
+import NavBarPublish from '../NavBarPublish';
 import styles from './styles';
 import FormInput from '../FormInput';
 import DropDown from '../DropDown';
