@@ -5,8 +5,8 @@ import { clearFilters } from '../reducers/filters';
 
 import FilteredHome from '../components/FilteredHome';
 
-function mapStateToProps({ filters: { filteredLots }, session: { token } }) {
-  return { filteredLots, token };
+function mapStateToProps({ filters: { filteredLots } }) {
+  return { filteredLots };
 }
 export default connect(
   mapStateToProps,

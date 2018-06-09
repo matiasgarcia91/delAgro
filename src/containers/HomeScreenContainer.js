@@ -4,8 +4,8 @@ import { fetchAllLots } from '../reducers/lots';
 
 import HomeScreen from '../components/HomeScreen';
 
-function mapStateToProps({ lots: { allLots }, session: { token } }) {
-  return { allLots, token };
+function mapStateToProps({ lots: { allLots } }) {
+  return { allLots };
 }
 export default connect(
   mapStateToProps,

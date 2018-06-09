@@ -4,8 +4,8 @@ import { changeVisibleItemsChange } from '../reducers/homeScreenReducer';
 import FavoritesScreen from '../components/FavoritesScreen';
 import { fetchFavorites } from '../reducers/lots';
 
-function mapStateToProps({ lots: { favorites }, session: { token } }) {
-  return { favorites, token };
+function mapStateToProps({ lots: { favorites } }) {
+  return { favorites };
 }
 
 export default connect(
