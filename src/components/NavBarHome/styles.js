@@ -25,10 +25,10 @@ export default StyleSheet.create({
   },
   menuIcon: {
     paddingLeft: 20,
-    color: colors.darkGreen,
+    color: colors.navButtonGreen,
   },
   iconn: {
-    color: colors.darkGreen,
+    color: colors.navButtonGreen,
   },
   filter: {
     resizeMode: 'contain',

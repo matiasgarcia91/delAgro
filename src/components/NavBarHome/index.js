@@ -24,7 +24,7 @@ export default class NavBarHome extends PureComponent {
 
         <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'flex-end' }}>
           <TouchableHighlight onPress={() => this.props.navigation.navigate('Filter')}>
-            <View style={styles.icon}>
+            <View style={[styles.icon, { marginRight: 10 }]}>
               <Icon name={'search'} size={30} style={styles.iconn} />
             </View>
           </TouchableHighlight>

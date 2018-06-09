@@ -42,6 +42,7 @@ const CustomDrawerContentComponent = (props) => {
 };
 
 // Si se rompe algo probar hacer navs separados para los stacks de logged in/out;
+// UPDATE: se rompio, hice navs separados
 const loggedHomeStack = StackNavigator({
   HomeIn: { screen: Home },
   Details: { screen: Details },
