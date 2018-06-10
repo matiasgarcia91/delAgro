@@ -4,8 +4,8 @@ import { fetchAllLots } from '../reducers/lots';
 
 import HomeScreen from '../components/HomeScreen';
 
-function mapStateToProps({ lots: { allLots, uploading } }) {
-  return { allLots, uploading };
+function mapStateToProps({ lots: { allLots, uploading, listEnd } }) {
+  return { allLots, uploading, listEnd };
 }
 export default connect(
   mapStateToProps,

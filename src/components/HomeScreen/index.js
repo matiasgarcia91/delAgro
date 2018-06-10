@@ -21,17 +21,38 @@ const UploadBanner = () => (
 export default class Home extends PureComponent {
   constructor(props) {
     super(props);
+    this.state = {
+      page: 1,
+      flatListReady: false,
+    };
     this.onViewableItemsChanged = this.onViewableItemsChanged.bind(this);
     this.renderItem = this.renderItem.bind(this);
+    this.onListEnd = this.onListEnd.bind(this);
+    this.onScrolled = this.onScrolled.bind(this);
   }
 
   componentDidMount() {
     this.props.fetchAllLots();
   }
 
+  onScrolled() {
+    this.setState({ flatListReady: true });
+  }
+
   onViewableItemsChanged({ viewableItems }) {
     const visibleItems = viewableItems.map(item => item.key);
     this.props.changeVisibleItemsChange(visibleItems);
+  }
+
+  onListEnd() {
+    const { page, flatListReady } = this.state;
+    const { listEnd, fetchAllLots } = this.props;
+    if (!flatListReady || listEnd) return null;
+    const newPage = page + 1;
+    return this.setState({
+      page: newPage,
+      flatListReady: false,
+    }, () => fetchAllLots(newPage));
   }
 
   renderItem({ item: { key, navigation, lot } }) {
@@ -52,11 +73,15 @@ export default class Home extends PureComponent {
         </View>
         <View style={{ flex: 8 }}>
           {uploading && <UploadBanner />}
-          <FlatList
-            data={data}
-            renderItem={this.renderItem}
-            onViewableItemsChanged={this.onViewableItemsChanged}
-          />
+          {list.length !== 0 &&
+            <FlatList
+              onScroll={this.onScrolled}
+              data={data}
+              renderItem={this.renderItem}
+              onViewableItemsChanged={this.onViewableItemsChanged}
+              onEndReached={this.onListEnd}
+              onEndReachedThreshold={0}
+            />}
         </View>
       </View>
     );
@@ -69,6 +94,7 @@ Home.propTypes = {
   fetchAllLots: PropTypes.func.isRequired,
   allLots: PropTypes.arrayOf(PropTypes.shape).isRequired,
   uploading: PropTypes.bool.isRequired,
+  listEnd: PropTypes.bool.isRequired,
 };
 
 Home.defaultProps = {
