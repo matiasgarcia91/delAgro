@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView, KeyboardAvoidingView } from 'react-native';
+import { View, Text, ScrollView, KeyboardAvoidingView, CheckBox } from 'react-native';
 import PropTypes from 'prop-types';
 import { NavigationActions } from 'react-navigation';
 import { Field, reduxForm } from 'redux-form';
@@ -11,6 +11,9 @@ import MainButton from '../MainButton';
 import LoginFooter from '../LoginFooter';
 import validate from './validations';
 import DropDown from '../DropDown';
+
+
+
 
 class RegisterScreen extends Component {
   constructor(props) {
@@ -132,6 +135,16 @@ class RegisterScreen extends Component {
               capitalize={'none'}
               component={renderInput}
             />
+
+              <CheckBox />
+                <View style={{ flexDirection: 'row' }}>
+                  <CheckBox
+                      value={this.state.checked}
+                      onValueChange={() => this.setState({ checked: !this.state.checked })}
+                  />
+                  <Text style={{marginTop: 5}}> this is checkbox</Text>
+                  </View>
+  
             <MainButton onPress={handleSubmit(this.onSubmit)} title={'Registrarse'} style={styles.bigButton} />
           </View>
           <View style={{ flex: 1 }}>

@@ -18,7 +18,7 @@ import FilteredHome from '../containers/FilteredHomeContainer';
 
 import { addListener } from '../utils/redux';
 import { logout } from '../reducers/login';
-import { showTermsModal, showRegisterModal } from '../reducers/modals';
+import { showTermsModal } from '../reducers/modals';
 
 const CustomDrawerContentComponent = (props) => {
   const nav = props.nav; // eslint-disable-line

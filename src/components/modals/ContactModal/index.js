@@ -4,6 +4,7 @@ import Modal from 'react-native-modal';
 import { View, TouchableHighlight, Text } from 'react-native';
 import call from 'react-native-phone-call';
 import email from 'react-native-email';
+import MainButton from '../../MainButton';
 
 import styles from './styles';
 
@@ -53,9 +54,9 @@ export default class ContactModal extends PureComponent {
             <Text style={styles.title}>info@delagro.com.uy</Text>
           </TouchableHighlight>
 
-          <TouchableHighlight style={{ flex: 1 }} onPress={this.props.toggleModal}>
-            <Text style={styles.sideButtons}>Cerrar</Text>
-          </TouchableHighlight>
+          <View style={{ marginTop: 20 }}>
+            <MainButton onPress={this.props.toggleModal} title={'Cerrar'} />
+          </View>
         </View>
       </Modal>
     );

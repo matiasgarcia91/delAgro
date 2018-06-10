@@ -10,7 +10,7 @@ export default StyleSheet.create({
     borderRadius: 4,
     borderColor: 'rgba(0, 0, 0, 0.1)',
     height: 500,
-    width: 300,
+
     marginHorizontal: 40,
   },
   sideButtons: {
