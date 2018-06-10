@@ -3,6 +3,7 @@ import axios from 'axios';
 import { store } from '../containers/App';
 import { navigateToHomeLoggedIn, navigateToWelcomeScreen, navigateToLogin, navigateToRegister, navigateToCamera } from './rootNavigatorReducer';
 import loggedAxios from '../utils/loggedAxios';
+import { showRegisterModal } from './modals';
 
 const axiosInstance = axios.create({
   baseURL: 'http://delagro-api.herokuapp.com/api/v1/',
@@ -124,6 +125,7 @@ export function registerUser({ firstName, lastName, email, password, dob, cellph
         const { data: { data: { first_name, email: uid } } } = response;
         const token = response.headers['access-token'];
         const client = response.headers.client;
+        showRegisterModal();
         dispatch(loginSuccess({ username: first_name, token, uid, client }));
         dispatch(navigateToHomeLoggedIn());
       })

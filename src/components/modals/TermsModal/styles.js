@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { colors } from '../../styles';
+import { colors } from '../../../styles';
 
 export default StyleSheet.create({
   container: {
@@ -9,18 +9,22 @@ export default StyleSheet.create({
     alignItems: 'center',
     borderRadius: 4,
     borderColor: 'rgba(0, 0, 0, 0.1)',
-    height: 400,
-    marginHorizontal: 40
+    height: 500,
+
+    marginHorizontal: 40,
   },
   sideButtons: {
     color: '#2C5D3D',
-    fontSize: 18
+    fontSize: 18,
+      fontWeight: 'bold',
   },
-  title: {
+  titleContainer: {
+    marginTop:15,
+    marginBottom:15
   },
-  lineStyle:{
-        borderWidth: 0.5,
-        borderColor:'black',
-        margin:10,
-    }
+  lineStyle: {
+    borderWidth: 0.5,
+    borderColor: 'black',
+    margin: 10,
+  },
 });

@@ -3,6 +3,7 @@ import { View, Text, ScrollView, KeyboardAvoidingView } from 'react-native';
 import PropTypes from 'prop-types';
 import { NavigationActions } from 'react-navigation';
 import { Field, reduxForm } from 'redux-form';
+import CheckBox from 'react-native-check-box';
 
 import styles from './styles';
 import Logo from '../Logo';
@@ -11,20 +12,28 @@ import MainButton from '../MainButton';
 import LoginFooter from '../LoginFooter';
 import validate from './validations';
 import DropDown from '../DropDown';
+import { showTermsModal } from '../../reducers/modals';
 
 class RegisterScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
       state: null,
+      checkbox: false,
     };
     this.onChangeState = this.onChangeState.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.onChangeCheckbox = this.onChangeCheckbox.bind(this);
   }
 
   onChangeState(value, index, data) {
     const state = data.find(item => item.id === value);
     this.setState({ state });
+  }
+
+  onChangeCheckbox() {
+    const { checkbox } = this.state;
+    this.setState({ checkbox: !checkbox });
   }
 
   onSubmit(values) {
@@ -36,8 +45,8 @@ class RegisterScreen extends Component {
       email,
       password,
     } = values;
-    const { state } = this.state;
-
+    const { state, checkbox } = this.state;
+    if (!checkbox) return null;
     const user = {
       firstName,
       lastName,
@@ -60,7 +69,7 @@ class RegisterScreen extends Component {
 
   render() {
     const { handleSubmit, states } = this.props;
-    const { state } = this.state;
+    const { state, checkbox } = this.state;
     const mapStates = states.map(item => ({ id: item, name: item }));
     const renderInput = ({ input, label, secureTextEntry, autoFocus, type, meta, capitalize }) => (
       <FormInput
@@ -132,7 +141,18 @@ class RegisterScreen extends Component {
               capitalize={'none'}
               component={renderInput}
             />
-            <MainButton onPress={handleSubmit(this.onSubmit)} title={'Registrarse'} style={styles.bigButton} />
+            <View style={{ alignItems: 'center', marginBottom: 15 }}>
+              <Text onPress={showTermsModal} style={{ color: '#0000EE', fontSize: 18 }}>Terminos y condiciones</Text>
+            </View>
+            <View style={{ flex: 1, justifyContent: 'center' }}>
+              <CheckBox
+                style={{ flex: 1, padding: 10, paddingLeft: 20, marginBottom: 10 }}
+                onClick={this.onChangeCheckbox}
+                isChecked={checkbox}
+                rightText={'He leido y acepto los terminos y condiciones.'}
+              />
+            </View>
+            <MainButton onPress={handleSubmit(this.onSubmit)} title={'Registrarse'} style={styles.bigButton} disabled={!checkbox} />
           </View>
           <View style={{ flex: 1 }}>
             <LoginFooter text={'TIENES UNA CUENTA? '} linkText={'INICIAR SESION'} link={this.navigate} />
