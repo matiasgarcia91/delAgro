@@ -15,6 +15,9 @@ export default StyleSheet.create({
   sideButtons: {
     color: '#2C5D3D',
     fontSize: 18,
+    justifyContent: 'center',
+    alignItems: 'center',
+
   },
   title: {
   },
@@ -22,5 +25,14 @@ export default StyleSheet.create({
     borderWidth: 0.5,
     borderColor: 'black',
     margin: 10,
+  },
+  logo: {
+    alignSelf: 'center',
+    resizeMode: 'contain',
+    flex: 1,
+  },
+  logoContainer: {
+    height: 100,
+    marginTop: 30,
   },
 });

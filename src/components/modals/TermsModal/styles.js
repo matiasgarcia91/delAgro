@@ -16,8 +16,11 @@ export default StyleSheet.create({
   sideButtons: {
     color: '#2C5D3D',
     fontSize: 18,
+      fontWeight: 'bold',
   },
-  title: {
+  titleContainer: {
+    marginTop:15,
+    marginBottom:15
   },
   lineStyle: {
     borderWidth: 0.5,

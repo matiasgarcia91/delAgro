@@ -39,7 +39,6 @@ class LoginScreen extends PureComponent {
       <FormInput
         label={label}
         input={input}
-        autoFocus={autoFocus}
         secureTextEntry={secureTextEntry}
         autoCapitalize={'none'}
         type={type}
@@ -58,7 +57,6 @@ class LoginScreen extends PureComponent {
             name='email'
             type='email'
             label={'Usuario:'}
-            autoFocus
             component={renderInput}
           />
           <Field

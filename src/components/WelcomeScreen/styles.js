@@ -12,21 +12,28 @@ export default StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'stretch',
     marginBottom: 50,
-    marginTop: 20,
-    paddingTop: 20,
   },
   logoContainer: {
+    flex: 2.5,
     marginTop: 30,
+  },
+  logo: {
+    alignSelf: 'center',
+    resizeMode: 'contain',
     flex: 1,
-    justifyContent: 'flex-end',
   },
   logoBottomContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     paddingBottom:40,
-    width:350,
-    height:200
+    width: 350,
+    height: 200,
+  },
+  logoBottom: {
+    alignSelf: 'center',
+    resizeMode: 'contain',
+    flex: 1,
   },
   titleContainer: {
     flex: 1,
@@ -50,4 +57,9 @@ export default StyleSheet.create({
     width: 250,
     height: 50,
   },
+  text: {
+    marginBottom: 10,
+    fontSize: 18,
+    fontWeight: '300',
+  }
 });

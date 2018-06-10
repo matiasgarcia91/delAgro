@@ -24,9 +24,9 @@ export default function reducer(state = initialState, action) {
     case HIDE_UPLOAD:
       return { ...state, upload: false };
     case SHOW_REGISTER:
-      return { ...state, upload: true };
+      return { ...state, register: true };
     case HIDE_REGISTER:
-      return { ...state, upload: false };
+      return { ...state, register: false };
     default:
       return state;
   }

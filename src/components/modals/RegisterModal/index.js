@@ -1,7 +1,9 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-native-modal';
-import { View, TouchableHighlight, Text } from 'react-native';
+import { View, TouchableHighlight, Text ,Image} from 'react-native';
+import logo from '../../../assets/images/logo_muuu.png';
+import MainButton from '../../MainButton';
 
 import styles from './styles';
 
@@ -10,12 +12,15 @@ export default class RegisterModal extends PureComponent {
     return (
       <Modal isVisible={this.props.isVisible}>
         <View style={styles.container}>
-          <View style={{ flex: 1 }}>
-            <Text style={styles.sideButtons}>Te has registrado a Muuu exitosamente!</Text>
+          <View style={styles.logoContainer}>
+            <Image source={logo} style={styles.logo} />
           </View>
-          <TouchableHighlight style={{ flex: 1 }} onPress={this.props.toggleModal}>
-            <Text style={styles.sideButtons}>Cerrar</Text>
-          </TouchableHighlight>
+          <View style={{ flex: 1, marginTop: 30 }}>
+            <Text style={styles.sideButtons}>¡Te has registrado exitosamente!</Text>
+          </View>
+          <View style={{ marginTop: 20 }}>
+            <MainButton onPress={this.props.toggleModal} title={'Cerrar'} />
+          </View>
         </View>
       </Modal>
     );
