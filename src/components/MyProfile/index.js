@@ -33,7 +33,7 @@ class MyProfile extends PureComponent {
 
   onSubmit(values) {
     const { state } = this.state;
-    return this.props.updateUserData({ phone: values.phone, state });
+    return this.props.updateUserData({ phone: values.phone, state: state.id });
   }
 
   render() {
