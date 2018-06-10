@@ -121,6 +121,7 @@ export function submitLot({
       'uid': uid, // eslint-disable-line
       'Content-Type': 'multipart/form-data',
     };
+    dispatch(uploadPending());
     const cutVideo = videoUrl.slice(7);
     RNFetchBlob.fetch('POST', 'http://delagro-api.herokuapp.com/api/v1/lots', headers, [
       { name: 'video', data: RNFetchBlob.wrap(cutVideo), type: 'video/quicktime', filename: 'avatar-png.png' },
