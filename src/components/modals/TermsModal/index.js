@@ -1,23 +1,17 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-native-modal';
-import { View, TouchableHighlight, Text } from 'react-native';
-
+import { View, TouchableHighlight, Text, ScrollView } from 'react-native';
 
 import styles from './styles';
 
-export default class UploadModal extends PureComponent {
-  constructor(props) {
-    super(props);
-  }
-
+export default class TermsModal extends PureComponent {
   render() {
     return (
       <Modal isVisible={this.props.isVisible}>
         <View style={styles.container}>
-          <View style={{ flex: 1 }}>
-          <Text style={styles.sideButtons}>Título I Disposiciones Generales</Text>
-          </View>
+          <ScrollView>
+            <Text style={styles.sideButtons}>Título I Disposiciones Generales</Text>
             <Text> Art. 1. Las partes que intervienen en una transacción serán por un lado los usuarios (en lo sucesivo “el Cliente vendedor o comprador) y por otro lado DELAGRO SRL,</Text>
             <Text>  Art. 2. Por el solo hecho de utilizar la aplicación, el cliente vendedor o comprador acepta expresamente todas y cada una de las condiciones establecidas en este reglamento, reconociéndolas como legales y vinculantes a su respecto. </Text>
             <Text>  Art. 3. La organización y funcionamiento de esta Aplicación estará a cargo del escritorio DelAgro & Cia Srl. quien será responsable de la administración, negociación y cierre de los lotes </Text>
@@ -32,7 +26,7 @@ export default class UploadModal extends PureComponent {
             <Text>  Art. 12 .Los gastos totales para los vendedores y compradores serán de 3% del monto de la transacción más IVA para cada una de las partes. Los costos de pesada solo serán de cuenta del comprador.</Text>
 
 
-          <Text style={styles.sideButtons}>  Título II  Del registro en la aplicación</Text>
+            <Text style={styles.sideButtons}>  Título II  Del registro en la aplicación</Text>
 
             <Text>  Art. 13. Para poder vender es imprescindible registrarse en la misma. El registro será completamente gratuito, y no generará ningún compromiso con ninguna de las partes.</Text>
             <Text>Art. 14. Para registrarse en la aplicación deberán generar un número de usuario y contraseña  y completar los siguientes datos: Nombre y apellido, correo electrónico, contraseña, fecha de nacimiento, teléfono móvil, y departamento</Text>
@@ -41,7 +35,7 @@ export default class UploadModal extends PureComponent {
             <Text>Art. 17 .El cliente deberá asegurarse de no divulgar la información de seguridad para el ingreso al sitio, ya que será responsable de todas las ofertas realizadas.</Text>
             <Text>Art. 18. Se podrá ofrecer, como máximo, la cantidad de 40 animales por lote y como mínimo la cantidad de 10 animales por lote, con un margen de oscilación en más o menos del 10%.</Text>
 
-          <Text style={styles.sideButtons}> Título III  De la compra en  la aplicación</Text>
+            <Text style={styles.sideButtons}> Título III  De la compra en  la aplicación</Text>
 
             <Text>Art. 19 .Pesada de animales: Los animales se pesaran en balanzas oficiales con la siguiente escala en su destare:  Distancia a balanza: 1-70 km : 6% ,71-150 km : 5% ,151 km en adelante : 4% </Text>
             <Text>Art. 20 .Para comprar a través de la aplicación no es necesario estar registrado. Solo basta con haber instalado la aplicación en su celular.</Text>
@@ -50,13 +44,15 @@ export default class UploadModal extends PureComponent {
 
             <Text>Art. 22 .La compra solo podrá realizarse a estableciendo un contacto con personal de  Delagro a través de la aplicación o de e- mail.</Text>
 
-          <Text style={styles.sideButtons}>  Título IV Beneficios de los usuarios de la aplicación/Text>
+            <Text style={styles.sideButtons}>  Título IV  Beneficios de los usuarios de la aplicación</Text>
 
             <Text>Art. 23 .Beneficios de los vendedores. Los vendedores tendrán una bonificación consistente en 1 dólar por animal vendido a través de la aplicación.</Text>
 
             <Text>Art. 24 .Dicho beneficio es acumulativo y solo podrá hacerse efectivo cuando se llegue a un monto acumulado de 200 dólares o sea el equivalente de 200 animales vendidos. Este beneficio podrá descontarse de las comisiones de futuras ventas en la aplicación.</Text>
 
-            <Text>Art. 25 .Beneficio de los compradores. El beneficio acumulado de las ventas  se duplica cuando el mismo que vendió a través de la APP, realiza una compra en Delagro o en la aplicación. Dicho beneficio se descuenta de la comisión correspondiente a la compra. Como ejemplo si un vendedor ha acumulado 300 dólares por concepto de la venta de 300 animales, si concreta una compra en Delagro esos 300 dólares iniciales de beneficio, se convierten en 600 dólares a descontar de la comisión de la compra.</Text>
+            <Text>
+              {`Art. 25 .Beneficio de los compradores. El beneficio acumulado de las ventas  se duplica cuando el mismo que vendió a través de la APP, realiza una compra en Delagro o en la aplicación. Dicho beneficio se descuenta de la comisión correspondiente a la compra. Como ejemplo si un vendedor ha acumulado 300 dólares por concepto de la venta de 300 animales, si concreta una compra en Delagro esos 300 dólares iniciales de beneficio, se convierten en 600 dólares a descontar de la comisión de la compra.`}
+            </Text>
 
             <Text>Art. 26 .Delagro llevara una cuenta corriente de los beneficios acumulados y utilizados por cada cliente.</Text>
 
@@ -64,7 +60,7 @@ export default class UploadModal extends PureComponent {
 
             <Text>Art. 28 .DELAGRO puede eventualmente ponerse en contacto con los  clientes de la aplicación con el objeto de informarles sobre productos y servicios relacionados que puedan interesarle</Text>
 
-          <Text style={styles.sideButtons}> Título V De las responsabilidades</Text>
+            <Text style={styles.sideButtons}> Título V De las responsabilidades</Text>
             <Text>Art. 29 .El que publica un lote se hace responsable de la veracidad de la información.</Text>
             <Text>Art. 30 .En caso de duda Delagro se reserva de revisar el lote y condicionar la venta hasta la verificación de la información.</Text>
 
@@ -73,16 +69,17 @@ export default class UploadModal extends PureComponent {
             <Text>Art. 32 .Las condiciones establecidas en este reglamento,  podrán ser modificadas con previo aviso.</Text>
 
 
-          <TouchableHighlight style={{ flex: 1 }} onPress={this.props.toggleModal}>
-            <Text style={styles.sideButtons}>Cerrar</Text>
-          </TouchableHighlight>
+            <TouchableHighlight style={{ flex: 1 }} onPress={this.props.toggleModal}>
+              <Text style={styles.sideButtons}>Cerrar</Text>
+            </TouchableHighlight>
+          </ScrollView>
         </View>
       </Modal>
     );
   }
 }
 
-ContactModal.propTypes = {
+TermsModal.propTypes = {
   isVisible: PropTypes.bool.isRequired,
   toggleModal: PropTypes.func.isRequired,
 };

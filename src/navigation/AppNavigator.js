@@ -18,6 +18,7 @@ import FilteredHome from '../containers/FilteredHomeContainer';
 
 import { addListener } from '../utils/redux';
 import { logout } from '../reducers/login';
+import { showTermsModal } from '../reducers/modals';
 
 const CustomDrawerContentComponent = (props) => {
   const nav = props.nav; // eslint-disable-line
@@ -29,9 +30,7 @@ const CustomDrawerContentComponent = (props) => {
           onItemPress={
             ({ route, focused }) => {
               if (route.key === 'LogOut') return logout();
-
-              if (route.key === 'terms' || route.key === 'help') return null;
-
+              if (route.key === 'terms') return showTermsModal();
               return props.onItemPress({ route, focused }) // eslint-disable-line
             }
           }
@@ -73,7 +72,6 @@ export const AppNavigator = StackNavigator({
       HomeLoggedIn: { screen: loggedHomeStack, navigationOptions: { drawerLabel: 'Inicio' } },
       myProfile: { screen: MyProfile, navigationOptions: { drawerLabel: 'Mi perfil' } },
       myLots: { screen: MyLots, navigationOptions: { drawerLabel: 'Mis publicaciones' } },
-      help: { screen: () => {}, navigationOptions: { drawerLabel: 'Ayuda' } },
       terms: { screen: () => {}, navigationOptions: { drawerLabel: 'Terminos y condiciones' } },
       LogOut: { screen: () => {}, navigationOptions: { drawerLabel: 'Cerrar sesión' } },
     }, { headerMode: 'none', drawerWidth: 200, contentComponent: CustomDrawerContentComponent }),
