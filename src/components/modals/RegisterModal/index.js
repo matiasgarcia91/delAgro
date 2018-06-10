@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-native-modal';
-import { View, TouchableHighlight, Text ,Image} from 'react-native';
+import { View, Text, Image } from 'react-native';
 import logo from '../../../assets/images/logo_muuu.png';
 import MainButton from '../../MainButton';
 

@@ -18,6 +18,7 @@ export default class TermsModal extends PureComponent {
     return (
       <Modal isVisible={this.props.isVisible}>
         <View style={styles.container}>
+          <Text style={[styles.sideButtons, { marginBottom: 10 }]}>Terminos y Condiciones</Text>
           <ScrollView>
             <View style = {styles.titleContainer}>
             <Text style={styles.sideButtons}>Título I Disposiciones Generales</Text>

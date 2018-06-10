@@ -19,13 +19,6 @@ export default StyleSheet.create({
     alignItems: 'center',
 
   },
-  title: {
-  },
-  lineStyle: {
-    borderWidth: 0.5,
-    borderColor: 'black',
-    margin: 10,
-  },
   logo: {
     alignSelf: 'center',
     resizeMode: 'contain',

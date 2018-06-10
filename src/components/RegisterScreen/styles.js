@@ -8,7 +8,7 @@ export default StyleSheet.create({
     backgroundColor: colors.creamBackground,
   },
   logoContainer: {
-    marginTop: 40,
+    marginTop: 50,
     marginBottom: 60,
     flex: 1,
     justifyContent: 'center',
@@ -25,7 +25,7 @@ export default StyleSheet.create({
   },
   titleText: {
     marginTop: -40,
-    marginBottom: 30,
+    marginBottom: 20,
     fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'center',

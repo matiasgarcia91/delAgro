@@ -1,10 +1,9 @@
 import React, { PureComponent } from 'react';
-import { View, Text,Image } from 'react-native';
+import { View, Text, Image } from 'react-native';
 import PropTypes from 'prop-types';
 import { NavigationActions } from 'react-navigation';
 
 import MainButton from '../MainButton';
-import Logo from '../Logo';
 import LogoDelAgro from '../../assets/images/delagroicon.png';
 import logo from '../../assets/images/logo_muuu.png';
 
@@ -38,13 +37,13 @@ export default class WelcomeScreen extends PureComponent {
   render() {
     return (
       <View style={styles.container}>
-        <View style = {styles.titleContainer}>
+        <View style={styles.titleContainer}>
           <Text style={[styles.text, { marginTop: 40 }]}>Para comercializar tu ganado usa:</Text>
         </View>
         <View style={styles.logoContainer}>
           <Image source={logo} style={styles.logo} />
         </View>
-        <View style = {styles.titleContainer}>
+        <View style={styles.titleContainer}>
           <Text style={styles.text}>¡Cuanto más la usas menos pagás!</Text>
         </View>
         <View style={styles.formContainer}>
@@ -52,10 +51,8 @@ export default class WelcomeScreen extends PureComponent {
           <MainButton onPress={this.navigatePublish} title={'PUBLICAR UN LOTE'} style={styles.bigButton} />
         </View>
         <View style={styles.logoBottomContainer}>
-            <Image style={styles.logoBottom} source={LogoDelAgro} />
+          <Image style={styles.logoBottom} source={LogoDelAgro} />
         </View>
-
-
       </View>
     );
   }
