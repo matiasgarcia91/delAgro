@@ -3,13 +3,15 @@ import { store } from '../containers/App';
 const initialState = {
   terms: false,
   upload: false,
+  register: false,
 };
 
 export const SHOW_TERMS = 'modals/SHOW_TERMS';
 export const HIDE_UPLOAD = 'modals/HIDE_UPLOAD';
 export const SHOW_UPLOAD = 'modals/SHOW_UPLOAD';
 export const HIDE_TERMS = 'modals/HIDE_TERMS';
-
+export const HIDE_REGISTER = 'modals/HIDE_REGISTER';
+export const SHOW_REGISTER = 'modals/SHOW_REGISTER';
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
@@ -20,6 +22,10 @@ export default function reducer(state = initialState, action) {
     case SHOW_UPLOAD:
       return { ...state, upload: true };
     case HIDE_UPLOAD:
+      return { ...state, upload: false };
+    case SHOW_REGISTER:
+      return { ...state, upload: true };
+    case HIDE_REGISTER:
       return { ...state, upload: false };
     default:
       return state;
@@ -40,4 +46,12 @@ export function showUploadModal() {
 
 export function hideUploadModal() {
   store.dispatch({ type: HIDE_UPLOAD });
+}
+
+export function showRegisterModal() {
+  store.dispatch({ type: SHOW_REGISTER });
+}
+
+export function hideRegisterModal() {
+  store.dispatch({ type: HIDE_REGISTER });
 }

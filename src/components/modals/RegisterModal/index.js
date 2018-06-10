@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Modal from 'react-native-modal';
 import { View, TouchableHighlight, Text } from 'react-native';
 
-
 import styles from './styles';
 
 export default class RegisterModal extends PureComponent {
