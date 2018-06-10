@@ -5,6 +5,13 @@ import { View, TouchableHighlight, Text, ScrollView } from 'react-native';
 
 import styles from './styles';
 
+// Comments:
+// El boton ese Cerrar tiene que ser un boton me parece, no solo un texto para mantener la consistencia. hice un mini component button en el filteredScreen,
+// mas arriba del componente, capaz que ese puede quedar bien aca.
+// Agregaria margenes top y bottom a los titulos para que quede mas tipo parrafo.
+// El boton tambien hay que sacarlo del scrollView para que no haya que ir hasta abajo para cerrar el modal, que quede por afuera, abajo del scrollView
+// Capaz hacer todo el modal mas grande
+
 export default class TermsModal extends PureComponent {
   render() {
     return (
