@@ -2,6 +2,7 @@ import axios from 'axios';
 
 import { store } from '../containers/App';
 import { navigateToHomeLoggedIn, navigateToWelcomeScreen, navigateToLogin, navigateToRegister, navigateToCamera } from './rootNavigatorReducer';
+import loggedAxios from '../utils/loggedAxios';
 
 const axiosInstance = axios.create({
   baseURL: 'http://delagro-api.herokuapp.com/api/v1/',
@@ -11,8 +12,8 @@ const initialState = {
   loggedIn: false,
   token: null,
   userData: {
-    phone: '094821910',
-    state: 'durazno',
+    phone: null,
+    state: null,
   },
 };
 
@@ -21,6 +22,7 @@ export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGOUT = 'LOGOUT';
 export const SAVE_CREDENTIALS = 'SAVE_CREDENTIALS';
+export const SET_USER_DATA = 'SET_USER_DATA';
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
@@ -32,6 +34,10 @@ export default function reducer(state = initialState, action) {
         username: action.username,
         client: action.client,
         uid: action.uid,
+        userData: {
+          phone: action.phone,
+          state: action.state,
+        },
       };
     case LOGIN_FAILURE:
       return { ...state, token: null, loggedIn: false, error: action.error };
@@ -39,6 +45,8 @@ export default function reducer(state = initialState, action) {
       return { ...state, creds: action.creds };
     case LOGOUT:
       return { ...initialState };
+    case SET_USER_DATA:
+      return { ...initialState, userData: { phone: action.phone, state: action.state } };
     default:
       return state;
   }
@@ -48,8 +56,8 @@ export function loginPending() {
   return { type: LOGIN_PENDING };
 }
 
-export function loginSuccess({ username, token, uid, client }) {
-  return { type: LOGIN_SUCCESS, username, token, uid, client };
+export function loginSuccess({ username, token, uid, client, phone, state }) {
+  return { type: LOGIN_SUCCESS, username, token, uid, client, phone, state };
 }
 
 export function loginFailure(error) {
@@ -58,6 +66,10 @@ export function loginFailure(error) {
 
 export function saveCredentials({ token, uid, client }) {
   return { type: SAVE_CREDENTIALS, creds: { token, uid, client } };
+}
+
+export function setNewUserData({ phone, state }) {
+  return { type: SET_USER_DATA, phone, state };
 }
 
 export function logout() {
@@ -72,10 +84,10 @@ export function login({ email, password, previous = null }) {
     dispatch(loginPending());
     return axiosInstance.post('/auth/sign_in', { email, password })
       .then((response) => {
-        const { data: { data: { first_name, email: uid } } } = response;
+        const { data: { data: { first_name, email: uid, phone, state } } } = response;
         const token = response.headers['access-token'];
         const client = response.headers.client;
-        dispatch(loginSuccess({ username: first_name, token, uid, client }));
+        dispatch(loginSuccess({ username: first_name, token, uid, client, phone, state }));
         dispatch(saveCredentials({ token, uid, client }));
         if (!previous) dispatch(navigateToHomeLoggedIn());
         if (previous === 'welcome') dispatch(navigateToCamera());
@@ -119,6 +131,19 @@ export function registerUser({ firstName, lastName, email, password, dob, cellph
   };
 }
 
-export function updateUserData({ phone, state }) {
-  return () => console.log({ phone, state });
+export function getUserData() {
+  return () => console.log('userData');
+}
+
+export function updateUserData(params) {
+  return (dispatch, getState) => {
+    const creds = getState().session.creds;
+    return loggedAxios(creds)
+      .put('/auth', params)
+      .then(() => {
+        dispatch(setNewUserData(params));
+        dispatch(navigateToHomeLoggedIn());
+      })
+      .catch(e => console.log(e.message));
+  };
 }
