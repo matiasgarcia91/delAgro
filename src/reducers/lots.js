@@ -10,6 +10,7 @@ const initialState = {
   selected: null,
   myLots: [],
   uploading: false,
+  listEnd: false,
 };
 
 export const IS_FETCHING = 'IS_FETCHING';
@@ -21,6 +22,8 @@ export const UPLOAD_PENDING = 'UPLOAD_PENDING';
 export const UPLOAD_SUCCESS = 'UPLOAD_SUCCESS';
 export const UPLOAD_FAILURE = 'UPLOAD_FAILURE';
 export const MY_LOTS_SUCCESS = 'MY_LOTS_SUCCESS';
+export const APPEND_LOTS = 'APPEND_LOTS';
+export const LIST_END = 'LIST_END';
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
@@ -29,7 +32,10 @@ export default function reducer(state = initialState, action) {
         ...state,
         allLots: action.lots,
         isFetching: false,
+        listEnd: false,
       };
+    case APPEND_LOTS:
+      return { ...state, myLots: [...state.lots, ...action.lots] };
     case ALL_LOTS_FAILURE:
       return { ...state, token: null, loggedIn: false, error: action.error };
     case SET_ERROR:
@@ -44,6 +50,8 @@ export default function reducer(state = initialState, action) {
       return { ...state, uploading: false, uploadFailure: true, uploadError: action.uploadError };
     case MY_LOTS_SUCCESS:
       return { ...state, myLots: action.myLots };
+    case LIST_END:
+      return { ...state, listEnd: true };
     default:
       return state;
   }
@@ -55,6 +63,14 @@ export function fetching() {
 
 export function allLotsSuccess(lots) {
   return { type: ALL_LOTS_SUCCESS, lots };
+}
+
+export function appendLots(lots) {
+  return { type: APPEND_LOTS, lots };
+}
+
+export function listEnd() {
+  return { type: LIST_END };
 }
 
 export function setError({ error }) {
@@ -81,12 +97,15 @@ export function myLotsSuccess(myLots) {
   return { type: MY_LOTS_SUCCESS, myLots };
 }
 
-export function fetchAllLots() {
+export function fetchAllLots(page = 1) {
   return (dispatch) => {
     dispatch(fetching());
-    return axiosCustom.get('/lots')
+    const queryString = `scope[status]=active&page=${page}`;
+    return axiosCustom.get(`/lots?${queryString}`)
       .then((response) => {
-        dispatch(allLotsSuccess(response.data));
+        if (response.data.length === 0) return dispatch(listEnd());
+        if (page > 1) return dispatch(appendLots(response.data));
+        return dispatch(allLotsSuccess(response.data));
       })
       .catch(error => dispatch(setError({ error })));
   };
