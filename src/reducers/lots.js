@@ -100,7 +100,7 @@ export function myLotsSuccess(myLots) {
 export function fetchAllLots(page = 1) {
   return (dispatch) => {
     dispatch(fetching());
-    const queryString = `scope[status]=pending&page=${page}`;
+    const queryString = `scope[status]=active&page=${page}`;
     return axiosCustom.get(`/lots?${queryString}`)
       .then((response) => {
         if (response.data.length === 0) return dispatch(listEnd());
