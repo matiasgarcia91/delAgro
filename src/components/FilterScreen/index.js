@@ -78,9 +78,7 @@ export default class FilterScreen extends PureComponent {
     const disabled = breed || category || weightMin || weightMax || state;
     return (
       <View style={{ flex: 1 }}>
-        <View style={{ flex: 1 }}>
-          <NavBarBack navigation={this.props.navigation} title={''} />
-        </View>
+        <NavBarBack navigation={this.props.navigation} title={''} />
         <View style={styles.container}>
           <ScrollView>
             <Text style={styles.titleText}>Filtrar Busqueda</Text>

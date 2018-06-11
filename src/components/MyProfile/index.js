@@ -54,9 +54,7 @@ class MyProfile extends PureComponent {
 
     return (
       <View style={{ flex: 1 }}>
-        <View style={{ flex: 1 }}>
-          <NavBarBack navigation={this.props.navigation} title={'Mi Perfil'} />
-        </View>
+        <NavBarBack navigation={this.props.navigation} title={'Mi Perfil'} />
         <View style={styles.container}>
           <Text style={styles.titleText}>Actualizar Perfil</Text>
           <View style={styles.formContainer}>

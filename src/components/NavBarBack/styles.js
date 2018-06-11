@@ -4,10 +4,9 @@ import { colors } from '../../styles';
 export default StyleSheet.create({
   bar: {
     backgroundColor: colors.creamBackground,
-    flex: 1,
     flexDirection: 'row',
-    paddingTop: 35,
-    paddingBottom: 20,
+    paddingTop: 20,
+    paddingBottom: 15,
     justifyContent: 'space-between',
     borderBottomWidth: 1,
     borderColor: colors.lightGrey,
@@ -15,13 +14,26 @@ export default StyleSheet.create({
     shadowColor: colors.darkGreen,
     shadowOpacity: 1,
     shadowRadius: 4,
+    height: 75,
   },
   sideButtons: {
     marginLeft: 20,
   },
   title: {
+    marginTop: 12,
     fontSize: 17,
     fontWeight: 'bold',
     color: colors.darkGreen,
+  },
+  icon: {
+    alignSelf: 'flex-start',
+    width: 50,
+    height: 50,
+    marginTop: 12,
+    flex: 1,
+  },
+  backButton: {
+    paddingLeft: 20,
+    color: colors.navButtonGreen,
   },
 });
