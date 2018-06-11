@@ -19,10 +19,7 @@ class LoginScreen extends PureComponent {
   onSubmit(values) {
     const { state } = this.props.navigation;
     const previous = state.params && state.params.previous;
-    const { email: email2, password: password2 } = values;
-    // TODO: Remove test credentials
-    const email = !email2 || email2 === '' ? 'diego_abreu@delagro.com' : email2;
-    const password = !password2 || password2 === '' ? 'password' : password2;
+    const { email, password } = values;
     this.props.login({ email, password, previous });
   }
 
@@ -35,7 +32,7 @@ class LoginScreen extends PureComponent {
 
   render() {
     const { handleSubmit } = this.props;
-    const renderInput = ({ input, label, secureTextEntry, autoFocus, type, meta }) => (
+    const renderInput = ({ input, label, secureTextEntry, type, meta }) => (
       <FormInput
         label={label}
         input={input}
@@ -55,7 +52,7 @@ class LoginScreen extends PureComponent {
           <Text style={styles.titleText}>Iniciar Sesión</Text>
           <Field
             name='email'
-            type='email'
+            type='text'
             label={'Usuario:'}
             component={renderInput}
           />
