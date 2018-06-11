@@ -28,13 +28,13 @@ export default class CardFooter extends PureComponent {
   };
 
   render() {
-    const { lot: { weight, price, quantity, category } } = this.props;
-    const unit = getPriceUnit(category.id)
+    const { lot: { price, quantity, category, title } } = this.props;
+    const unit = getPriceUnit(category.id);
     return (
       <View style={styles.container}>
         <View style={styles.textContainer}>
-          <Text style={styles.countText}>{quantity} {category.name}</Text>
-          <Text style={styles.weightText}>{weight} kg</Text>
+          <Text style={styles.countText}>{title}</Text>
+          <Text style={styles.weightText}>{quantity} {category.name}</Text>
           <Text style={styles.priceText}>${price} {unit}</Text>
         </View>
         <View style={styles.buttonContainer}>
