@@ -4,7 +4,6 @@ import { colors } from '../../styles';
 export default StyleSheet.create({
   bar: {
     backgroundColor: colors.creamBackground,
-    flex: 1,
     flexDirection: 'row',
     paddingTop: 20,
     paddingBottom: 15,
@@ -15,16 +14,21 @@ export default StyleSheet.create({
     shadowColor: colors.darkGreen,
     shadowOpacity: 1,
     shadowRadius: 4,
+    height: 75,
   },
   icon: {
     alignSelf: 'flex-start',
-    resizeMode: 'contain',
-    width: 100,
+    width: 50,
     height: 50,
-    marginTop: 15,
+    marginTop: 12,
     flex: 1,
+  },
+  menuIcon: {
     paddingLeft: 20,
-    marginRight: 30,
+    color: colors.navButtonGreen,
+  },
+  iconn: {
+    color: colors.navButtonGreen,
   },
   filter: {
     resizeMode: 'contain',
@@ -45,6 +49,9 @@ export default StyleSheet.create({
   },
   logoContainer: {
     flex: 1,
+    alignItems: 'center',
+    marginLeft: 70,
+    marginTop: 1,
   },
   logo: {
     width: 50,

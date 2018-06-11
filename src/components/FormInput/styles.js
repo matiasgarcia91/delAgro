@@ -19,5 +19,16 @@ export default StyleSheet.create({
   },
   label: {
     marginBottom: 5,
+    flex: 1,
+  },
+  labelContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  error: {
+    flex: 1,
+    fontSize: 11,
+    color: colors.red,
+    textAlign: 'right',
   },
 });

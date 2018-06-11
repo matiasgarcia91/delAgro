@@ -6,15 +6,19 @@ import { NavigationActions } from 'react-navigation';
 import styles from './styles';
 
 export default class NavBarPublish extends PureComponent {
-  navigate = () => {
+  constructor(props) {
+    super(props);
+    this.navigate = this.navigate.bind(this);
+  }
+  navigate() {
     const navigateToDetails = NavigationActions.navigate({
-      routeName: 'Home',
+      routeName: 'HomeIn',
     });
     this.props.navigation.dispatch(navigateToDetails);
-  };
+  }
 
   render() {
-    const { submitLot, navigation } = this.props;
+    const { submitLot, handleSubmit } = this.props;
     return (
       <View style={styles.bar} >
         <TouchableHighlight onPress={this.navigate}>
@@ -23,7 +27,7 @@ export default class NavBarPublish extends PureComponent {
         <TouchableHighlight>
           <Text style={styles.title} >Completar datos</Text>
         </TouchableHighlight>
-        <TouchableHighlight onPress={() => submitLot(navigation.state.params.video)}>
+        <TouchableHighlight onPress={handleSubmit(submitLot)}>
           <Text style={styles.sideButtons}>Subir</Text>
         </TouchableHighlight>
       </View>
@@ -34,6 +38,7 @@ export default class NavBarPublish extends PureComponent {
 NavBarPublish.propTypes = {
   navigation: PropTypes.shape(),
   submitLot: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
 };
 
 NavBarPublish.defaultProps = {

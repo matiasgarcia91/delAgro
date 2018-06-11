@@ -3,8 +3,9 @@ import { View, Text } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 import PropTypes from 'prop-types';
 
-import filters from '../../helpers/filterStaticData';
 import MainButton from '../MainButton';
+import { getPriceUnit } from '../../helpers/priceUnit';
+
 import styles from './styles';
 
 export default class CardFooter extends PureComponent {
@@ -27,17 +28,19 @@ export default class CardFooter extends PureComponent {
   };
 
   render() {
-    const { lot: { weight, price, quantity, category_id }, categories } = this.props;
-    const category = category_id ? filters.findCategory(category_id, categories) : '';
+    const { lot: { price, quantity, category, title } } = this.props;
+    const unit = getPriceUnit(category.id);
     return (
-      <View style={styles.container}>
-        <View style={styles.textContainer}>
-          <Text style={styles.countText}>{quantity} {category}</Text>
-          <Text style={styles.weightText}>{weight} kg</Text>
-          <Text style={styles.priceText}>${price}/kg</Text>
-        </View>
-        <View style={styles.buttonContainer}>
-          <MainButton title={'DETALLES'} onPress={this.onPressDetails} />
+      <View style={styles.border}>
+        <View style={styles.container}>
+          <View style={styles.textContainer}>
+            <Text style={styles.countText}>{title}</Text>
+            <Text style={styles.weightText}>{quantity} {category.name}</Text>
+            <Text style={styles.priceText}>${price} {unit}</Text>
+          </View>
+          <View style={styles.buttonContainer}>
+            <MainButton title={'DETALLES'} onPress={this.onPressDetails} />
+          </View>
         </View>
       </View>
     );
@@ -48,9 +51,4 @@ CardFooter.propTypes = {
   navigation: PropTypes.shape().isRequired,
   lot: PropTypes.shape().isRequired,
   selectLot: PropTypes.func.isRequired,
-  categories: PropTypes.arrayOf(PropTypes.shape()),
-};
-
-CardFooter.defaultProps = {
-  categories: [],
 };

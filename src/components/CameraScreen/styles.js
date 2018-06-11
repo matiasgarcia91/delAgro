@@ -23,6 +23,7 @@ export default StyleSheet.create({
   },
   footer: {
     flex: 2,
+    maxHeight: 130,
     backgroundColor: colors.creamBackground,
     flexDirection: 'row',
   },

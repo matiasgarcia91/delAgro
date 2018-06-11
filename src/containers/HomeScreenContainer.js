@@ -1,14 +1,13 @@
 import { connect } from 'react-redux';
-import { changeVisibleItemsChange } from '../actions/homeScreen';
+import { changeVisibleItemsChange } from '../reducers/homeScreenReducer';
 import { fetchAllLots } from '../reducers/lots';
-import { getStaticData } from '../reducers/staticData';
 
 import HomeScreen from '../components/HomeScreen';
 
-function mapStateToProps({ lots: { allLots }, session: { token } }) {
-  return { allLots, token };
+function mapStateToProps({ lots: { allLots, uploading, listEnd } }) {
+  return { allLots, uploading, listEnd };
 }
 export default connect(
   mapStateToProps,
-  { changeVisibleItemsChange, fetchAllLots, getStaticData },
+  { changeVisibleItemsChange, fetchAllLots },
 )(HomeScreen);

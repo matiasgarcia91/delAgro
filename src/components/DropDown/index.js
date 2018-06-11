@@ -20,11 +20,13 @@ export default class DropDown extends PureComponent {
   }
 
   render() {
-    const { label, values, onChange } = this.props;
+    const { label, values, onChange, double } = this.props;
+    const containerStyle = double ? styles.doubleContainer : styles.container;
     return (
-      <View style={styles.container}>
-        { label &&
-          <Text style={styles.label}>{label}</Text>
+      <View style={containerStyle}>
+        { label ?
+          <Text style={styles.label}>{label}</Text> :
+          <Text style={styles.label} />
         }
         <Dropdown
           label=''
@@ -42,12 +44,15 @@ export default class DropDown extends PureComponent {
 }
 
 DropDown.propTypes = {
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   values: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   selected: PropTypes.shape(),
   onChange: PropTypes.func.isRequired,
+  double: PropTypes.bool,
 };
 
 DropDown.defaultProps = {
   selected: null,
+  double: false,
+  label: null,
 };

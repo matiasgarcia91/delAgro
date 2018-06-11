@@ -1,9 +1,11 @@
 import React, { PureComponent } from 'react';
-import { View, FlatList } from 'react-native';
+import { View, FlatList, Text } from 'react-native';
 import PropTypes from 'prop-types';
 
-import NavBarHome from '../../containers/NavBarHomeContainer';
+import NavBarHome from '../NavBarHome';
 import CardItem from '../CardItem';
+
+import styles from './styles';
 
 export default class MyLotsPage extends PureComponent {
   constructor(props) {
@@ -29,15 +31,15 @@ export default class MyLotsPage extends PureComponent {
 
   render() {
     const list = this.props.myLots;
-    const isLoggedIn = !!this.props.token;
     const data =
       list.map(item => ({ key: `${item.id}`, navigation: this.props.navigation, lot: item }));
     return (
       <View style={{ flex: 1 }}>
-        <View style={{ flex: 1 }}>
-          <NavBarHome navigation={this.props.navigation} isLoggedIn={isLoggedIn} />
-        </View>
+        <NavBarHome navigation={this.props.navigation} />
         <View style={{ flex: 8 }}>
+          <View style={styles.bar}>
+            <Text style={styles.text}>Mis Publicaciones</Text>
+          </View>
           <FlatList
             data={data}
             renderItem={this.renderItem}
@@ -54,7 +56,6 @@ MyLotsPage.propTypes = {
   changeVisibleItemsChange: PropTypes.func.isRequired,
   fetchMyLots: PropTypes.func.isRequired,
   myLots: PropTypes.arrayOf(PropTypes.shape).isRequired,
-  token: PropTypes.string,
 };
 
 MyLotsPage.defaultProps = {

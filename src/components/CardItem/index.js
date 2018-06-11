@@ -10,8 +10,7 @@ import styles from './styles';
 
 export default class CardItem extends PureComponent {
   render() {
-    const { lot, details, category } = this.props;
-    // const uri = 'https://player.vimeo.com/external/255985812.m3u8?s=68efe184a31448142948def47515696ef3cb4ec6';
+    const { lot, details } = this.props;
     return (
       <View style={styles.container}>
         <View style={styles.videoContainer}>
@@ -19,7 +18,7 @@ export default class CardItem extends PureComponent {
         </View>
         <View style={styles.footer}>
           { details ?
-            <DetailsCardFooter lot={lot} category={category} /> :
+            <DetailsCardFooter lot={lot} /> :
             <CardFooter navigation={this.props.navigation} lot={lot} />
           }
         </View>
@@ -33,7 +32,6 @@ CardItem.propTypes = {
   navigation: PropTypes.shape(),
   lot: PropTypes.shape().isRequired,
   details: PropTypes.bool,
-  category: PropTypes.string,
 };
 
 CardItem.defaultProps = {
