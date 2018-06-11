@@ -68,9 +68,7 @@ export default class Home extends PureComponent {
       list.map(item => ({ key: `${item.id}`, navigation, lot: item }));
     return (
       <View style={{ flex: 1 }}>
-        <View style={{ flex: 1 }}>
-          <NavBarHome navigation={navigation} />
-        </View>
+        <NavBarHome navigation={navigation} />
         <View style={{ flex: 8 }}>
           {uploading && <UploadBanner />}
           {list.length !== 0 &&

@@ -7,21 +7,18 @@ export default StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     backgroundColor: colors.creamBackground,
-    paddingBottom: 5,
     maxHeight: 80,
-    borderBottomWidth: 2,
-    borderBottomColor: colors.lightGrey,
+    paddingHorizontal: 10,
   },
   textContainer: {
-    flex: 1,
+    height: 64,
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
-    paddingLeft: 15,
-    paddingVertical: 5,
+    marginTop: 10,
   },
   buttonContainer: {
     justifyContent: 'center',
-    paddingLeft: 15,
+    alignItems: 'flex-end',
     flex: 1,
   },
   countText: {
@@ -40,5 +37,10 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     flex: 1,
     color: colors.lightGreen,
+  },
+  border: {
+    flex: 1,
+    borderBottomWidth: 2,
+    borderBottomColor: colors.lightGrey,
   },
 });
