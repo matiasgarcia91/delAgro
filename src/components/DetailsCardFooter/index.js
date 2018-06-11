@@ -15,7 +15,6 @@ export default class DetailsCardFooter extends PureComponent {
           <Text style={styles.countText}>{quantity} {category.name}</Text>
           <Text style={styles.priceText}>${price} {unit}</Text>
         </View>
-        <View style={styles.favContainer} />
       </View>
     );
   }

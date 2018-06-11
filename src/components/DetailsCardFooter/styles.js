@@ -7,8 +7,8 @@ export default StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     backgroundColor: colors.creamBackground,
-    paddingBottom: 5,
-    maxHeight: 60,
+    paddingTop: 10,
+    maxHeight: 65,
     borderBottomWidth: 1,
     borderBottomColor: colors.lightGrey,
   },
@@ -17,7 +17,6 @@ export default StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
     paddingLeft: 15,
-    paddingVertical: 5,
   },
   favContainer: {
     flexDirection: 'column',

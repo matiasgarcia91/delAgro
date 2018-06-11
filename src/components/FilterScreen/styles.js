@@ -32,7 +32,5 @@ export default StyleSheet.create({
   },
   priceText: {
     paddingTop: 32,
-    paddingLeft: 10,
-    marginRight: 10,
   },
 });

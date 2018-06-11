@@ -4,7 +4,6 @@ import { colors } from '../../styles';
 export default StyleSheet.create({
   bar: {
     backgroundColor: colors.creamBackground,
-    flex: 1,
     flexDirection: 'row',
     paddingTop: 20,
     paddingBottom: 15,
@@ -15,6 +14,7 @@ export default StyleSheet.create({
     shadowColor: colors.darkGreen,
     shadowOpacity: 1,
     shadowRadius: 4,
+    height: 75,
   },
   icon: {
     alignSelf: 'flex-start',

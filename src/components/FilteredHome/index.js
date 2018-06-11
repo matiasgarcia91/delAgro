@@ -53,9 +53,7 @@ export default class FilteredHome extends PureComponent {
       list.map(item => ({ key: `${item.id}`, navigation: this.props.navigation, lot: item }));
     return (
       <View style={{ flex: 1 }}>
-        <View style={{ flex: 1 }}>
-          <NavBarHome navigation={this.props.navigation} />
-        </View>
+        <NavBarHome navigation={this.props.navigation} />
         <View style={{ flex: 8 }}>
           <View style={styles.bar}>
             <Text style={styles.text}>Filtros Activados</Text>

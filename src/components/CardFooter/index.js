@@ -31,14 +31,16 @@ export default class CardFooter extends PureComponent {
     const { lot: { price, quantity, category, title } } = this.props;
     const unit = getPriceUnit(category.id);
     return (
-      <View style={styles.container}>
-        <View style={styles.textContainer}>
-          <Text style={styles.countText}>{title}</Text>
-          <Text style={styles.weightText}>{quantity} {category.name}</Text>
-          <Text style={styles.priceText}>${price} {unit}</Text>
-        </View>
-        <View style={styles.buttonContainer}>
-          <MainButton title={'DETALLES'} onPress={this.onPressDetails} />
+      <View style={styles.border}>
+        <View style={styles.container}>
+          <View style={styles.textContainer}>
+            <Text style={styles.countText}>{title}</Text>
+            <Text style={styles.weightText}>{quantity} {category.name}</Text>
+            <Text style={styles.priceText}>${price} {unit}</Text>
+          </View>
+          <View style={styles.buttonContainer}>
+            <MainButton title={'DETALLES'} onPress={this.onPressDetails} />
+          </View>
         </View>
       </View>
     );

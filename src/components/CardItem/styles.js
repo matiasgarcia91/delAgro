@@ -8,13 +8,11 @@ export default StyleSheet.create({
     height: 450,
     justifyContent: 'flex-start',
     backgroundColor: colors.creamBackground,
+    paddingTop: 15,
   },
   videoContainer: {
-    marginTop: 15,
-    marginBottom: 10,
-    marginLeft: 15,
     height: 345,
-    width: 345,
+    marginHorizontal: 10,
   },
   footer: {
     flex: 1,
