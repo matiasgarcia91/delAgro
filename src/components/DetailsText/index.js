@@ -11,7 +11,6 @@ const DetailsText = ({
     quantity,
     state,
     weight,
-    inspectionDate,
     description,
     category,
     breed,
@@ -30,11 +29,7 @@ const DetailsText = ({
         <Text style={styles.caption}>Raza:</Text><Text style={styles.text}>{breed.name}</Text>
       </View>
       <View style={styles.row} >
-        <Text style={styles.caption}>Peso:</Text><Text style={styles.text}>{weight}</Text>
-      </View>
-      <View style={styles.row} >
-        <Text style={styles.caption}>Fecha de inspeccion:</Text>
-        <Text style={styles.text}>{inspectionDate}</Text>
+        <Text style={styles.caption}>Peso:</Text><Text style={styles.text}>{weight} kg</Text>
       </View>
       <View style={styles.row} >
         <Text style={styles.caption}>Comentarios:</Text><Text style={styles.text}>
