@@ -109,7 +109,7 @@ export function toRegister() {
   };
 }
 
-export function registerUser({ firstName, lastName, email, password, dob, cellphone, state }) {
+export function registerUser({ firstName, lastName, email, password, cellphone, state }) {
   return (dispatch) => {
     dispatch(loginPending());
     return axiosInstance.post('/auth', {
@@ -118,7 +118,6 @@ export function registerUser({ firstName, lastName, email, password, dob, cellph
       email,
       password,
       phone: cellphone,
-      birthday: dob,
       state,
     })
       .then((response) => {
