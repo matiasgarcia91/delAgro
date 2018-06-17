@@ -41,7 +41,6 @@ class RegisterScreen extends Component {
       firstName,
       lastName,
       cellphone,
-      dob,
       email,
       password,
     } = values;
@@ -52,7 +51,6 @@ class RegisterScreen extends Component {
       lastName,
       cellphone,
       state: state.id,
-      dob,
       email,
       password,
     };
@@ -112,12 +110,6 @@ class RegisterScreen extends Component {
               component={renderInput}
             />
             <DropDown label={'Departamento:'} selected={state} values={mapStates} onChange={this.onChangeState} />
-            <Field
-              name='dob'
-              type='text'
-              label={'Fecha de nacimiento:'}
-              component={renderInput}
-            />
             <Field
               name='email'
               type='email'
