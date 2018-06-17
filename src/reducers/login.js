@@ -126,15 +126,19 @@ export function registerUser({ firstName, lastName, email, password, dob, cellph
         const token = response.headers['access-token'];
         const client = response.headers.client;
         showRegisterModal();
-        dispatch(loginSuccess({ username: first_name, token, uid, client }));
+        dispatch(loginSuccess({
+          username: first_name,
+          token,
+          uid,
+          client,
+          phone: cellphone,
+          state,
+        }));
+        dispatch(saveCredentials({ token, uid, client }));
         dispatch(navigateToHomeLoggedIn());
       })
       .catch(e => console.log(e));
   };
-}
-
-export function getUserData() {
-  return () => console.log('userData');
 }
 
 export function updateUserData(params) {

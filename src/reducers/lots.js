@@ -35,7 +35,7 @@ export default function reducer(state = initialState, action) {
         listEnd: false,
       };
     case APPEND_LOTS:
-      return { ...state, myLots: [...state.lots, ...action.lots] };
+      return { ...state, allLots: [...state.allLots, ...action.lots] };
     case ALL_LOTS_FAILURE:
       return { ...state, token: null, loggedIn: false, error: action.error };
     case SET_ERROR:
