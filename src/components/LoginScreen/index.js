@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { View, Text, KeyboardAvoidingView, Platform } from 'react-native';
+import { View, Text, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import PropTypes from 'prop-types';
 import { NavigationActions } from 'react-navigation';
 import { Field, reduxForm } from 'redux-form';
@@ -44,31 +44,33 @@ class LoginScreen extends PureComponent {
     );
 
     return (
-      <KeyboardAvoidingView style={styles.container} behaviour='padding' keyboardVerticalOffset={(Platform.OS === 'android') ? -500 : 0}>
-        <View style={styles.logoContainer}>
-          <Logo />
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accesible={false}>
+        <View style={styles.container}>
+          <View style={styles.logoContainer}>
+            <Logo />
+          </View>
+          <View style={styles.formContainer}>
+            <Text style={styles.titleText}>Iniciar Sesión</Text>
+            <Field
+              name='email'
+              type='text'
+              label={'Usuario:'}
+              component={renderInput}
+            />
+            <Field
+              name='password'
+              type='password'
+              label={'Contraseña:'}
+              secureTextEntry
+              component={renderInput}
+            />
+            <MainButton onPress={handleSubmit(this.onSubmit)} title={'INGRESAR'} style={styles.bigButton} />
+          </View>
+          <View style={{ flex: 1 }}>
+            <LoginFooter text={'¿TODAVIA NO TIENES UNA CUENTA? '} linkText={'REGISTRATE'} link={this.navigate} />
+          </View>
         </View>
-        <View style={styles.formContainer}>
-          <Text style={styles.titleText}>Iniciar Sesión</Text>
-          <Field
-            name='email'
-            type='text'
-            label={'Usuario:'}
-            component={renderInput}
-          />
-          <Field
-            name='password'
-            type='password'
-            label={'Contraseña:'}
-            secureTextEntry
-            component={renderInput}
-          />
-          <MainButton onPress={handleSubmit(this.onSubmit)} title={'INGRESAR'} style={styles.bigButton} />
-        </View>
-        <View style={{ flex: 1 }}>
-          <LoginFooter text={'¿TODAVIA NO TIENES UNA CUENTA? '} linkText={'REGISTRATE'} link={this.navigate} />
-        </View>
-      </KeyboardAvoidingView>
+      </TouchableWithoutFeedback>
     );
   }
 }
