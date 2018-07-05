@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView, KeyboardAvoidingView } from 'react-native';
+import { View, Text, ScrollView, KeyboardAvoidingView, TouchableHighlight } from 'react-native';
 import PropTypes from 'prop-types';
 import { NavigationActions } from 'react-navigation';
 import { Field, reduxForm } from 'redux-form';
 import CheckBox from 'react-native-check-box';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 import styles from './styles';
 import Logo from '../Logo';
@@ -24,6 +25,7 @@ class RegisterScreen extends Component {
     this.onChangeState = this.onChangeState.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.onChangeCheckbox = this.onChangeCheckbox.bind(this);
+    this.navigateBack = this.navigateBack.bind(this);
   }
 
   onChangeState(value, index, data) {
@@ -65,6 +67,16 @@ class RegisterScreen extends Component {
     this.props.navigation.dispatch(navigateToDetails);
   };
 
+  navigateBack = () => {
+    const { navigation } = this.props;
+    const prev = navigation.state.params && navigation.state.params.prev;
+    const toWhere = prev === 'login' ? 'Login' : 'HomeLoggedOut';
+    const navigateToDetails = NavigationActions.navigate({
+      routeName: toWhere,
+    });
+    this.props.navigation.dispatch(navigateToDetails);
+  }
+
   renderInput = ({ input, label, secureTextEntry, autoFocus, type, meta, capitalize }) => (
     <FormInput
       label={label}
@@ -84,6 +96,11 @@ class RegisterScreen extends Component {
     return (
       <KeyboardAvoidingView style={styles.container} behavior="padding">
         <ScrollView>
+          <TouchableHighlight style={{ flex: 1 }} onPress={this.navigateBack}>
+            <View style={styles.icon}>
+              <Icon name={'chevron-left'} size={30} style={styles.arrow} />
+            </View>
+          </TouchableHighlight>
           <View style={styles.logoContainer}>
             <Logo />
           </View>

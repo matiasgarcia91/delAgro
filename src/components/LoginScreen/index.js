@@ -26,6 +26,7 @@ class LoginScreen extends PureComponent {
   navigate = () => {
     const navigateToDetails = NavigationActions.navigate({
       routeName: 'Register',
+      params: { prev: 'login' },
     });
     this.props.navigation.dispatch(navigateToDetails);
   };
