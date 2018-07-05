@@ -8,14 +8,10 @@ export default StyleSheet.create({
     backgroundColor: colors.creamBackground,
   },
   logoContainer: {
-    marginTop: 50,
     marginBottom: 60,
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: 80,
     height: 80,
-    paddingLeft: 290,
+    flex: 1,
+    justifyContent: 'flex-end',
   },
   formContainer: {
     flex: 5,
@@ -30,5 +26,15 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     color: colors.darkGreen,
+  },
+  icon: {
+    width: 50,
+    height: 30,
+    marginTop: 35,
+    marginLeft: 25,
+    flex: 1,
+  },
+  arrow: {
+    color: colors.navButtonGreen,
   },
 });

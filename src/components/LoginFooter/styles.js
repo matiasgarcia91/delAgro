@@ -11,7 +11,7 @@ export default {
     minHeight: 60,
   },
   text: {
-    fontSize: 14,
+    fontSize: 13,
     fontWeight: 'bold',
   },
   link: {

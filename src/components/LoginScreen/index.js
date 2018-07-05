@@ -26,23 +26,24 @@ class LoginScreen extends PureComponent {
   navigate = () => {
     const navigateToDetails = NavigationActions.navigate({
       routeName: 'Register',
+      params: { prev: 'login' },
     });
     this.props.navigation.dispatch(navigateToDetails);
   };
 
+  renderInput = ({ input, label, secureTextEntry, type, meta }) => (
+    <FormInput
+      label={label}
+      input={input}
+      secureTextEntry={secureTextEntry}
+      autoCapitalize={'none'}
+      type={type}
+      meta={meta}
+    />
+  );
+
   render() {
     const { handleSubmit } = this.props;
-    const renderInput = ({ input, label, secureTextEntry, type, meta }) => (
-      <FormInput
-        label={label}
-        input={input}
-        secureTextEntry={secureTextEntry}
-        autoCapitalize={'none'}
-        type={type}
-        meta={meta}
-      />
-    );
-
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accesible={false}>
         <View style={styles.container}>
@@ -55,14 +56,14 @@ class LoginScreen extends PureComponent {
               name='email'
               type='text'
               label={'Usuario:'}
-              component={renderInput}
+              component={this.renderInput}
             />
             <Field
               name='password'
               type='password'
               label={'Contraseña:'}
               secureTextEntry
-              component={renderInput}
+              component={this.renderInput}
             />
             <MainButton onPress={handleSubmit(this.onSubmit)} title={'INGRESAR'} style={styles.bigButton} />
           </View>

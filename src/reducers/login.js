@@ -47,7 +47,7 @@ export default function reducer(state = initialState, action) {
     case LOGOUT:
       return { ...initialState };
     case SET_USER_DATA:
-      return { ...initialState, userData: { phone: action.phone, state: action.state } };
+      return { ...state, userData: { phone: action.phone, state: action.state } };
     default:
       return state;
   }

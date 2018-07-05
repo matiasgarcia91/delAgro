@@ -11,6 +11,7 @@ const initialState = {
   myLots: [],
   uploading: false,
   listEnd: false,
+  isFetching: false,
 };
 
 export const IS_FETCHING = 'IS_FETCHING';
@@ -35,7 +36,7 @@ export default function reducer(state = initialState, action) {
         listEnd: false,
       };
     case APPEND_LOTS:
-      return { ...state, allLots: [...state.allLots, ...action.lots] };
+      return { ...state, allLots: [...state.allLots, ...action.lots], isFetching: false };
     case ALL_LOTS_FAILURE:
       return { ...state, token: null, loggedIn: false, error: action.error };
     case SET_ERROR:
@@ -49,7 +50,9 @@ export default function reducer(state = initialState, action) {
     case UPLOAD_FAILURE:
       return { ...state, uploading: false, uploadFailure: true, uploadError: action.uploadError };
     case MY_LOTS_SUCCESS:
-      return { ...state, myLots: action.myLots };
+      return { ...state, myLots: action.myLots, isFetching: false };
+    case IS_FETCHING:
+      return { ...state, isFetching: true };
     case LIST_END:
       return { ...state, listEnd: true };
     default:
@@ -102,10 +105,10 @@ export function fetchAllLots(page = 1) {
     dispatch(fetching());
     const queryString = `scope[status]=active&page=${page}`;
     return axiosCustom.get(`/lots?${queryString}`)
-      .then((response) => {
-        if (response.data.length === 0) return dispatch(listEnd());
-        if (page > 1) return dispatch(appendLots(response.data));
-        return dispatch(allLotsSuccess(response.data));
+      .then(({ data }) => {
+        if (data.length === 0) return dispatch(listEnd());
+        if (page > 1) return dispatch(appendLots(data));
+        return dispatch(allLotsSuccess(data));
       })
       .catch(error => dispatch(setError({ error })));
   };

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView, KeyboardAvoidingView } from 'react-native';
+import { View, Text, ScrollView, KeyboardAvoidingView, TouchableHighlight } from 'react-native';
 import PropTypes from 'prop-types';
 import { NavigationActions } from 'react-navigation';
 import { Field, reduxForm } from 'redux-form';
 import CheckBox from 'react-native-check-box';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 import styles from './styles';
 import Logo from '../Logo';
@@ -24,6 +25,7 @@ class RegisterScreen extends Component {
     this.onChangeState = this.onChangeState.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.onChangeCheckbox = this.onChangeCheckbox.bind(this);
+    this.navigateBack = this.navigateBack.bind(this);
   }
 
   onChangeState(value, index, data) {
@@ -65,25 +67,40 @@ class RegisterScreen extends Component {
     this.props.navigation.dispatch(navigateToDetails);
   };
 
+  navigateBack = () => {
+    const { navigation } = this.props;
+    const prev = navigation.state.params && navigation.state.params.prev;
+    const toWhere = prev === 'login' ? 'Login' : 'HomeLoggedOut';
+    const navigateToDetails = NavigationActions.navigate({
+      routeName: toWhere,
+    });
+    this.props.navigation.dispatch(navigateToDetails);
+  }
+
+  renderInput = ({ input, label, secureTextEntry, autoFocus, type, meta, capitalize }) => (
+    <FormInput
+      label={label}
+      input={input}
+      autoFocus={autoFocus}
+      secureTextEntry={secureTextEntry}
+      autoCapitalize={capitalize}
+      type={type}
+      meta={meta}
+    />
+  );
+
   render() {
     const { handleSubmit, states } = this.props;
     const { state, checkbox } = this.state;
     const mapStates = states.map(item => ({ id: item, name: item }));
-    const renderInput = ({ input, label, secureTextEntry, autoFocus, type, meta, capitalize }) => (
-      <FormInput
-        label={label}
-        input={input}
-        autoFocus={autoFocus}
-        secureTextEntry={secureTextEntry}
-        autoCapitalize={capitalize}
-        type={type}
-        meta={meta}
-      />
-    );
-
     return (
       <KeyboardAvoidingView style={styles.container} behavior="padding">
         <ScrollView>
+          <TouchableHighlight style={{ flex: 1 }} onPress={this.navigateBack}>
+            <View style={styles.icon}>
+              <Icon name={'chevron-left'} size={30} style={styles.arrow} />
+            </View>
+          </TouchableHighlight>
           <View style={styles.logoContainer}>
             <Logo />
           </View>
@@ -94,20 +111,20 @@ class RegisterScreen extends Component {
               type='text'
               label={'Nombre:'}
               capitalize={'words'}
-              component={renderInput}
+              component={this.renderInput}
             />
             <Field
               name='lastName'
               type='text'
               label={'Apellido:'}
               capitalize={'words'}
-              component={renderInput}
+              component={this.renderInput}
             />
             <Field
               name='cellphone'
               type='text'
               label={'Teléfono móvil:'}
-              component={renderInput}
+              component={this.renderInput}
             />
             <DropDown label={'Departamento:'} selected={state} values={mapStates} onChange={this.onChangeState} />
             <Field
@@ -115,7 +132,7 @@ class RegisterScreen extends Component {
               type='email'
               label={'Correo electrónico:'}
               capitalize={'none'}
-              component={renderInput}
+              component={this.renderInput}
             />
             <Field
               name='password'
@@ -123,7 +140,7 @@ class RegisterScreen extends Component {
               secureTextEntry
               label={'Contraseña:'}
               capitalize={'none'}
-              component={renderInput}
+              component={this.renderInput}
             />
             <Field
               name='confirmPassword'
@@ -131,7 +148,7 @@ class RegisterScreen extends Component {
               secureTextEntry
               label={'Repetir contraseña:'}
               capitalize={'none'}
-              component={renderInput}
+              component={this.renderInput}
             />
             <View style={{ alignItems: 'center', marginBottom: 15 }}>
               <Text onPress={showTermsModal} style={{ color: '#0000EE', fontSize: 18 }}>Terminos y condiciones</Text>
