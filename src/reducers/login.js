@@ -133,10 +133,7 @@ export function registerUser({ firstName, lastName, email, password, cellphone, 
           phone: cellphone,
           state,
         }));
-<<<<<<< HEAD
         dispatch(saveCredentials({ token, uid, client }));
-=======
->>>>>>> Prevent app from loggin out on user data update
         dispatch(navigateToHomeLoggedIn());
       })
       .catch(e => console.log(e));
@@ -148,8 +145,7 @@ export function updateUserData(params) {
     const creds = getState().session.creds;
     return loggedAxios(creds)
       .put('/auth', params)
-      .then((res) => {
-        console.log(res);
+      .then(() => {
         dispatch(setNewUserData(params));
         dispatch(navigateToHomeLoggedIn());
       })

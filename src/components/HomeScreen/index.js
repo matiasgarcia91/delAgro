@@ -46,8 +46,8 @@ export default class Home extends PureComponent {
 
   onListEnd() {
     const { page, flatListReady } = this.state;
-    const { listEnd, fetchAllLots } = this.props;
-    if (!flatListReady || listEnd) return null;
+    const { listEnd, fetchAllLots, isFetching } = this.props;
+    if (!flatListReady || listEnd || isFetching) return null;
     const newPage = page + 1;
     return this.setState({
       page: newPage,
@@ -93,6 +93,7 @@ Home.propTypes = {
   allLots: PropTypes.arrayOf(PropTypes.shape).isRequired,
   uploading: PropTypes.bool.isRequired,
   listEnd: PropTypes.bool.isRequired,
+  isFetching: PropTypes.bool.isRequired,
 };
 
 Home.defaultProps = {
