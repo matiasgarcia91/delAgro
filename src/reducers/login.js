@@ -47,7 +47,7 @@ export default function reducer(state = initialState, action) {
     case LOGOUT:
       return { ...initialState };
     case SET_USER_DATA:
-      return { ...initialState, userData: { phone: action.phone, state: action.state } };
+      return { ...state, userData: { phone: action.phone, state: action.state } };
     default:
       return state;
   }
@@ -133,7 +133,10 @@ export function registerUser({ firstName, lastName, email, password, cellphone, 
           phone: cellphone,
           state,
         }));
+<<<<<<< HEAD
         dispatch(saveCredentials({ token, uid, client }));
+=======
+>>>>>>> Prevent app from loggin out on user data update
         dispatch(navigateToHomeLoggedIn());
       })
       .catch(e => console.log(e));
@@ -145,7 +148,8 @@ export function updateUserData(params) {
     const creds = getState().session.creds;
     return loggedAxios(creds)
       .put('/auth', params)
-      .then(() => {
+      .then((res) => {
+        console.log(res);
         dispatch(setNewUserData(params));
         dispatch(navigateToHomeLoggedIn());
       })
