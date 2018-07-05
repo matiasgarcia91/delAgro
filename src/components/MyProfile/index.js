@@ -36,22 +36,22 @@ class MyProfile extends PureComponent {
     return this.props.updateUserData({ phone: values.phone, state: state.id });
   }
 
+  renderInput = ({ input, label, secureTextEntry, autoFocus, type, meta, capitalize }) => (
+    <FormInput
+      label={label}
+      input={input}
+      autoFocus={autoFocus}
+      secureTextEntry={secureTextEntry}
+      autoCapitalize={capitalize}
+      type={type}
+      meta={meta}
+    />
+  );
+
   render() {
     const { handleSubmit, states } = this.props;
     const { state } = this.state;
     const mapStates = states.map(item => ({ id: item, name: item }));
-    const renderInput = ({ input, label, secureTextEntry, autoFocus, type, meta, capitalize }) => (
-      <FormInput
-        label={label}
-        input={input}
-        autoFocus={autoFocus}
-        secureTextEntry={secureTextEntry}
-        autoCapitalize={capitalize}
-        type={type}
-        meta={meta}
-      />
-    );
-
     return (
       <View style={{ flex: 1 }}>
         <NavBarBack navigation={this.props.navigation} title={'Mi Perfil'} />
@@ -62,7 +62,7 @@ class MyProfile extends PureComponent {
               name='phone'
               type='text'
               label={'Teléfono móvil:'}
-              component={renderInput}
+              component={this.renderInput}
             />
             <DropDown label={'Departamento:'} selected={state} values={mapStates} onChange={this.onChangeState} />
             <MainButton onPress={handleSubmit(this.onSubmit)} title={'Actualizar Perfil'} style={styles.bigButton} />

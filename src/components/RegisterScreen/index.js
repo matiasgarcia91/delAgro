@@ -65,22 +65,22 @@ class RegisterScreen extends Component {
     this.props.navigation.dispatch(navigateToDetails);
   };
 
+  renderInput = ({ input, label, secureTextEntry, autoFocus, type, meta, capitalize }) => (
+    <FormInput
+      label={label}
+      input={input}
+      autoFocus={autoFocus}
+      secureTextEntry={secureTextEntry}
+      autoCapitalize={capitalize}
+      type={type}
+      meta={meta}
+    />
+  );
+
   render() {
     const { handleSubmit, states } = this.props;
     const { state, checkbox } = this.state;
     const mapStates = states.map(item => ({ id: item, name: item }));
-    const renderInput = ({ input, label, secureTextEntry, autoFocus, type, meta, capitalize }) => (
-      <FormInput
-        label={label}
-        input={input}
-        autoFocus={autoFocus}
-        secureTextEntry={secureTextEntry}
-        autoCapitalize={capitalize}
-        type={type}
-        meta={meta}
-      />
-    );
-
     return (
       <KeyboardAvoidingView style={styles.container} behavior="padding">
         <ScrollView>
@@ -94,20 +94,20 @@ class RegisterScreen extends Component {
               type='text'
               label={'Nombre:'}
               capitalize={'words'}
-              component={renderInput}
+              component={this.renderInput}
             />
             <Field
               name='lastName'
               type='text'
               label={'Apellido:'}
               capitalize={'words'}
-              component={renderInput}
+              component={this.renderInput}
             />
             <Field
               name='cellphone'
               type='text'
               label={'Teléfono móvil:'}
-              component={renderInput}
+              component={this.renderInput}
             />
             <DropDown label={'Departamento:'} selected={state} values={mapStates} onChange={this.onChangeState} />
             <Field
@@ -115,7 +115,7 @@ class RegisterScreen extends Component {
               type='email'
               label={'Correo electrónico:'}
               capitalize={'none'}
-              component={renderInput}
+              component={this.renderInput}
             />
             <Field
               name='password'
@@ -123,7 +123,7 @@ class RegisterScreen extends Component {
               secureTextEntry
               label={'Contraseña:'}
               capitalize={'none'}
-              component={renderInput}
+              component={this.renderInput}
             />
             <Field
               name='confirmPassword'
@@ -131,7 +131,7 @@ class RegisterScreen extends Component {
               secureTextEntry
               label={'Repetir contraseña:'}
               capitalize={'none'}
-              component={renderInput}
+              component={this.renderInput}
             />
             <View style={{ alignItems: 'center', marginBottom: 15 }}>
               <Text onPress={showTermsModal} style={{ color: '#0000EE', fontSize: 18 }}>Terminos y condiciones</Text>
