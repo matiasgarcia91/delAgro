@@ -45,6 +45,7 @@ class PublishScreen extends PureComponent {
       state,
     } = this.state;
     const { quantity, price, weight, description } = values;
+    console.log(description);
     const video = this.props.navigation.state.params.video;
 
     this.props.submitLot({

@@ -133,7 +133,7 @@ export function submitLot({
   price,
   video: videoUrl,
   weight,
-  description,
+  description: rawDescr,
 }) {
   return (dispatch, getState) => {
     const { token, uid, client } = getState().session.creds;
@@ -143,6 +143,7 @@ export function submitLot({
       'uid': uid, // eslint-disable-line
       'Content-Type': 'multipart/form-data',
     };
+    const description = rawDescr || ' ';
     dispatch(uploadPending());
     const cutVideo = videoUrl.slice(7);
     RNFetchBlob.fetch('POST', 'http://delagro-api.herokuapp.com/api/v1/lots', headers, [
