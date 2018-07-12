@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { View, Text, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { View, Text, TouchableWithoutFeedback, Keyboard, ActivityIndicator } from 'react-native';
 import PropTypes from 'prop-types';
 import { NavigationActions } from 'react-navigation';
 import { Field, reduxForm } from 'redux-form';
@@ -43,7 +43,7 @@ class LoginScreen extends PureComponent {
   );
 
   render() {
-    const { handleSubmit } = this.props;
+    const { handleSubmit, pending } = this.props;
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accesible={false}>
         <View style={styles.container}>
@@ -66,6 +66,11 @@ class LoginScreen extends PureComponent {
               component={this.renderInput}
             />
             <MainButton onPress={handleSubmit(this.onSubmit)} title={'INGRESAR'} style={styles.bigButton} />
+            {pending && (
+              <View style={{ marginTop: 30 }}>
+                <ActivityIndicator size="large" color="#ff5000" />
+              </View>)
+            }
           </View>
           <View style={{ flex: 1 }}>
             <LoginFooter text={'¿TODAVIA NO TIENES UNA CUENTA? '} linkText={'REGISTRATE'} link={this.navigate} />
@@ -80,6 +85,7 @@ LoginScreen.propTypes = {
   login: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   navigation: PropTypes.shape().isRequired,
+  pending: PropTypes.bool.isRequired,
 };
 
 export default reduxForm({

@@ -11,6 +11,7 @@ const axiosInstance = axios.create({
 
 const initialState = {
   loggedIn: false,
+  pending: false,
   token: null,
   userData: {
     phone: null,
@@ -30,6 +31,7 @@ export default function reducer(state = initialState, action) {
     case LOGIN_SUCCESS:
       return {
         ...state,
+        pending: false,
         token: action.token,
         loggedIn: true,
         username: action.username,
@@ -41,13 +43,15 @@ export default function reducer(state = initialState, action) {
         },
       };
     case LOGIN_FAILURE:
-      return { ...state, token: null, loggedIn: false, error: action.error };
+      return { ...state, token: null, loggedIn: false, error: action.error, pending: false };
     case SAVE_CREDENTIALS:
       return { ...state, creds: action.creds };
     case LOGOUT:
       return { ...initialState };
     case SET_USER_DATA:
       return { ...state, userData: { phone: action.phone, state: action.state } };
+    case LOGIN_PENDING:
+      return { ...state, pending: true };
     default:
       return state;
   }

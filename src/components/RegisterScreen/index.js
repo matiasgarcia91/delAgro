@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView, KeyboardAvoidingView, TouchableHighlight } from 'react-native';
+import { View, Text, ScrollView, KeyboardAvoidingView, TouchableHighlight, ActivityIndicator } from 'react-native';
 import PropTypes from 'prop-types';
 import { NavigationActions } from 'react-navigation';
 import { Field, reduxForm } from 'redux-form';
@@ -90,7 +90,7 @@ class RegisterScreen extends Component {
   );
 
   render() {
-    const { handleSubmit, states } = this.props;
+    const { handleSubmit, states, pending } = this.props;
     const { state, checkbox } = this.state;
     const mapStates = states.map(item => ({ id: item, name: item }));
     return (
@@ -162,6 +162,11 @@ class RegisterScreen extends Component {
               />
             </View>
             <MainButton onPress={handleSubmit(this.onSubmit)} title={'Registrarse'} style={styles.bigButton} disabled={!checkbox} />
+            {pending && (
+              <View style={{ marginTop: 30 }}>
+                <ActivityIndicator size="large" color="#ff5000" />
+              </View>)
+            }
           </View>
           <View style={{ flex: 1 }}>
             <LoginFooter text={'TIENES UNA CUENTA? '} linkText={'INICIAR SESION'} link={this.navigate} />
@@ -177,6 +182,7 @@ RegisterScreen.propTypes = {
   registerUser: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   states: PropTypes.arrayOf(PropTypes.string).isRequired,
+  pending: PropTypes.bool.isRequired,
 };
 
 export default reduxForm({
