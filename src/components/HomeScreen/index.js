@@ -29,6 +29,7 @@ export default class Home extends PureComponent {
     this.renderItem = this.renderItem.bind(this);
     this.onListEnd = this.onListEnd.bind(this);
     this.onScrolled = this.onScrolled.bind(this);
+    this.onRefresh = this.onRefresh.bind(this);
   }
 
   componentDidMount() {
@@ -55,6 +56,13 @@ export default class Home extends PureComponent {
     }, () => fetchAllLots(newPage));
   }
 
+  onRefresh() {
+    const { refreshLots } = this.props;
+    return this.setState({
+      page: 1,
+      flatListReady: false,
+    }, () => refreshLots());
+  }
   renderItem({ item: { key, navigation, lot } }) {
     return (
       <CardItem key={key} navigation={navigation} lot={lot} />
@@ -63,7 +71,7 @@ export default class Home extends PureComponent {
 
   render() {
     const list = this.props.allLots;
-    const { navigation, uploading } = this.props;
+    const { navigation, uploading, refreshing } = this.props;
     const data =
       list.map(item => ({ key: `${item.id}`, navigation, lot: item }));
     return (
@@ -79,6 +87,8 @@ export default class Home extends PureComponent {
               onViewableItemsChanged={this.onViewableItemsChanged}
               onEndReached={this.onListEnd}
               onEndReachedThreshold={0}
+              refreshing={refreshing}
+              onRefresh={this.onRefresh}
             />}
         </View>
       </View>
@@ -94,6 +104,8 @@ Home.propTypes = {
   uploading: PropTypes.bool.isRequired,
   listEnd: PropTypes.bool.isRequired,
   isFetching: PropTypes.bool.isRequired,
+  refreshLots: PropTypes.func.isRequired,
+  refreshing: PropTypes.bool.isRequired,
 };
 
 Home.defaultProps = {

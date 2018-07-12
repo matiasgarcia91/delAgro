@@ -12,6 +12,7 @@ const initialState = {
   uploading: false,
   listEnd: false,
   isFetching: false,
+  refreshing: false,
 };
 
 export const IS_FETCHING = 'IS_FETCHING';
@@ -25,6 +26,8 @@ export const UPLOAD_FAILURE = 'UPLOAD_FAILURE';
 export const MY_LOTS_SUCCESS = 'MY_LOTS_SUCCESS';
 export const APPEND_LOTS = 'APPEND_LOTS';
 export const LIST_END = 'LIST_END';
+export const REFRESH = 'REFRESH';
+
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
@@ -34,6 +37,7 @@ export default function reducer(state = initialState, action) {
         allLots: action.lots,
         isFetching: false,
         listEnd: false,
+        refreshing: false,
       };
     case APPEND_LOTS:
       return { ...state, allLots: [...state.allLots, ...action.lots], isFetching: false };
@@ -55,6 +59,8 @@ export default function reducer(state = initialState, action) {
       return { ...state, isFetching: true };
     case LIST_END:
       return { ...state, listEnd: true };
+    case REFRESH:
+      return { ...state, refreshing: true };
     default:
       return state;
   }
@@ -100,6 +106,10 @@ export function myLotsSuccess(myLots) {
   return { type: MY_LOTS_SUCCESS, myLots };
 }
 
+function refreshing() {
+  return { type: REFRESH };
+}
+
 export function fetchAllLots(page = 1) {
   return (dispatch) => {
     dispatch(fetching());
@@ -111,6 +121,13 @@ export function fetchAllLots(page = 1) {
         return dispatch(allLotsSuccess(data));
       })
       .catch(error => dispatch(setError({ error })));
+  };
+}
+
+export function refreshLots() {
+  return (dispatch) => {
+    dispatch(refreshing());
+    dispatch(fetchAllLots(1));
   };
 }
 
