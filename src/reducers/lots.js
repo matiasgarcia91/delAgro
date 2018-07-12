@@ -28,7 +28,6 @@ export const APPEND_LOTS = 'APPEND_LOTS';
 export const LIST_END = 'LIST_END';
 export const REFRESH = 'REFRESH';
 
-
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case ALL_LOTS_SUCCESS:
