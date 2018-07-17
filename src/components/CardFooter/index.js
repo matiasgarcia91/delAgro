@@ -35,8 +35,8 @@ export default class CardFooter extends PureComponent {
         <View style={styles.container}>
           <View style={styles.textContainer}>
             <Text style={styles.countText}>{title}</Text>
-            <Text style={styles.weightText}>{quantity} {category.name}</Text>
             <Text style={styles.priceText}>${price} {unit}</Text>
+            <Text style={styles.weightText}>{quantity} {category.name}</Text>
           </View>
           <View style={styles.buttonContainer}>
             <MainButton title={'DETALLES'} onPress={this.onPressDetails} />
