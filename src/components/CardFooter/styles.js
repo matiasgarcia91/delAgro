@@ -11,13 +11,14 @@ export default StyleSheet.create({
     paddingHorizontal: 10,
   },
   textContainer: {
-    height: 64,
+    height: 65,
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
     marginTop: 10,
   },
   buttonContainer: {
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
+    marginTop: 12,
     alignItems: 'flex-end',
     flex: 1,
   },
