@@ -63,7 +63,7 @@ export default class CameraScreen extends PureComponent {
   selectVideoTapped() {
     const options = {
       mediaType: 'video',
-      durationLimit: 90,
+      durationLimit: 60,
     };
 
     ImagePicker.launchImageLibrary(options, (response) => {
