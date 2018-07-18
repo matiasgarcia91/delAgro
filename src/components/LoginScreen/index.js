@@ -65,7 +65,11 @@ class LoginScreen extends PureComponent {
               secureTextEntry
               component={this.renderInput}
             />
+          </View>
+          <View style={{ flex: 1 }}>
             <MainButton onPress={handleSubmit(this.onSubmit)} title={'INGRESAR'} style={styles.bigButton} />
+          </View>
+          <View style={{ flex: 1 }}>
             {pending && (
               <View style={{ marginTop: 30 }}>
                 <ActivityIndicator size="large" color="#ff5000" />
