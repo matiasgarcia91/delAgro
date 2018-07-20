@@ -30,12 +30,13 @@ export default class VideoPlayer extends Component {
   render() {
     const { paused } = this.state;
     const { uri } = this.props;
+    const newURI = `${uri.slice(0, 4)}s${uri.slice(4)}`;
 
     return (
       <TouchableOpacity style={styles.backgroundVideo} onPress={this.onPress}>
         <ActivityIndicator size="large" style={styles.spinner} color={colors.lightGreen} />
         <Video
-          source={{ uri }}
+          source={{ uri: newURI }}
           resizeMode='cover'
           repeat
           muted
