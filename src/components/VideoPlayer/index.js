@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Video from 'react-native-video';
 import PropTypes from 'prop-types';
-import { View, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { View, TouchableOpacity, ActivityIndicator, Alert } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import styles from './styles';
@@ -41,6 +41,7 @@ export default class VideoPlayer extends Component {
           repeat
           muted
           paused={paused}
+          onError={msg => Alert.alert('Error video', msg)}
           style={styles.backgroundVideo}
         />
         <View style={styles.iconContainer}>
