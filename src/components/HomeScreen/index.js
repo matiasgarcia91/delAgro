@@ -37,7 +37,8 @@ export default class Home extends Component {
     resetVisibleItems();
     if (allLots.length === 0) return fetchAllLots();
     const nrLots = allLots.length / 5;
-    return this.setState({ page: nrLots.toFixed(0) })
+    const page = nrLots.toFixed(0) === 0 ? 1 : Number(nrLots.toFixed(0));
+    return this.setState({ page })
   }
 
   onScrolled() {
