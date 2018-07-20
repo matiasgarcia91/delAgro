@@ -27,7 +27,7 @@ export default class VideoPlayer extends Component {
   }
 
   onPress() {
-    this.setState({ paused: !this.state.paused, active: true });
+    this.setState({ paused: !this.state.paused, active: !this.state.active });
   }
 
   render() {
