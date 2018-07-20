@@ -8,7 +8,7 @@ export default StyleSheet.create({
     backgroundColor: colors.creamBackground,
   },
   formContainer: {
-    flex: 5,
+    flex: 2,
     justifyContent: 'flex-start',
     alignItems: 'stretch',
     marginBottom: 50,
