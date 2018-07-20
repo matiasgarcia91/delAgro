@@ -33,7 +33,8 @@ export default class Home extends PureComponent {
   }
 
   componentDidMount() {
-    this.props.fetchAllLots();
+    const { allLots, fetchAllLots } = this.props;
+    if (allLots.length === 0) fetchAllLots();
   }
 
   onScrolled() {
