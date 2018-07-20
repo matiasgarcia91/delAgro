@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import { View } from 'react-native';
 import PropTypes from 'prop-types';
 
@@ -8,7 +8,7 @@ import DetailsCardFooter from '../../containers/DetailsCardFooterContainer';
 
 import styles from './styles';
 
-export default class CardItem extends PureComponent {
+export default class CardItem extends Component {
   render() {
     const { lot, details } = this.props;
     return (

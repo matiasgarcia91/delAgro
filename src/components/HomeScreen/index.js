@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import { View, FlatList, Text, ActivityIndicator } from 'react-native';
 import PropTypes from 'prop-types';
 
@@ -18,7 +18,7 @@ const UploadBanner = () => (
   </View>
 );
 
-export default class Home extends PureComponent {
+export default class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
