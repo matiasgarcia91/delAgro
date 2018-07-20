@@ -34,8 +34,10 @@ export default class Home extends Component {
 
   componentDidMount() {
     const { allLots, fetchAllLots, resetVisibleItems } = this.props;
-    if (allLots.length === 0) fetchAllLots();
     resetVisibleItems();
+    if (allLots.length === 0) return fetchAllLots();
+    const nrLots = allLots.length / 5;
+    return this.setState({ page: nrLots.toFixed(0) })
   }
 
   onScrolled() {
