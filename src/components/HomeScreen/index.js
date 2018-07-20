@@ -33,8 +33,9 @@ export default class Home extends PureComponent {
   }
 
   componentDidMount() {
-    const { allLots, fetchAllLots } = this.props;
+    const { allLots, fetchAllLots, resetVisibleItems } = this.props;
     if (allLots.length === 0) fetchAllLots();
+    resetVisibleItems();
   }
 
   onScrolled() {
@@ -107,6 +108,7 @@ Home.propTypes = {
   isFetching: PropTypes.bool.isRequired,
   refreshLots: PropTypes.func.isRequired,
   refreshing: PropTypes.bool.isRequired,
+  resetVisibleItems: PropTypes.func.isRequired,
 };
 
 Home.defaultProps = {
