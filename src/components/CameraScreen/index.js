@@ -88,7 +88,9 @@ export default class CameraScreen extends PureComponent {
       <View style={styles.container}>
         <NavBarCamara navigation={this.props.navigation} video={video} />
         { video ?
-          (<View style={styles.preview}><VideoPlayer uri={video} paused={false} /></View>) :
+          (<View style={styles.preview}>
+            <VideoPlayer uri={video} paused={false} noThumbnail />
+          </View>) :
           (<RNCamera
             ref={(ref) => {
               this.camera = ref;

@@ -32,11 +32,11 @@ export default class VideoPlayer extends Component {
 
   render() {
     const { paused, active } = this.state;
-    const { uri, thumbnail } = this.props;
+    const { uri, thumbnail, noThumbnail } = this.props;
     return (
       <TouchableOpacity style={styles.backgroundVideo} onPress={this.onPress}>
         <ActivityIndicator size="large" style={styles.spinner} color={colors.lightGreen} />
-        {active ?
+        {active || noThumbnail ?
           <Video
             source={{ uri }}
             resizeMode='cover'
@@ -64,9 +64,11 @@ VideoPlayer.propTypes = {
   paused: PropTypes.bool,
   visibleItems: PropTypes.arrayOf(PropTypes.string).isRequired,
   thumbnail: PropTypes.string.isRequired,
+  noThumbnail: PropTypes.bool,
 };
 
 VideoPlayer.defaultProps = {
   id: null,
   paused: true,
+  noThumbnail: false,
 };
