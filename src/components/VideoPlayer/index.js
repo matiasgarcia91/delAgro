@@ -33,13 +33,12 @@ export default class VideoPlayer extends Component {
   render() {
     const { paused, active } = this.state;
     const { uri, thumbnail } = this.props;
-    const newURI = `${uri.slice(0, 4)}s${uri.slice(4)}`;
     return (
       <TouchableOpacity style={styles.backgroundVideo} onPress={this.onPress}>
         <ActivityIndicator size="large" style={styles.spinner} color={colors.lightGreen} />
         {active ?
           <Video
-            source={{ uri: newURI }}
+            source={{ uri }}
             resizeMode='cover'
             repeat
             muted
@@ -61,15 +60,13 @@ export default class VideoPlayer extends Component {
 
 VideoPlayer.propTypes = {
   id: PropTypes.number,
-  uri: PropTypes.string,
+  uri: PropTypes.string.isRequired,
   paused: PropTypes.bool,
   visibleItems: PropTypes.arrayOf(PropTypes.string).isRequired,
-  thumbnail: PropTypes.string,
+  thumbnail: PropTypes.string.isRequired,
 };
 
 VideoPlayer.defaultProps = {
   id: null,
   paused: true,
-  uri: '',
-  thumbnail: '',
 };

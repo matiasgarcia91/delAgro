@@ -64,6 +64,7 @@ export default class CameraScreen extends PureComponent {
     const options = {
       mediaType: 'video',
       durationLimit: 60,
+      allowEditing: true,
     };
 
     ImagePicker.launchImageLibrary(options, (response) => {
