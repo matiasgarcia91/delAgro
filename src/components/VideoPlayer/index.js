@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import Video from 'react-native-video';
 import PropTypes from 'prop-types';
 import { View, TouchableOpacity, ActivityIndicator } from 'react-native';
@@ -8,7 +8,7 @@ import styles from './styles';
 import { colors } from '../../styles';
 
 
-export default class VideoPlayer extends PureComponent {
+export default class VideoPlayer extends Component {
   constructor(props) {
     super(props);
     this.state = {
