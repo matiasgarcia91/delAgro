@@ -14,7 +14,7 @@ export default class CardItem extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.videoContainer}>
-          <VideoPlayer id={this.props.lot.id} uri={lot.video_url} />
+          <VideoPlayer id={this.props.lot.id} uri={lot.video_url} thumbnail={lot.thumbnail_url} />
         </View>
         <View style={styles.footer}>
           { details ?
