@@ -163,7 +163,7 @@ export function submitLot({
     dispatch(uploadPending());
     const cutVideo = videoUrl.slice(7);
     RNFetchBlob.fetch('POST', 'http://delagro-api.herokuapp.com/api/v1/lots', headers, [
-      { name: 'video', data: RNFetchBlob.wrap(cutVideo), type: 'video/quicktime', filename: 'avatar-png.png' },
+      { name: 'video', data: RNFetchBlob.wrap(cutVideo), type: 'video/mp4', filename: 'avatar-png.png' },
       { name: 'breed_id', data: breed_id },
       { name: 'quantity', data: quantity },
       { name: 'price', data: price },
