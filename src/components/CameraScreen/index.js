@@ -6,6 +6,7 @@ import ImagePicker from 'react-native-image-picker';
 import * as Progress from 'react-native-progress';
 
 import { RNCamera } from 'react-native-camera';
+import Toast, { DURATION } from 'react-native-easy-toast';
 import NavBarCamara from '../NavBarCamara';
 import parseTime from '../../helpers/parseTime';
 import VideoPlayer from '../../containers/VideoPlayerContainer';
@@ -25,6 +26,10 @@ export default class CameraScreen extends PureComponent {
     this.startTimer = this.startTimer.bind(this);
     this.stopRecording = this.stopRecording.bind(this);
     this.selectVideoTapped = this.selectVideoTapped.bind(this);
+  }
+
+  componentDidMount = () => {
+    this.refs.toast.show('Se debe filmar en modo vertical', 7000);
   }
 
   startTimer() {
@@ -136,6 +141,7 @@ export default class CameraScreen extends PureComponent {
             )}
           </View>
         </View>
+        <Toast ref="toast" style={{backgroundColor:'red'}} position='top' positionValue={100} fadeOutDuration={1000} opacity={0.75}/>
       </View>
     );
   }

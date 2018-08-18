@@ -3,6 +3,7 @@ package com.delagro;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.shahenlibrary.RNVideoProcessingPackage;
 import org.reactnative.camera.RNCameraPackage;
 import com.RNFetchBlob.RNFetchBlobPackage;
 import com.imagepicker.ImagePickerPackage;
@@ -28,6 +29,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNVideoProcessingPackage(),
             new RNCameraPackage(),
             new RNFetchBlobPackage(),
             new ImagePickerPackage(),
