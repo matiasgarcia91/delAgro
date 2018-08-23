@@ -52,6 +52,8 @@ class PublishScreen extends PureComponent {
       removeAudio: true,
       bitrateMultiplier: 3,
       minimumBitrate: 3000,
+      width: 720,
+      height: 1280,
     };
 
     ProcessingManager.compress(video, compressingOptions)

@@ -52,7 +52,7 @@ class RegisterScreen extends Component {
       firstName,
       lastName,
       cellphone,
-      state: state.id,
+      state: state ? state.id : null,
       email,
       password,
     };

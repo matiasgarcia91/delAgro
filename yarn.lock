@@ -4689,6 +4689,10 @@ react-native-easy-toast@^1.1.0:
   dependencies:
     prop-types "^15.5.10"
 
+react-native-elevated-view@^0.0.6:
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/react-native-elevated-view/-/react-native-elevated-view-0.0.6.tgz#560cc9ab16cfd5cb5ea821521558fc711e57e231"
+
 react-native-email@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/react-native-email/-/react-native-email-1.0.1.tgz#20eb18d6523e207e4e3e8e9c191a75fa1241ef3c"

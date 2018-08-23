@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, Image } from 'react-native';
 import PropTypes from 'prop-types';
 
 import VideoPlayer from '../../containers/VideoPlayerContainer';
 import CardFooter from '../../containers/CardFooterContainer';
 import DetailsCardFooter from '../../containers/DetailsCardFooterContainer';
+import vendido from '../../assets/images/vendido.png';
 
 import styles from './styles';
 
@@ -14,7 +15,7 @@ export default class CardItem extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.videoContainer}>
-          <VideoPlayer id={this.props.lot.id} uri={lot.video_url} thumbnail={lot.thumbnail_url} />
+          <VideoPlayer id={lot.id} uri={lot.video_url} thumbnail={lot.thumbnail_url} status={lot.status} />
         </View>
         <View style={styles.footer}>
           { details ?

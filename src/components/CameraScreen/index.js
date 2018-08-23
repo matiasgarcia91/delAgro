@@ -6,7 +6,7 @@ import ImagePicker from 'react-native-image-picker';
 import * as Progress from 'react-native-progress';
 
 import { RNCamera } from 'react-native-camera';
-import Toast, { DURATION } from 'react-native-easy-toast';
+import Toast from 'react-native-easy-toast';
 import NavBarCamara from '../NavBarCamara';
 import parseTime from '../../helpers/parseTime';
 import VideoPlayer from '../../containers/VideoPlayerContainer';
@@ -94,7 +94,7 @@ export default class CameraScreen extends PureComponent {
         <NavBarCamara navigation={this.props.navigation} video={video} />
         { video ?
           (<View style={styles.preview}>
-            <VideoPlayer uri={video} paused={false} noThumbnail />
+            <VideoPlayer uri={video} paused={false} noThumbnail trimVideo />
           </View>) :
           (<RNCamera
             ref={(ref) => {
