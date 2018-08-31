@@ -80,7 +80,8 @@ export default class CameraScreen extends PureComponent {
       } else if (response.customButton) {
         console.log('User tapped custom button: ', response.customButton);
       } else {
-        this.setState({ video: response.uri });
+        this.props.navigation.navigate('EditVideo', { uploadVideo: response.uri });
+        // this.setState({ video: response.uri });
       }
     });
   }
@@ -91,7 +92,7 @@ export default class CameraScreen extends PureComponent {
     const progress = elapsed / 90;
     return (
       <View style={styles.container}>
-        <NavBarCamara navigation={this.props.navigation} video={video} />
+        <NavBarCamara navigation={this.props.navigation} video={video} title="Grabar Video" />
         { video ?
           (<View style={styles.preview}>
             <VideoPlayer uri={video} paused={false} noThumbnail trimVideo />

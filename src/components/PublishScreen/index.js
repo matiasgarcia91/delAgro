@@ -3,6 +3,7 @@ import { View, ScrollView, KeyboardAvoidingView } from 'react-native';
 import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
 import { ProcessingManager } from 'react-native-video-processing';
+import RNGRP from "react-native-get-real-path";
 
 import NavBarPublish from '../NavBarPublish';
 import styles from './styles';
@@ -40,35 +41,34 @@ class PublishScreen extends PureComponent {
   }
 
   onSubmit(values) {
-    const {
-      category,
-      breed,
-      state,
-    } = this.state;
+    const { category, breed, state } = this.state;
     const { quantity, price, weight, description } = values;
-    const video = this.props.navigation.state.params.video;
+    const { navigation, submitLot } = this.props;
 
-    const compressingOptions = {
+    /* const options = {
       removeAudio: true,
       bitrateMultiplier: 3,
-      minimumBitrate: 3000,
+      minimumBitrate: 300000,
       width: 720,
       height: 1280,
     };
 
-    ProcessingManager.compress(video, compressingOptions)
-      .then((newSource) => {
-        this.props.submitLot({
-          category_id: category.id,
-          breed_id: breed.id,
-          state,
-          quantity,
-          weight,
-          video: newSource,
-          price,
-          description,
-        });
+    
+    ProcessingManager.compress(navigation.state.params.video, options)
+    .then((data) => {
+      console.log(data); */
+      submitLot({
+        category_id: category.id,
+        breed_id: breed.id,
+        state,
+        quantity,
+        weight,
+        video: navigation.state.params.video,
+        price,
+        description,
       });
+    /* })
+    .catch(error => console.log('Error', error)); */
   }
 
   renderInput({

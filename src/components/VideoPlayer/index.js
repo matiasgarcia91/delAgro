@@ -45,19 +45,6 @@ export default class VideoPlayer extends Component {
         </ElevatedView>}
         {active || noThumbnail ?
           <View style={styles.backgroundVideo}>
-            {/* trimVideo && 
-            <View style={{flex:0.2}} >
-              <Trimmer
-                source={uri}
-                onTrackerMove={(e) => console.log(e.currentTime)} // iOS only
-                currentTime={this.currentTime} // use this prop to set tracker position iOS only
-                themeColor={'white'} // iOS only
-                thumbWidth={30} // iOS only
-                trackerColor={'green'} // iOS only
-                onChange={(e) => console.log(e.startTime, e.endTime)}
-              />
-            </View> */}
-            {/* <TouchableOpacity style={{ flex:1 }} onPress={this.onPress}> */}
             <Video
               source={{ uri }}
               resizeMode='cover'
@@ -67,7 +54,6 @@ export default class VideoPlayer extends Component {
               style={{flex:1}}
               onProgress={({ currentTime }) => { this.currentTime = currentTime; }}
             />
-            {/* </TouchableOpacity> */}
           </View> :
           <Image style={styles.backgroundVideo} source={{ uri: thumbnail }} />
         }

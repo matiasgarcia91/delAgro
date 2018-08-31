@@ -112,7 +112,7 @@ function refreshing() {
 export function fetchAllLots(page = 1) {
   return (dispatch) => {
     dispatch(fetching());
-    const queryString = `scope[status]=active&page=${page}`;
+    const queryString = `(scope[status]=active|scope[status]=sold)&page=${page}`;
     return axiosCustom.get(`/lots?${queryString}`)
       .then(({ data }) => {
         if (data.length === 0) return dispatch(listEnd());
@@ -161,15 +161,19 @@ export function submitLot({
     };
     const description = rawDescr || ' ';
     dispatch(uploadPending());
-    const cutVideo = videoUrl.slice(7);
+    console.log(getState().session.creds);
+    console.log(videoUrl);
+    //const cutVideo = videoUrl.slice(7);
+    const cutVideo = videoUrl.slice(1);
+    console.log(cutVideo);
     RNFetchBlob.fetch('POST', 'http://delagro-api.herokuapp.com/api/v1/lots', headers, [
       { name: 'video', data: RNFetchBlob.wrap(cutVideo), type: 'video/mp4', filename: 'avatar-png.png' },
-      { name: 'breed_id', data: breed_id },
-      { name: 'quantity', data: quantity },
-      { name: 'price', data: price },
-      { name: 'weight', data: weight },
+      { name: 'breed_id', data: breed_id.toString() },
+      { name: 'quantity', data: quantity.toString() },
+      { name: 'price', data: price.toString() },
+      { name: 'weight', data: weight.toString() },
       { name: 'state', data: 'artigas' },
-      { name: 'category_id', data: category_id },
+      { name: 'category_id', data: category_id.toString() },
       { name: 'description', data: description },
     ])
       .then(() => dispatch(uploadSuccess()))

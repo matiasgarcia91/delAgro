@@ -22,15 +22,16 @@ export default class NavBarCamara extends PureComponent {
   }
 
   render() {
+    const {title, onNextPress} = this.props;
     return (
       <View style={styles.bar} >
         <TouchableHighlight onPress={this.navigateBack}>
           <Text style={styles.sideButtons}>Cancelar</Text>
         </TouchableHighlight>
         <TouchableHighlight>
-          <Text style={styles.title}>Grabar Video</Text>
+          <Text style={styles.title}>{title}</Text>
         </TouchableHighlight>
-        <TouchableHighlight onPress={this.navigate}>
+        <TouchableHighlight onPress={onNextPress || this.navigate}>
           <Text style={styles.sideButtons}>Siguiente</Text>
         </TouchableHighlight>
       </View>

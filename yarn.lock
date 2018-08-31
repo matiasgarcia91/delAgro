@@ -337,6 +337,10 @@
     lodash "^4.2.0"
     to-fast-properties "^2.0.0"
 
+"@ptomasroos/react-native-multi-slider@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@ptomasroos/react-native-multi-slider/-/react-native-multi-slider-1.0.0.tgz#a4ea27b1320b93a1db9f696c24789695df6c9f30"
+
 abab@^1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/abab/-/abab-1.0.4.tgz#5faad9c2c07f60dd76770f71cf025b62a63cfd4e"
@@ -1479,6 +1483,10 @@ block-stream@*:
   resolved "https://registry.yarnpkg.com/block-stream/-/block-stream-0.0.9.tgz#13ebfe778a03205cfe03751481ebb4b3300c126a"
   dependencies:
     inherits "~2.0.0"
+
+bluebird@^2.9.25:
+  version "2.11.0"
+  resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-2.11.0.tgz#534b9033c022c9579c56ba3b3e5a5caafbb650e1"
 
 body-parser@~1.13.3:
   version "1.13.3"
@@ -4705,6 +4713,12 @@ react-native-fetch-blob@^0.10.8:
   dependencies:
     base-64 "0.1.0"
     glob "7.0.6"
+
+"react-native-get-real-path@https://github.com/Wraptime/react-native-get-real-path.git":
+  version "1.0.0"
+  resolved "https://github.com/Wraptime/react-native-get-real-path.git#0ea373dc04397bbaaa6b5668a33ab0a755529121"
+  dependencies:
+    bluebird "^2.9.25"
 
 react-native-image-picker@^0.26.7:
   version "0.26.7"

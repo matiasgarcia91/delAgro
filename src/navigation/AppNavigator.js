@@ -10,6 +10,7 @@ import Home from '../containers/HomeScreenContainer';
 import Filter from '../containers/FilterScreen';
 import Details from '../containers/DetailsScreenContainer';
 import Camera from '../components/CameraScreen';
+import EditVideo from '../components/UploadVideoEdit';
 import Welcome from '../containers/WelcomeScreen';
 import Publish from '../containers/PublishScreenContainer';
 import MyLots from '../containers/MyLotsPage';
@@ -47,6 +48,7 @@ const loggedHomeStack = StackNavigator({
   Details: { screen: Details },
   Publish: { screen: Publish },
   Camera: { screen: Camera },
+  EditVideo: {screen: EditVideo},
   Filter: { screen: Filter },
   FilteredHomeIn: { screen: FilteredHome },
 }, { headerMode: 'none', navigationOptions: { gesturesEnabled: false } });
