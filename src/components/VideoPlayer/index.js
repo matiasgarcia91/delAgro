@@ -3,7 +3,7 @@ import Video from 'react-native-video';
 import { VideoPlayer as VPlayer, Trimmer } from 'react-native-video-processing';
 import PropTypes from 'prop-types';
 import { View, TouchableOpacity, ActivityIndicator, Image } from 'react-native';
-import ElevatedView from 'react-native-elevated-view'
+import ElevatedView from 'react-native-elevated-view';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import vendido from '../../assets/images/vendido.png';
 
@@ -12,8 +12,8 @@ import { colors } from '../../styles';
 
 
 export default class VideoPlayer extends Component {
-  currentTime = 0;
   constructor(props) {
+    currentTime = 0;
     super(props);
     this.state = {
       paused: this.props.paused,
@@ -36,13 +36,10 @@ export default class VideoPlayer extends Component {
 
   render() {
     const { paused, active } = this.state;
-    const { uri, thumbnail, noThumbnail, trimVideo, status } = this.props;
+    const { uri, thumbnail, noThumbnail, status } = this.props;
     return (
       <TouchableOpacity style={{ width: '100%', height: '100%' }} onPress={this.onPress}>
         <ActivityIndicator size="large" style={styles.spinner} color={colors.lightGreen} />
-        {status && status === 'sold' && <ElevatedView elevation={1} style={{ position: 'absolute', width: '100%', height: '100%', backgroundColor: colors.transparent }}>
-          <Image source={vendido} style={{ width: '100%', height: '100%' }} resizeMode='contain' />
-        </ElevatedView>}
         {active || noThumbnail ?
           <View style={styles.backgroundVideo}>
             <Video
@@ -51,12 +48,15 @@ export default class VideoPlayer extends Component {
               repeat
               muted
               paused={paused}
-              style={{flex:1}}
+              style={{ flex: 1 }}
               onProgress={({ currentTime }) => { this.currentTime = currentTime; }}
             />
           </View> :
           <Image style={styles.backgroundVideo} source={{ uri: thumbnail }} />
         }
+        {status && status === 'sold' && <ElevatedView elevation={1} style={{ position: 'absolute', width: '100%', height: '100%', backgroundColor: colors.transparent }}>
+          <Image source={vendido} style={{ width: '100%', height: '100%' }} resizeMode='contain' />
+        </ElevatedView>}
         <View style={styles.iconContainer}>
           { paused ?
             <Icon name='play' size={22} style={styles.icon} /> :
