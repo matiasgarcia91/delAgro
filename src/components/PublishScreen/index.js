@@ -3,7 +3,7 @@ import { View, ScrollView, KeyboardAvoidingView } from 'react-native';
 import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
 import { ProcessingManager } from 'react-native-video-processing';
-import RNGRP from "react-native-get-real-path";
+import RNGRP from 'react-native-get-real-path';
 
 import NavBarPublish from '../NavBarPublish';
 import styles from './styles';
@@ -53,20 +53,20 @@ class PublishScreen extends PureComponent {
       height: 1280,
     };
 
-    
+
     ProcessingManager.compress(navigation.state.params.video, options)
     .then((data) => {
       console.log(data); */
-      submitLot({
-        category_id: category.id,
-        breed_id: breed.id,
-        state,
-        quantity,
-        weight,
-        video: navigation.state.params.video,
-        price,
-        description,
-      });
+    submitLot({
+      category_id: category.id,
+      breed_id: breed.id,
+      state: state.id,
+      quantity,
+      weight,
+      video: navigation.state.params.video,
+      price,
+      description,
+    });
     /* })
     .catch(error => console.log('Error', error)); */
   }

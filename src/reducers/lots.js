@@ -1,4 +1,4 @@
-// import { AsyncStorage } from 'react-native';
+import { Platform } from 'react-native';
 import RNFetchBlob from 'react-native-fetch-blob';
 
 import axiosCustom from '../utils/axios';
@@ -145,6 +145,7 @@ export function fetchMyLots() {
 export function submitLot({
   category_id,
   breed_id,
+  state,
   quantity,
   price,
   video: videoUrl,
@@ -161,18 +162,14 @@ export function submitLot({
     };
     const description = rawDescr || ' ';
     dispatch(uploadPending());
-    console.log(getState().session.creds);
-    console.log(videoUrl);
-    //const cutVideo = videoUrl.slice(7);
-    const cutVideo = videoUrl.slice(1);
-    console.log(cutVideo);
+    const cutVideo = Platform.OS === 'ios' ? videoUrl.slice(7) : videoUrl.slice(1);
     RNFetchBlob.fetch('POST', 'http://delagro-api.herokuapp.com/api/v1/lots', headers, [
       { name: 'video', data: RNFetchBlob.wrap(cutVideo), type: 'video/mp4', filename: 'avatar-png.png' },
       { name: 'breed_id', data: breed_id.toString() },
       { name: 'quantity', data: quantity.toString() },
       { name: 'price', data: price.toString() },
       { name: 'weight', data: weight.toString() },
-      { name: 'state', data: 'artigas' },
+      { name: 'state', data: state },
       { name: 'category_id', data: category_id.toString() },
       { name: 'description', data: description },
     ])
