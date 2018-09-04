@@ -112,7 +112,7 @@ function refreshing() {
 export function fetchAllLots(page = 1) {
   return (dispatch) => {
     dispatch(fetching());
-    const queryString = `(scope[status]=active|scope[status]=sold)&page=${page}`;
+    const queryString = `scope[status]=active&page=${page}`;
     return axiosCustom.get(`/lots?${queryString}`)
       .then(({ data }) => {
         if (data.length === 0) return dispatch(listEnd());

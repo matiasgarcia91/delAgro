@@ -38,7 +38,6 @@ export default class UploadVideoEdit extends Component {
   componentDidMount() {
     const { navigation } = this.props;
     this.setState({ video: navigation.state.params.uploadVideo });
-    console.log(this);
     let durationInSeconds = 0;
     const filePath = navigation.state.params.uploadVideo || '';
     if (!this.props.time) {
