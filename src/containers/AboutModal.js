@@ -1,5 +1,5 @@
 
-import AboutModal from '../components/modals/AboutModal';
+import AboutModal from '../components/modals/TermsModal';
 
 
 export default AboutModal;
