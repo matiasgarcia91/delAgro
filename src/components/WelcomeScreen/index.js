@@ -7,6 +7,8 @@ import MainButton from '../MainButton';
 import logo from '../../assets/images/logo.png';
 import cows from '../../assets/images/cows.png';
 import LogoDelAgro from '../../assets/images/delagroicon.png';
+import { showAboutModal } from '../../reducers/modals';
+import AboutModal from '../../containers/AboutModal';
 
 import styles from './styles';
 
@@ -15,6 +17,15 @@ export default class WelcomeScreen extends PureComponent {
     super(props);
     this.navigatePublish = this.navigatePublish.bind(this);
     this.navigateView = this.navigateView.bind(this);
+    this.state = {
+      modalVisble: false,
+    };
+    this.toggleModal = this.toggleModal.bind(this);
+  }
+
+  toggleModal() {
+    const { modalVisble } = this.state;
+    this.setState({ modalVisble: !modalVisble });
   }
 
   componentDidMount() {
@@ -36,6 +47,7 @@ export default class WelcomeScreen extends PureComponent {
   };
 
   render() {
+    const { modalVisble } = this.state;
     return (
       <View style={styles.container}>
         <View style={styles.titleContainer}>
@@ -48,13 +60,14 @@ export default class WelcomeScreen extends PureComponent {
           <Text style={styles.text}>¡Cuanto más la usás, menos pagás!</Text>
         </View>
         <View style={styles.formContainer}>
-          <MainButton onPress={() => null} title={'ACERCA DE MUUU'} style={styles.bigButton} textStyle={styles.bigButtonText} />
+          <AboutModal isVisible={modalVisble} toggleModal={this.toggleModal} />
+          <MainButton onPress={this.toggleModal} title={'ACERCA DE MUUU'} style={styles.bigButton} textStyle={styles.bigButtonText} />
           <MainButton onPress={this.navigateView} title={'VER GANADO EN VENTA'} style={styles.bigButton} textStyle={styles.bigButtonText} />
           <MainButton onPress={this.navigatePublish} title={'PUBLICAR UN LOTE'} style={styles.bigButton} textStyle={styles.bigButtonText} />
         </View>
         <View style={styles.logoCowsContainer}>
           <Image style={styles.logoCows} source={cows} />
-        </View> 
+        </View>
         <View style={styles.logoBottomContainer}>
           <Image style={styles.logoBottom} source={LogoDelAgro} />
         </View>
