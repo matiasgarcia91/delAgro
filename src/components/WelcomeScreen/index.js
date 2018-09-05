@@ -23,13 +23,13 @@ export default class WelcomeScreen extends PureComponent {
     this.toggleModal = this.toggleModal.bind(this);
   }
 
+  componentDidMount() {
+    this.props.getStaticData();
+  }
+
   toggleModal() {
     const { modalVisble } = this.state;
     this.setState({ modalVisble: !modalVisble });
-  }
-
-  componentDidMount() {
-    this.props.getStaticData();
   }
 
   navigatePublish = () => {

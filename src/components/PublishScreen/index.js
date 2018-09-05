@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { View, ScrollView, KeyboardAvoidingView } from 'react-native';
+import { View, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
 import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
 import { ProcessingManager } from 'react-native-video-processing';
@@ -40,35 +40,48 @@ class PublishScreen extends PureComponent {
     this.setState({ state });
   }
 
+
   onSubmit(values) {
     const { category, breed, state } = this.state;
     const { quantity, price, weight, description } = values;
     const { navigation, submitLot } = this.props;
 
-    /* const options = {
-      removeAudio: true,
-      bitrateMultiplier: 3,
-      minimumBitrate: 300000,
-      width: 720,
-      height: 1280,
-    };
+    if (Platform.OS === 'android') {
+      submitLot({
+        category_id: category.id,
+        breed_id: breed.id,
+        state: state.id,
+        quantity,
+        weight,
+        video: navigation.state.params.video,
+        price,
+        description,
+      });
+    } else {
+      const options = {
+        removeAudio: true,
+        bitrateMultiplier: 3,
+        minimumBitrate: 3000,
+        width: 720,
+        height: 1280,
+      };
 
-
-    ProcessingManager.compress(navigation.state.params.video, options)
-    .then((data) => {
-      console.log(data); */
-    submitLot({
-      category_id: category.id,
-      breed_id: breed.id,
-      state: state.id,
-      quantity,
-      weight,
-      video: navigation.state.params.video,
-      price,
-      description,
-    });
-    /* })
-    .catch(error => console.log('Error', error)); */
+      ProcessingManager.compress(navigation.state.params.video, options)
+        .then((data) => {
+          console.log(data);
+          submitLot({
+            category_id: category.id,
+            breed_id: breed.id,
+            state: state.id,
+            quantity,
+            weight,
+            video: data,
+            price,
+            description,
+          });
+        })
+        .catch(error => console.log('Error', error));
+    }
   }
 
   renderInput({
