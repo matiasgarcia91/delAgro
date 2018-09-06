@@ -18,6 +18,7 @@ const validate = (values) => {
   if (!firstName) errors.firstName = 'Requerido';
   if (!lastName) errors.lastName = 'Requerido';
   if (!password) errors.password = 'Requerido';
+  if (password && password.length < 6) errors.password = 'Minimo 6 caracteres';
   if (!confirmPassword) errors.confirmPassword = 'Requerido';
 
   if (confirmPassword && confirmPassword !== password) {
