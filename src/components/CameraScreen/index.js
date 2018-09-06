@@ -20,6 +20,7 @@ export default class CameraScreen extends PureComponent {
       recording: false,
       elapsed: null,
       video: null,
+      videoDuration: 60,
     };
     this.record = this.record.bind(this);
     this.tick = this.tick.bind(this);
@@ -45,7 +46,6 @@ export default class CameraScreen extends PureComponent {
 
   tick() {
     const { elapsed: last } = this.state;
-    if (last + 1 === 90) return this.stopRecording();
     return this.setState({ elapsed: last + 1 });
   }
 
@@ -54,9 +54,10 @@ export default class CameraScreen extends PureComponent {
       if (this.state.recording) {
         this.stopRecording();
       } else {
+        const { videoDuration } = this.state;
         this.startTimer();
         this.setState({ recording: true, video: null });
-        const options = { quality: RNCamera.Constants.VideoQuality['720p'], maxDuration: 60, mute: false };
+        const options = { quality: RNCamera.Constants.VideoQuality['720p'], maxDuration: videoDuration, mute: false };
         const data = await this.camera.recordAsync(options);
         clearInterval(this.timer);
         this.setState({ video: data.uri, recording: false, elapsed: null });
@@ -88,9 +89,9 @@ export default class CameraScreen extends PureComponent {
   }
 
   render() {
-    const { elapsed, video } = this.state;
+    const { elapsed, video, videoDuration } = this.state;
     const timer = elapsed ? parseTime(elapsed) : null;
-    const progress = elapsed / 90;
+    const progress = elapsed / videoDuration;
     return (
       <View style={styles.container}>
         <NavBarCamara navigation={this.props.navigation} video={video} title="Grabar Video" />
@@ -143,7 +144,7 @@ export default class CameraScreen extends PureComponent {
             )}
           </View>
         </View>
-        <Toast ref="toast" style={{backgroundColor:'red'}} position='top' positionValue={100} fadeOutDuration={1000} opacity={0.75}/>
+        <Toast ref="toast" style={{ backgroundColor: 'red' }} position='top' positionValue={100} fadeOutDuration={1000} opacity={0.75} />
       </View>
     );
   }
