@@ -18,6 +18,12 @@ function zeroPadd(value) {
   return `${prefix}${value}`;
 }
 
+function getTimeText(timeInSeconds) {
+  const min = Math.floor(timeInSeconds / 60);
+  const sec = Math.floor(timeInSeconds % 60);
+  return `${zeroPadd(min)}:${zeroPadd(sec)}`;
+}
+
 export default class UploadVideoEdit extends Component {
   constructor(props) {
     super(props);
@@ -100,15 +106,7 @@ export default class UploadVideoEdit extends Component {
 
   onProgress = (data) => {
     const { currentTime } = data;
-    let min = 0;
-    if (currentTime > 59) {
-      min = Math.floor(currentTime / 60);
-    }
-    let sec = Math.floor(currentTime % 60);
-    if (sec < 10) {
-      sec = `0${sec}`;
-    }
-    this.setState({ currentTime, currentTimeS: `0${min}:${sec}` });
+    this.setState({ currentTime, currentTimeS: getTimeText(currentTime) });
     if (currentTime >= this.state.end) {
       this.setState({ pause: true });
       this.player.seek(this.state.start);
@@ -130,9 +128,7 @@ export default class UploadVideoEdit extends Component {
     if (gallery) {
       end = 60;
       if (durationInSeconds < 60) end = durationInSeconds;
-      min = Math.floor(end / 60);
-      sec = end % 60;
-      videoTimeEnd = `${zeroPadd(min)}:${zeroPadd(sec)}`;
+      videoTimeEnd = getTimeText(end);
     } else {
       // from the camera
       videoTimeEnd = duration;
@@ -163,39 +159,19 @@ export default class UploadVideoEdit extends Component {
       if (difference > 60) {
         newEnd = newStart + 60;
       }
-      console.log(newStart, newEnd);
-      this.setState({ start: newStart, end: newEnd });
-
-      let min = 0;
-      if (newStart > 59) {
-        min = Math.floor(newStart / 60);
-      }
-      let sec = newStart % 60;
-      if (sec < 10) {
-        sec = `0${sec}`;
-      }
-      this.setState({ startS: `0${min}:${sec}` });
-      this.player.seek(start);
+      this.player.seek(newStart);
+      this.setState({currentTime: newStart, currentTimeS: getTimeText(newStart)});
     }
 
     if (newEnd !== undefined && newEnd !== end) {
       const difference = newEnd - start;
       if (difference > 60) {
         newStart = newEnd - 60;
+        this.player.seek(newStart);
+        this.setState({currentTime: newStart, currentTimeS: getTimeText(newStart)});
       }
-      console.log(newStart, newEnd);
-      this.setState({ start: newStart, end: newEnd });
-      this.setState({ end: newEnd });
-      let min = 0;
-      if (newEnd > 59) {
-        min = Math.floor(newEnd / 60);
-      }
-      let sec = newEnd % 60;
-      if (sec < 10) {
-        sec = `0${sec}`;
-      }
-      this.setState({ endS: `0${min}:${sec}` });
     }
+    this.setState({ start: newStart, end: newEnd, startS: getTimeText(newStart), endS: getTimeText(newEnd) });
   };
 
 
