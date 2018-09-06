@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import MainButton from '../MainButton';
 
+import stateTranslations from '../../helpers/stateTranslations';
 import styles from './styles';
 
 const DetailsText = ({
@@ -23,7 +24,8 @@ const DetailsText = ({
         <Text style={styles.caption}>Cantidad:</Text><Text style={styles.text}>{quantity} {category.name}</Text>
       </View>
       <View style={styles.row} >
-        <Text style={styles.caption}>Ubicación:</Text><Text style={styles.text}>{state}</Text>
+        <Text style={styles.caption}>Ubicación:</Text>
+        <Text style={styles.text}>{stateTranslations[state]}</Text>
       </View>
       <View style={styles.row} >
         <Text style={styles.caption}>Raza:</Text><Text style={styles.text}>{breed.name}</Text>
