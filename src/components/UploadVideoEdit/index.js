@@ -155,16 +155,17 @@ export default class UploadVideoEdit extends Component {
 
   multiSliderValuesChange = (values) => {
     const { start, end } = this.state;
-    const newStart = values[0];
-    const newEnd = values[1];
+    let newStart = values[0];
+    let newEnd = values[1];
 
     if (newStart !== undefined && newStart !== start) {
-      /* const difference = end - newStart;
-      if(difference > 60){
-        newEnd -= start - newStart;
+      const difference = end - newStart;
+      if (difference > 60) {
+        newEnd = newStart + 60;
       }
-      console.log(newStart, start); */
-      this.setState({ start: newStart });
+      console.log(newStart, newEnd);
+      this.setState({ start: newStart, end: newEnd });
+
       let min = 0;
       if (newStart > 59) {
         min = Math.floor(newStart / 60);
@@ -178,11 +179,12 @@ export default class UploadVideoEdit extends Component {
     }
 
     if (newEnd !== undefined && newEnd !== end) {
-      /* const difference = newEnd - start;
-      if(difference > 60){
-        newStart += newEnd - end;
-        this.setState({ start: newStart });
-      } */
+      const difference = newEnd - start;
+      if (difference > 60) {
+        newStart = newEnd - 60;
+      }
+      console.log(newStart, newEnd);
+      this.setState({ start: newStart, end: newEnd });
       this.setState({ end: newEnd });
       let min = 0;
       if (newEnd > 59) {
@@ -237,7 +239,7 @@ export default class UploadVideoEdit extends Component {
         </View>
 
         <View style={styles.sliderContainer}>
-          {videoTime != 0 && (
+          {videoTime !== 0 && (
             <MultiSlider
               trackStyle={{ height: 2, backgroundColor: Colors.lightGreen }}
               selectedStyle={{ backgroundColor: Colors.lightGreen }}
