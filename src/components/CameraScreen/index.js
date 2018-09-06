@@ -83,7 +83,6 @@ export default class CameraScreen extends PureComponent {
         console.log('User tapped custom button: ', response.customButton);
       } else {
         this.props.navigation.navigate('EditVideo', { uploadVideo: response.uri });
-        // this.setState({ video: response.uri });
       }
     });
   }
