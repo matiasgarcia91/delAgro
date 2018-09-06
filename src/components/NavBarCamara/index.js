@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { View, TouchableHighlight, Text } from 'react-native';
+import { View, TouchableOpacity, Text } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 
 import styles from './styles';
@@ -25,15 +25,15 @@ export default class NavBarCamara extends PureComponent {
     const {title, onNextPress} = this.props;
     return (
       <View style={styles.bar} >
-        <TouchableHighlight onPress={this.navigateBack}>
+        <TouchableOpacity onPress={this.navigateBack}>
           <Text style={styles.sideButtons}>Cancelar</Text>
-        </TouchableHighlight>
-        <TouchableHighlight>
+        </TouchableOpacity>
+        <TouchableOpacity>
           <Text style={styles.title}>{title}</Text>
-        </TouchableHighlight>
-        <TouchableHighlight onPress={onNextPress || this.navigate}>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={onNextPress || this.navigate}>
           <Text style={styles.sideButtons}>Siguiente</Text>
-        </TouchableHighlight>
+        </TouchableOpacity>
       </View>
     );
   }

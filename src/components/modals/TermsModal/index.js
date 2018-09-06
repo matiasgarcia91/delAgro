@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-native-modal';
-import { View, TouchableHighlight, Text, ScrollView } from 'react-native';
+import { View, Text, ScrollView } from 'react-native';
 
 import MainButton from '../../MainButton';
 
@@ -18,7 +18,7 @@ export default class TermsModal extends PureComponent {
     return (
       <Modal isVisible={this.props.isVisible}>
         <View style={styles.container}>
-          <Text style={[styles.sideButtons, { marginBottom: 10 }]}>Terminos y Condiciones</Text>
+          <Text style={[styles.sideButtons, { marginBottom: 10 }]}>Términos y Condiciones</Text>
           <ScrollView>
             <View style = {styles.titleContainer}>
             <Text style={styles.sideButtons}>Título I Disposiciones Generales</Text>

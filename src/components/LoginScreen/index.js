@@ -1,8 +1,9 @@
 import React, { PureComponent } from 'react';
-import { View, Text, TouchableWithoutFeedback, Keyboard, ActivityIndicator } from 'react-native';
+import { View, Text, TouchableWithoutFeedback, Keyboard, ActivityIndicator, TouchableOpacity, KeyboardAvoidingView, ScrollView } from 'react-native';
 import PropTypes from 'prop-types';
 import { NavigationActions } from 'react-navigation';
 import { Field, reduxForm } from 'redux-form';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 import FormInput from '../FormInput';
 import MainButton from '../MainButton';
@@ -31,6 +32,10 @@ class LoginScreen extends PureComponent {
     this.props.navigation.dispatch(navigateToDetails);
   };
 
+  navigateBack = () => {
+    this.props.navigation.navigate('welcomeScreen');
+  }
+
   renderInput = ({ input, label, secureTextEntry, type, meta }) => (
     <FormInput
       label={label}
@@ -46,40 +51,47 @@ class LoginScreen extends PureComponent {
     const { handleSubmit, pending } = this.props;
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accesible={false}>
-        <View style={styles.container}>
-          <View style={styles.logoContainer}>
-            <Logo />
+        <KeyboardAvoidingView behavior='padding' style={styles.container}>
+          <View style={styles.container}>
+            <TouchableOpacity style={styles.icon} onPress={this.navigateBack}>
+              <View style={styles.icon}>
+                <Icon name={'chevron-left'} size={30} style={styles.arrow} />
+              </View>
+            </TouchableOpacity>
+            <View style={styles.logoContainer}>
+              <Logo />
+            </View>
+            <View style={styles.formContainer}>
+              <Text style={styles.titleText}>Iniciar Sesión</Text>
+              <Field
+                name='email'
+                type='text'
+                label={'Usuario:'}
+                component={this.renderInput}
+              />
+              <Field
+                name='password'
+                type='password'
+                label={'Contraseña:'}
+                secureTextEntry
+                component={this.renderInput}
+              />
+            </View>
+            <View style={{ flex: 1 }}>
+              <MainButton onPress={handleSubmit(this.onSubmit)} title={'INGRESAR'} style={styles.bigButton} />
+            </View>
+            <View style={{ flex: 1 }}>
+              {pending && (
+                <View style={{ marginTop: 30 }}>
+                  <ActivityIndicator size="large" color="#ff5000" />
+                </View>)
+              }
+            </View>
+            <View style={{ flex: 1 }}>
+              <LoginFooter text={'¿TODAVÍA NO TIENES UNA CUENTA? '} linkText={'REGÍSTRATE'} link={this.navigate} />
+            </View>
           </View>
-          <View style={styles.formContainer}>
-            <Text style={styles.titleText}>Iniciar Sesión</Text>
-            <Field
-              name='email'
-              type='text'
-              label={'Usuario:'}
-              component={this.renderInput}
-            />
-            <Field
-              name='password'
-              type='password'
-              label={'Contraseña:'}
-              secureTextEntry
-              component={this.renderInput}
-            />
-          </View>
-          <View style={{ flex: 1 }}>
-            <MainButton onPress={handleSubmit(this.onSubmit)} title={'INGRESAR'} style={styles.bigButton} />
-          </View>
-          <View style={{ flex: 1 }}>
-            {pending && (
-              <View style={{ marginTop: 30 }}>
-                <ActivityIndicator size="large" color="#ff5000" />
-              </View>)
-            }
-          </View>
-          <View style={{ flex: 1 }}>
-            <LoginFooter text={'¿TODAVIA NO TIENES UNA CUENTA? '} linkText={'REGISTRATE'} link={this.navigate} />
-          </View>
-        </View>
+        </KeyboardAvoidingView>
       </TouchableWithoutFeedback>
     );
   }

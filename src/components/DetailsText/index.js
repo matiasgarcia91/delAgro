@@ -23,7 +23,7 @@ const DetailsText = ({
         <Text style={styles.caption}>Cantidad:</Text><Text style={styles.text}>{quantity} {category.name}</Text>
       </View>
       <View style={styles.row} >
-        <Text style={styles.caption}>Ubicacion:</Text><Text style={styles.text}>{state}</Text>
+        <Text style={styles.caption}>Ubicación:</Text><Text style={styles.text}>{state}</Text>
       </View>
       <View style={styles.row} >
         <Text style={styles.caption}>Raza:</Text><Text style={styles.text}>{breed.name}</Text>

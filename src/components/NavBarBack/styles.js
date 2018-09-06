@@ -15,6 +15,7 @@ export default StyleSheet.create({
     shadowOpacity: 1,
     shadowRadius: 4,
     height: 75,
+    alignItems: 'center',
   },
   sideButtons: {
     marginLeft: 20,

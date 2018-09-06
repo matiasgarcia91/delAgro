@@ -65,7 +65,7 @@ export const AppNavigator = StackNavigator({
   loggedOutFlow: {
     screen: DrawerNavigator({
       HomeLoggedOut: { screen: guestHomeStack, navigationOptions: { drawerLabel: 'Inicio' } },
-      Login: { screen: Login, navigationOptions: { drawerLabel: 'Iniciar sesion' } },
+      Login: { screen: Login, navigationOptions: { drawerLabel: 'Iniciar sesión' } },
       Register: { screen: Register, navigationOptions: { drawerLabel: 'Registrarse' } },
     }, { headerMode: 'none', drawerWidth: 200, navigationOptions: { gesturesEnabled: false } }),
   },
@@ -74,7 +74,7 @@ export const AppNavigator = StackNavigator({
       HomeLoggedIn: { screen: loggedHomeStack, navigationOptions: { drawerLabel: 'Inicio' } },
       myProfile: { screen: MyProfile, navigationOptions: { drawerLabel: 'Mi perfil' } },
       myLots: { screen: MyLots, navigationOptions: { drawerLabel: 'Mis publicaciones' } },
-      terms: { screen: () => {}, navigationOptions: { drawerLabel: 'Terminos y condiciones' } },
+      terms: { screen: () => {}, navigationOptions: { drawerLabel: 'Términos y condiciones' } },
       LogOut: { screen: () => {}, navigationOptions: { drawerLabel: 'Cerrar sesión' } },
     }, { headerMode: 'none', drawerWidth: 200, contentComponent: CustomDrawerContentComponent, navigationOptions: { gesturesEnabled: false } }),
   },

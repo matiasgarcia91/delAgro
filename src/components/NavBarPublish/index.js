@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { View, TouchableHighlight, Text } from 'react-native';
+import { View, TouchableOpacity, Text } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 
 import styles from './styles';
@@ -21,15 +21,15 @@ export default class NavBarPublish extends PureComponent {
     const { submitLot, handleSubmit } = this.props;
     return (
       <View style={styles.bar} >
-        <TouchableHighlight onPress={this.navigate}>
+        <TouchableOpacity onPress={this.navigate}>
           <Text style={styles.sideButtons}>Cancelar</Text>
-        </TouchableHighlight>
-        <TouchableHighlight>
+        </TouchableOpacity>
+        <TouchableOpacity>
           <Text style={styles.title} >Completar datos</Text>
-        </TouchableHighlight>
-        <TouchableHighlight onPress={handleSubmit(submitLot)}>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={handleSubmit(submitLot)}>
           <Text style={styles.sideButtons}>Subir</Text>
-        </TouchableHighlight>
+        </TouchableOpacity>
       </View>
     );
   }

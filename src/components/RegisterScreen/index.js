@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView, KeyboardAvoidingView, TouchableHighlight, ActivityIndicator } from 'react-native';
+import { View, Text, ScrollView, KeyboardAvoidingView, TouchableOpacity, ActivityIndicator } from 'react-native';
 import PropTypes from 'prop-types';
 import { NavigationActions } from 'react-navigation';
 import { Field, reduxForm } from 'redux-form';
@@ -96,11 +96,11 @@ class RegisterScreen extends Component {
     return (
       <KeyboardAvoidingView style={styles.container} behavior="padding">
         <ScrollView>
-          <TouchableHighlight style={{ flex: 1 }} onPress={this.navigateBack}>
+          <TouchableOpacity style={styles.icon} onPress={this.navigateBack}>
             <View style={styles.icon}>
               <Icon name={'chevron-left'} size={30} style={styles.arrow} />
             </View>
-          </TouchableHighlight>
+          </TouchableOpacity>
           <View style={styles.logoContainer}>
             <Logo />
           </View>
@@ -109,28 +109,28 @@ class RegisterScreen extends Component {
             <Field
               name='firstName'
               type='text'
-              label={'Nombre:'}
+              label={'Nombre*:'}
               capitalize={'words'}
               component={this.renderInput}
             />
             <Field
               name='lastName'
               type='text'
-              label={'Apellido:'}
+              label={'Apellido*:'}
               capitalize={'words'}
               component={this.renderInput}
             />
             <Field
               name='cellphone'
               type='text'
-              label={'Teléfono móvil:'}
+              label={'Teléfono móvil*:'}
               component={this.renderInput}
             />
             <DropDown label={'Departamento:'} selected={state} values={mapStates} onChange={this.onChangeState} />
             <Field
               name='email'
               type='email'
-              label={'Correo electrónico:'}
+              label={'Correo electrónico*:'}
               capitalize={'none'}
               component={this.renderInput}
             />
@@ -138,7 +138,7 @@ class RegisterScreen extends Component {
               name='password'
               type='password'
               secureTextEntry
-              label={'Contraseña:'}
+              label={'Contraseña*:'}
               capitalize={'none'}
               component={this.renderInput}
             />
@@ -146,19 +146,19 @@ class RegisterScreen extends Component {
               name='confirmPassword'
               type='password'
               secureTextEntry
-              label={'Repetir contraseña:'}
+              label={'Repetir contraseña*:'}
               capitalize={'none'}
               component={this.renderInput}
             />
             <View style={{ alignItems: 'center', marginBottom: 15 }}>
-              <Text onPress={showTermsModal} style={{ color: '#0000EE', fontSize: 18 }}>Terminos y condiciones</Text>
+              <Text onPress={showTermsModal} style={{ color: '#0000EE', fontSize: 18 }}>Términos y condiciones</Text>
             </View>
             <View style={{ flex: 1, justifyContent: 'center' }}>
               <CheckBox
                 style={{ flex: 1, padding: 10, paddingLeft: 20, marginBottom: 10 }}
                 onClick={this.onChangeCheckbox}
                 isChecked={checkbox}
-                rightText={'He leido y acepto los terminos y condiciones.'}
+                rightText={'He leído y acepto los términos y condiciones.'}
               />
             </View>
             <MainButton onPress={handleSubmit(this.onSubmit)} title={'Registrarse'} style={styles.bigButton} disabled={!checkbox} />
@@ -169,7 +169,7 @@ class RegisterScreen extends Component {
             }
           </View>
           <View style={{ flex: 1 }}>
-            <LoginFooter text={'TIENES UNA CUENTA? '} linkText={'INICIAR SESION'} link={this.navigate} />
+            <LoginFooter text={'¿TIENES UNA CUENTA? '} linkText={'INICIAR SESIÓN'} link={this.navigate} />
           </View>
         </ScrollView>
       </KeyboardAvoidingView>

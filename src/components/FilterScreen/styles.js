@@ -28,7 +28,8 @@ export default StyleSheet.create({
   },
   priceContainer: {
     flexDirection: 'row',
-    marginLeft: 40,
+    marginHorizontal: 40,
+    justifyContent: 'space-between',
   },
   priceText: {
     paddingTop: 32,

@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-native-modal';
-import { View, TouchableHighlight, Text, ScrollView } from 'react-native';
+import { View, Text, ScrollView } from 'react-native';
 
 import MainButton from '../../MainButton';
 

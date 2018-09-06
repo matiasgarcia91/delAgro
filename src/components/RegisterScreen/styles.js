@@ -12,6 +12,7 @@ export default StyleSheet.create({
     height: 80,
     flex: 1,
     justifyContent: 'flex-end',
+    marginTop: 40,
   },
   formContainer: {
     flex: 5,
@@ -29,10 +30,10 @@ export default StyleSheet.create({
   },
   icon: {
     width: 50,
-    height: 30,
-    marginTop: 35,
-    marginLeft: 25,
-    flex: 1,
+    height: 50,
+    alignItems:'center',
+    justifyContent: 'center',
+    position: "absolute",
   },
   arrow: {
     color: colors.navButtonGreen,

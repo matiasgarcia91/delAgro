@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-native-modal';
-import { View, TouchableHighlight, Text } from 'react-native';
+import { View, TouchableOpacity, Text } from 'react-native';
 import call from 'react-native-phone-call';
 import email from 'react-native-email';
 import MainButton from '../../MainButton';
@@ -22,7 +22,7 @@ export default class ContactModal extends PureComponent {
 
   renderContacts() {
     return this.props.contacts.map(contact => (
-      <TouchableHighlight
+      <TouchableOpacity
         style={{ flex: 1 }}
         onPress={() => call({ number: contact.phone, prompt: false })}
         key={contact.phone}
@@ -31,7 +31,7 @@ export default class ContactModal extends PureComponent {
           <Text style={styles.title}>{`${contact.first_name} ${contact.last_name}`}</Text>
           <Text style={styles.title}>{contact.phone}</Text>
         </View>
-      </TouchableHighlight>
+      </TouchableOpacity>
     ));
   }
 
@@ -50,9 +50,9 @@ export default class ContactModal extends PureComponent {
             <Text style={styles.sideButtons}>o escribinos un mail</Text>
           </View>
 
-          <TouchableHighlight style={{ flex: 1 }} onPress={() => this.handleEmail()}>
+          <TouchableOpacity style={{ flex: 1 }} onPress={() => this.handleEmail()}>
             <Text style={styles.title}>info@delagro.com.uy</Text>
-          </TouchableHighlight>
+          </TouchableOpacity>
 
           <View style={{ marginTop: 20 }}>
             <MainButton onPress={this.props.toggleModal} title={'Cerrar'} />

@@ -32,4 +32,14 @@ export default StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-end',
   },
+  icon: {
+    width: 50,
+    height: 50,
+    alignItems:'center',
+    justifyContent: 'center',
+    position: "absolute",
+  },
+  arrow: {
+    color: colors.navButtonGreen,
+  },
 });

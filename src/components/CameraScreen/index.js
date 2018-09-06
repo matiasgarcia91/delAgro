@@ -56,9 +56,10 @@ export default class CameraScreen extends PureComponent {
       } else {
         this.startTimer();
         this.setState({ recording: true, video: null });
-        const options = { quality: RNCamera.Constants.VideoQuality['720p'], maxDuration: 180 };
+        const options = { quality: RNCamera.Constants.VideoQuality['720p'], maxDuration: 60, mute: false };
         const data = await this.camera.recordAsync(options);
-        this.setState({ video: data.uri });
+        clearInterval(this.timer);
+        this.setState({ video: data.uri, recording: false, elapsed: null });
       }
     } else {
       this.setState({ video: null });
