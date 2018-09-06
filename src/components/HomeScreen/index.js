@@ -92,7 +92,7 @@ export default class Home extends Component {
               renderItem={this.renderItem}
               onViewableItemsChanged={this.onViewableItemsChanged}
               onEndReached={this.onListEnd}
-              onEndReachedThreshold={0}
+              onEndReachedThreshold={0.5}
               refreshing={refreshing}
               onRefresh={this.onRefresh}
             />}
