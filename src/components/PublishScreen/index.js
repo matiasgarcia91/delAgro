@@ -3,7 +3,7 @@ import { View, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
 import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
 import { ProcessingManager } from 'react-native-video-processing';
-import RNGRP from 'react-native-get-real-path';
+import LoadingBanner from '../LoadingBanner';
 
 import NavBarPublish from '../NavBarPublish';
 import styles from './styles';
@@ -18,6 +18,7 @@ class PublishScreen extends PureComponent {
       category: null,
       breed: null,
       state: null,
+      compressing: false,
     };
     this.onChangeBreed = this.onChangeBreed.bind(this);
     this.onChangeCategory = this.onChangeCategory.bind(this);
@@ -46,7 +47,7 @@ class PublishScreen extends PureComponent {
     const { quantity, price, weight, description } = values;
     const { navigation, submitLot } = this.props;
 
-    if (Platform.OS === 'android') {
+    /* if (Platform.OS === 'android') {
       submitLot({
         category_id: category.id,
         breed_id: breed.id,
@@ -57,7 +58,7 @@ class PublishScreen extends PureComponent {
         price,
         description,
       });
-    } else {
+    } else { */
       const options = {
         removeAudio: true,
         bitrateMultiplier: 3,
@@ -66,22 +67,28 @@ class PublishScreen extends PureComponent {
         height: 1280,
       };
 
+      this.setState({compressing: true});
+      console.log('Compresing');
       ProcessingManager.compress(navigation.state.params.video, options)
         .then((data) => {
           console.log(data);
+          this.setState({compressing: false});
           submitLot({
             category_id: category.id,
             breed_id: breed.id,
             state: state.id,
             quantity,
             weight,
-            video: data,
+            video: data.source,
             price,
             description,
           });
         })
-        .catch(error => console.log('Error', error));
-    }
+        .catch(error => {
+          console.log('Error', error);
+          this.setState({compressing: false});
+        });
+    // }
   }
 
   renderInput({
@@ -108,7 +115,7 @@ class PublishScreen extends PureComponent {
   }
 
   render() {
-    const { breed, category, state } = this.state;
+    const { breed, category, state, compressing } = this.state;
     const { categories, breeds, states, handleSubmit } = this.props;
     const mapStates = states.map(item => ({ id: item, name: item }));
     const unit = (category && category.unit) || '';
@@ -119,6 +126,7 @@ class PublishScreen extends PureComponent {
           submitLot={this.onSubmit}
           handleSubmit={handleSubmit}
         />
+        {compressing && <LoadingBanner title="Comprimiendo Video" />}
         <ScrollView>
           <View style={styles.formContainer}>
             <DropDown label={'Categoria:'} selected={category} values={categories} onChange={this.onChangeCategory} />
