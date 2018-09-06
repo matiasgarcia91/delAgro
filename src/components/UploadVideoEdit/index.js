@@ -246,7 +246,7 @@ export default class UploadVideoEdit extends Component {
               unselectedStyle={{ backgroundColor: Colors.darkGreen }}
               values={[start, end]}
               sliderLength={250}
-              onValuesChange={this.multiSliderValuesChange}
+              onValuesChangeFinish={this.multiSliderValuesChange}
               min={0}
               max={videoTime}
               step={1}
