@@ -20,21 +20,24 @@ const DetailsText = ({
   <View style={styles.container}>
     <View style={styles.textContainer}>
       <View style={styles.row} >
-        <Text style={styles.caption}>Cantidad:</Text><Text style={styles.text}>{quantity} {category.name}</Text>
+        <Text style={styles.caption}>Cantidad:</Text>
+        <Text style={styles.text}>{quantity} {category.name}</Text>
       </View>
       <View style={styles.row} >
-        <Text style={styles.caption}>Ubicación:</Text><Text style={styles.text}>{state}</Text>
+        <Text style={styles.caption}>Ubicación:</Text>
+        <Text style={styles.text}>{state}</Text>
       </View>
       <View style={styles.row} >
-        <Text style={styles.caption}>Raza:</Text><Text style={styles.text}>{breed.name}</Text>
+        <Text style={styles.caption}>Raza:</Text>
+        <Text style={styles.text}>{breed.name}</Text>
       </View>
       <View style={styles.row} >
-        <Text style={styles.caption}>Peso:</Text><Text style={styles.text}>{weight} kg</Text>
+        <Text style={styles.caption}>Peso:</Text>
+        <Text style={styles.text}>{weight} kg</Text>
       </View>
       <View style={styles.row} >
-        <Text style={styles.caption}>Comentarios:</Text><Text style={styles.text}>
-          {description}
-        </Text>
+        <Text style={styles.caption}>Comentarios:</Text>
+        <Text style={styles.text}>{description}</Text>
       </View>
     </View>
     <View style={styles.buttonsContainer}>

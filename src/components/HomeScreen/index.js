@@ -4,10 +4,11 @@ import PropTypes from 'prop-types';
 
 import NavBarHome from '../NavBarHome';
 import CardItem from '../CardItem';
+import LoadingBanner from '../LoadingBanner';
 
 import styles from './styles';
 
-const UploadBanner = () => (
+/* const UploadBanner = () => (
   <View style={styles.bar}>
     <View style={{ flex: 3, alignItems: 'center' }}>
       <Text style={styles.text}>Subiendo Publicación</Text>
@@ -16,7 +17,7 @@ const UploadBanner = () => (
       <ActivityIndicator size="small" color="#ff5000" />
     </View>
   </View>
-);
+); */
 
 export default class Home extends Component {
   constructor(props) {
@@ -83,7 +84,7 @@ export default class Home extends Component {
       <View style={{ flex: 1 }}>
         <NavBarHome navigation={navigation} />
         <View style={{ flex: 8 }}>
-          {uploading && <UploadBanner />}
+          {uploading && <LoadingBanner title="Subiendo Publicación" />}
           {list.length !== 0 &&
             <FlatList
               onScroll={this.onScrolled}

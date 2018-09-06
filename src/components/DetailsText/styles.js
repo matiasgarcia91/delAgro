@@ -32,6 +32,7 @@ export default StyleSheet.create({
   text: {
     fontSize: 15,
     marginLeft: 5,
+    flex: 1,
   },
   button: {
     width: 150,
