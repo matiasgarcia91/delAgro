@@ -1,0 +1,22 @@
+
+export default {
+  artigas: 'Artigas',
+  canelones: 'Canelones',
+  cerro_largo: 'Cerro Largo',
+  colonia: 'Colonia',
+  durazno: 'Durazno',
+  flores: 'Flores',
+  florida: 'Florida',
+  lavalleja: 'Lavalleja',
+  maldonado: 'Maldonado',
+  montevideo: 'Montevideo',
+  paysandu: 'Paysandu',
+  rio_negro: 'Rio Negro',
+  rivera: 'Rivera',
+  rocha: 'Rocha',
+  salto: 'Salto',
+  san_jose: 'San Jose',
+  soriano: 'Soriano',
+  tacuarembo: 'Tacuarembo',
+  treinta_y_tres: 'Treinta y Tres',
+};

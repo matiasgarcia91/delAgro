@@ -3,6 +3,8 @@ import { View, Text } from 'react-native';
 import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
 
+import stateTranslations from '../../helpers/stateTranslations';
+
 import styles from './styles';
 import FormInput from '../FormInput';
 import MainButton from '../MainButton';
@@ -22,7 +24,7 @@ class MyProfile extends PureComponent {
 
   componentWillMount() {
     const { initialValues: { state: stateName } } = this.props;
-    const state = { id: stateName, name: stateName };
+    const state = { id: stateName, name: stateTranslations[stateName] };
     this.setState({ state });
   }
 
@@ -51,7 +53,7 @@ class MyProfile extends PureComponent {
   render() {
     const { handleSubmit, states } = this.props;
     const { state } = this.state;
-    const mapStates = states.map(item => ({ id: item, name: item }));
+    const mapStates = states.map(item => ({ id: item, name: stateTranslations[item] }));
     return (
       <View style={{ flex: 1 }}>
         <NavBarBack navigation={this.props.navigation} title={'Mi Perfil'} />
