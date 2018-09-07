@@ -48,7 +48,11 @@ class LoginScreen extends PureComponent {
   );
 
   render() {
-    const { handleSubmit, pending } = this.props;
+    const { handleSubmit, pending, loginError } = this.props;
+    let error = null;
+    /* if(loginError && loginError.response && loginError.response.data && loginError.response.data.errors){
+      error = loginError.response.data.errors[0];
+    } */
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accesible={false}>
         <KeyboardAvoidingView behavior='padding' style={styles.container}>
@@ -84,6 +88,11 @@ class LoginScreen extends PureComponent {
               {pending && (
                 <View style={{ marginTop: 30 }}>
                   <ActivityIndicator size="large" color="#ff5000" />
+                </View>)
+              }
+              {error && (
+                <View style={{ marginTop: 30 }}>
+                  <Text style={{textAlign: 'center', color: 'red'}}>{error}</Text>
                 </View>)
               }
             </View>
