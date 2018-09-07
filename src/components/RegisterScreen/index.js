@@ -6,6 +6,8 @@ import { Field, reduxForm } from 'redux-form';
 import CheckBox from 'react-native-check-box';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+import stateTranslations from '../../helpers/stateTranslations';
+
 import styles from './styles';
 import Logo from '../Logo';
 import FormInput from '../FormInput';
@@ -92,7 +94,7 @@ class RegisterScreen extends Component {
   render() {
     const { handleSubmit, states, pending } = this.props;
     const { state, checkbox } = this.state;
-    const mapStates = states.map(item => ({ id: item, name: item }));
+    const mapStates = states.map(item => ({ id: item, name: stateTranslations[item] }));
     return (
       <KeyboardAvoidingView style={styles.container} behavior="padding">
         <ScrollView>
