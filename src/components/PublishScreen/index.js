@@ -72,7 +72,7 @@ class PublishScreen extends PureComponent {
     console.log('Compresing');
     ProcessingManager.compress(navigation.state.params.video, options)
       .then((data) => {
-        const video = Platform.OS === 'android' ? data.soure : data;
+        const video = Platform.OS === 'android' ? data.source : data;
         this.setState({ compressing: false });
         submitLot({
           category_id: category.id,
