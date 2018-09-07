@@ -6,14 +6,6 @@ import { NavigationActions } from 'react-navigation';
 import styles from './styles';
 
 export default class NavBarPublish extends PureComponent {
-
-  navigateBack = () => {
-    const navigateHome = NavigationActions.navigate({
-      routeName: 'HomeIn',
-    });
-    this.props.navigation.dispatch(navigateHome);
-  }
-
   onPressCancel = () => {
     Alert.alert(
       '',
@@ -22,8 +14,15 @@ export default class NavBarPublish extends PureComponent {
         { text: 'Aceptar', onPress: this.navigateBack },
         { text: 'Cancelar', onPress: () => null, style: 'cancel' },
       ],
-      { cancelable: true }
+      { cancelable: true },
     );
+  }
+
+  navigateBack = () => {
+    const navigateHome = NavigationActions.navigate({
+      routeName: 'HomeIn',
+    });
+    this.props.navigation.dispatch(navigateHome);
   }
 
   render() {

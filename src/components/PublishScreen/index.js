@@ -60,35 +60,35 @@ class PublishScreen extends PureComponent {
         description,
       });
     } else { */
-      const options = {
-        removeAudio: true,
-        bitrateMultiplier: 3,
-        minimumBitrate: 3000,
-        width: 720,
-        height: 1280,
-      };
+    const options = {
+      removeAudio: true,
+      bitrateMultiplier: 3,
+      minimumBitrate: 3000,
+      width: 720,
+      height: 1280,
+    };
 
-      this.setState({compressing: true});
-      console.log('Compresing');
-      ProcessingManager.compress(navigation.state.params.video, options)
-        .then((data) => {
-          console.log(data);
-          this.setState({compressing: false});
-          submitLot({
-            category_id: category.id,
-            breed_id: breed.id,
-            state: state.id,
-            quantity,
-            weight,
-            video: data.source,
-            price,
-            description,
-          });
-        })
-        .catch(error => {
-          console.log('Error', error);
-          this.setState({compressing: false});
+    this.setState({ compressing: true });
+    console.log('Compresing');
+    ProcessingManager.compress(navigation.state.params.video, options)
+      .then((data) => {
+        const video = Platform.OS === 'android' ? data.soure : data;
+        this.setState({ compressing: false });
+        submitLot({
+          category_id: category.id,
+          breed_id: breed.id,
+          state: state.id,
+          quantity,
+          weight,
+          video,
+          price,
+          description,
         });
+      })
+      .catch((error) => {
+        console.log('Error', error);
+        this.setState({ compressing: false });
+      });
     // }
   }
 
