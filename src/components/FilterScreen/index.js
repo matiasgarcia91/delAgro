@@ -6,6 +6,7 @@ import styles from './styles';
 import DropDown from '../DropDown';
 import MainButton from '../MainButton';
 import NavBarBack from '../NavBarBack';
+import stateTranslations from '../../helpers/stateTranslations';
 
 import { weights1 } from './constants';
 
@@ -81,7 +82,7 @@ export default class FilterScreen extends PureComponent {
     const mapWeightsMax = mapWeights.filter(w => !weightMin || w.name >= weightMin.name);
     console.log(mapWeights);
     console.log(mapWeightsMax);
-    const mapStates = states.map(item => ({ id: item, name: item }));
+    const mapStates = states.map(item => ({ id: item, name: stateTranslations[item] }));
     const disabled = breed || category || weightMin || weightMax || state;
     return (
       <View style={{ flex: 1 }}>

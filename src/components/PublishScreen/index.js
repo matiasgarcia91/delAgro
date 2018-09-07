@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
 import { ProcessingManager } from 'react-native-video-processing';
 import LoadingBanner from '../LoadingBanner';
+import stateTranslations from '../../helpers/stateTranslations';
 
 import NavBarPublish from '../NavBarPublish';
 import styles from './styles';
@@ -117,7 +118,7 @@ class PublishScreen extends PureComponent {
   render() {
     const { breed, category, state, compressing } = this.state;
     const { categories, breeds, states, handleSubmit } = this.props;
-    const mapStates = states.map(item => ({ id: item, name: item }));
+    const mapStates = states.map(item => ({ id: item, name: stateTranslations[item] }));
     const unit = (category && category.unit) || '';
     return (
       <KeyboardAvoidingView style={styles.container} behavior="padding">
