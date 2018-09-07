@@ -44,10 +44,10 @@ export default class FilterScreen extends PureComponent {
   }
 
   onChangeWeightMin(value, index, data) {
-    const {weightMax} = this.state;
+    const { weightMax } = this.state;
     const weightMin = data.find(item => item.id === value);
-    if( weightMax && weightMin.name > weightMax.name){
-      this.setState({weightMax: null});
+    if (weightMax && weightMin.name > weightMax.name) {
+      this.setState({ weightMax: null });
     }
     this.setState({ weightMin });
   }
@@ -80,8 +80,6 @@ export default class FilterScreen extends PureComponent {
     const { breed, category, weightMin, weightMax, state } = this.state;
     const mapWeights = weights1.map(item => ({ id: item, name: item }));
     const mapWeightsMax = mapWeights.filter(w => !weightMin || w.name >= weightMin.name);
-    console.log(mapWeights);
-    console.log(mapWeightsMax);
     const mapStates = states.map(item => ({ id: item, name: stateTranslations[item] }));
     const disabled = breed || category || weightMin || weightMax || state;
     return (
@@ -102,14 +100,13 @@ export default class FilterScreen extends PureComponent {
                   double
                 />
                 <Text style={styles.priceText}> y </Text>
-                <View style={{ paddingTop: 10 }}>
-                  <DropDown
-                    selected={weightMax}
-                    values={mapWeightsMax}
-                    onChange={this.onChangeWeightMax}
-                    double
-                  />
-                </View>
+                <DropDown
+                  label={' '}
+                  selected={weightMax}
+                  values={mapWeightsMax}
+                  onChange={this.onChangeWeightMax}
+                  double
+                />
               </View>
               <DropDown label={'Departamento:'} selected={state} values={mapStates} onChange={this.onChangeState} />
               <MainButton onPress={this.onSubmit} title={'FILTRAR'} style={styles.bigButton} disabled={!disabled} />
