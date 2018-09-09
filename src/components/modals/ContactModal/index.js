@@ -8,6 +8,15 @@ import MainButton from '../../MainButton';
 
 import styles from './styles';
 
+// Clients are adding location information on the same field as last_name. This helper
+// function splits that info for better presentation. Will be useless if clients
+// change the format in which they add this info.
+function splitLastName(lname) {
+  const nameAndZone = lname.split('(');
+  const zone = nameAndZone[1] && `(${nameAndZone[1]}`;
+  return { lname: nameAndZone[0], zone };
+}
+
 export default class ContactModal extends PureComponent {
   constructor(props) {
     super(props);
@@ -21,18 +30,24 @@ export default class ContactModal extends PureComponent {
   };
 
   renderContacts() {
-    return this.props.contacts.map(contact => (
-      <TouchableOpacity
-        style={{ flex: 1 }}
-        onPress={() => call({ number: contact.phone, prompt: false })}
-        key={contact.phone}
-      >
-        <View>
-          <Text style={styles.title}>{`${contact.first_name} ${contact.last_name}`}</Text>
-          <Text style={styles.title}>{contact.phone}</Text>
-        </View>
-      </TouchableOpacity>
-    ));
+    const { contacts } = this.props;
+    const sortedContacts = contacts.sort((a, b) => b.last_name.length - a.last_name.length);
+    return sortedContacts.map((contact) => {
+      const { lname, zone } = splitLastName(contact.last_name); // Temporary necessary
+      return (
+        <TouchableOpacity
+          style={{ flex: 1 }}
+          onPress={() => call({ number: contact.phone, prompt: false })}
+          key={contact.phone}
+        >
+          <View style={styles.contactItem}>
+            <Text>{`${contact.first_name} ${lname}`}</Text>
+            {zone && <Text style={{ textAlign: 'center' }}>{zone}</Text>}
+            <Text style={styles.phone}>{contact.phone}</Text>
+          </View>
+        </TouchableOpacity>
+      );
+    });
   }
 
   render() {
@@ -40,21 +55,20 @@ export default class ContactModal extends PureComponent {
     return (
       <Modal isVisible={this.props.isVisible}>
         <View style={styles.container}>
-          <View style={{ flex: 1 }}>
-            <Text style={styles.sideButtons}>Llamanos</Text>
+          <View style={{ flex: 0.2, marginBottom: 5 }}>
+            <Text style={styles.greenText}>Llamanos</Text>
           </View>
 
-          {contactList}
-
-          <View style={{ flex: 1 }}>
-            <Text style={styles.sideButtons}>o escribinos un mail</Text>
+          <View style={{ flex: 3 }}>
+            {contactList}
           </View>
 
-          <TouchableOpacity style={{ flex: 1 }} onPress={() => this.handleEmail()}>
-            <Text style={styles.title}>info@delagro.com.uy</Text>
+          <TouchableOpacity style={{ flex: 0.7 }} onPress={() => this.handleEmail()}>
+            <Text style={styles.greenText}>o escribinos un mail</Text>
+            <Text style={styles.mail}>info@delagro.com.uy</Text>
           </TouchableOpacity>
 
-          <View style={{ marginTop: 20 }}>
+          <View style={{ marginTop: 8 }}>
             <MainButton onPress={this.props.toggleModal} title={'Cerrar'} />
           </View>
         </View>
