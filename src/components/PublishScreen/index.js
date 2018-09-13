@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { View, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
+import { View, ScrollView, KeyboardAvoidingView, Platform, Keyboard } from 'react-native';
 import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
 import { ProcessingManager } from 'react-native-video-processing';
@@ -20,13 +20,37 @@ class PublishScreen extends PureComponent {
       breed: null,
       state: null,
       compressing: false,
+      keyboardPadding: 0,
     };
     this.onChangeBreed = this.onChangeBreed.bind(this);
     this.onChangeCategory = this.onChangeCategory.bind(this);
     this.onChangeState = this.onChangeState.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.renderInput = this.renderInput.bind(this);
+    this.keyboardDidShowListener = null;
+    this.keyboardDidHideListener = null;
   }
+
+  componentDidMount() {
+    this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this._keyboardDidShow.bind(this));
+    this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this._keyboardDidHide.bind(this));
+  }
+
+  componentWillUnmount() {
+    this.keyboardDidShowListener ? this.keyboardDidShowListener.remove() : null;
+    this.keyboardDidHideListener ? this.keyboardDidHideListener.remove() : null;
+  }
+
+  _keyboardDidShow(e) {
+    if(Platform.OS === 'android'){
+      this.setState({ keyboardPadding: e.endCoordinates.height  });
+    }
+  }
+
+  _keyboardDidHide() {
+    this.setState({ keyboardPadding: 0 });
+  }
+
   onChangeCategory(value, index, data) {
     const category = data.find(item => item.id === value);
     this.setState({ category });
@@ -116,19 +140,19 @@ class PublishScreen extends PureComponent {
   }
 
   render() {
-    const { breed, category, state, compressing } = this.state;
+    const { breed, category, state, compressing, keyboardPadding } = this.state;
     const { categories, breeds, states, handleSubmit } = this.props;
     const mapStates = states.map(item => ({ id: item, name: stateTranslations[item] }));
     const unit = (category && category.unit) || '';
     return (
-      <KeyboardAvoidingView style={styles.container} behavior="padding">
+      <KeyboardAvoidingView style={styles.container} behavior={Platform.OS === 'ios' ? "padding" : null}>
         <NavBarPublish
           navigation={this.props.navigation}
           submitLot={this.onSubmit}
           handleSubmit={handleSubmit}
         />
         {compressing && <LoadingBanner title="Comprimiendo Video" />}
-        <ScrollView>
+        <ScrollView contentContainerStyle={{ paddingBottom: keyboardPadding }} >
           <View style={styles.formContainer}>
             <DropDown label={'Categoria:'} selected={category} values={categories} onChange={this.onChangeCategory} />
             <Field

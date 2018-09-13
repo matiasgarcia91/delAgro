@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-native-modal';
-import { View, TouchableOpacity, Text } from 'react-native';
+import { View, TouchableOpacity, Text, ScrollView } from 'react-native';
 import call from 'react-native-phone-call';
 import email from 'react-native-email';
 import MainButton from '../../MainButton';
@@ -60,7 +60,9 @@ export default class ContactModal extends PureComponent {
           </View>
 
           <View style={{ flex: 3 }}>
-            {contactList}
+            <ScrollView style={{ flex: 1 }}>
+              {contactList}
+            </ScrollView>
           </View>
 
           <TouchableOpacity style={{ flex: 0.7 }} onPress={() => this.handleEmail()}>
