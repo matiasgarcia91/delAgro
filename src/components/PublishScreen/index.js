@@ -42,8 +42,8 @@ class PublishScreen extends PureComponent {
   }
 
   _keyboardDidShow(e) {
-    if(Platform.OS === 'android'){
-      this.setState({ keyboardPadding: e.endCoordinates.height  });
+    if (Platform.OS === 'android') {
+      this.setState({ keyboardPadding: e.endCoordinates.height });
     }
   }
 
@@ -72,28 +72,13 @@ class PublishScreen extends PureComponent {
     const { quantity, price, weight, description } = values;
     const { navigation, submitLot } = this.props;
 
-    /* if (Platform.OS === 'android') {
-      submitLot({
-        category_id: category.id,
-        breed_id: breed.id,
-        state: state.id,
-        quantity,
-        weight,
-        video: navigation.state.params.video,
-        price,
-        description,
-      });
-    } else { */
     const options = {
       removeAudio: true,
       bitrateMultiplier: 3,
       minimumBitrate: 3000,
-      width: 720,
-      height: 1280,
     };
 
     this.setState({ compressing: true });
-    console.log('Compresing');
     ProcessingManager.compress(navigation.state.params.video, options)
       .then((data) => {
         const video = Platform.OS === 'android' ? data.source : data;
@@ -145,7 +130,7 @@ class PublishScreen extends PureComponent {
     const mapStates = states.map(item => ({ id: item, name: stateTranslations[item] }));
     const unit = (category && category.unit) || '';
     return (
-      <KeyboardAvoidingView style={styles.container} behavior={Platform.OS === 'ios' ? "padding" : null}>
+      <KeyboardAvoidingView style={styles.container} behavior={Platform.OS === 'ios' ? 'padding' : null}>
         <NavBarPublish
           navigation={this.props.navigation}
           submitLot={this.onSubmit}

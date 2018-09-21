@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Video from 'react-native-video';
-import { VideoPlayer as VPlayer, Trimmer } from 'react-native-video-processing';
 import PropTypes from 'prop-types';
 import { View, TouchableOpacity, ActivityIndicator, Image } from 'react-native';
 import ElevatedView from 'react-native-elevated-view';
