@@ -55,31 +55,27 @@ export default class TermsModal extends PureComponent {
 
             <Text>Art. 22 .La compra solo podrá realizarse a estableciendo un contacto con personal de  Delagro a través de la aplicación o de e- mail.</Text>
 
-            <Text style={styles.sideButtons}>  Título IV Beneficios de los usuarios de la aplicación</Text>
+            <Text style={styles.sideButtons}>  Título IV  Beneficios de los usuarios de la aplicación</Text>
 
-            <Text>Art. 23 .Beneficios de los vendedores. Los vendedores tendrán una bonificación consistente en 1 dólar por animal vendido a través de la aplicación.</Text>
+            <Text>Art. 23 .Beneficios para vendedores y compradores. La bonificación consistente en 1 dólar por animal vendido y/o comprado a través de la aplicación.</Text>
 
-            <Text>Art. 24 .Dicho beneficio es acumulativo y solo podrá hacerse efectivo cuando se llegue a un monto acumulado de 200 dólares o sea el equivalente de 200 animales vendidos. Este beneficio podrá descontarse de las comisiones de futuras ventas en la aplicación.</Text>
+            <Text>Art. 24 .Dicho beneficio es acumulativo y solo podrá hacerse efectivo cuando se llegue a un monto acumulado de 200 dólares o sea el equivalente de 200 animales vendidos y/o comprados. Este beneficio podrá descontarse de las comisiones de futuras ventas y/o compras en la aplicación..</Text>
 
-            <Text>
-              {`Art. 25 .Beneficio de los compradores. El beneficio acumulado de las ventas  se duplica cuando el mismo vendedor realiza una compra en Delagro o en la aplicación. Dicho beneficio se descuenta de la comisión correspondiente a la compra. Como ejemplo si un vendedor ha acumulado 200 dólares por concepto de la venta de 200 animales, si concreta una compra en Delagro esos 200 dólares iniciales de beneficio, se convierten en 400 dólares a descontar de la comisión de la compra.`}
-            </Text>
+            <Text>Art. 25 .DELAGRO llevara una cuenta corriente de los beneficios acumulados y utilizados por cada cliente.</Text>
 
-            <Text>Art. 26 .Delagro llevara una cuenta corriente de los beneficios acumulados y utilizados por cada cliente.</Text>
+            <Text>Art. 26 .Los montos acumulados no son trasferibles ni reembolsables y solo pueden ser utilizados por quien lo generó.</Text>
 
-            <Text>Art. 27 .Los montos acumulados no son trasferibles ni reembolsables y solo pueden ser utilizados por quien lo generó.</Text>
-
-            <Text>Art. 28 .DELAGRO puede eventualmente ponerse en contacto con los  clientes de la aplicación con el objeto de informarles sobre productos y servicios relacionados que puedan interesarle</Text>
+            <Text>Art. 27 .DELAGRO puede eventualmente ponerse en contacto con los  clientes de la aplicación con el objeto de informarles sobre productos y servicios relacionados que puedan interesarle.</Text>
 
             <View style = {styles.titleContainer}>
-            <Text style={styles.sideButtons}> Título V De las responsabilidades</Text>
+            <Text style={styles.sideButtons}> Título V  De las responsabilidades</Text>
             </View>
-            <Text>Art. 29 .El que publica un lote se hace responsable de la veracidad de la información.</Text>
-            <Text>Art. 30 .En caso de duda Delagro se reserva de revisar el lote y condicionar la venta hasta la verificación de la información.</Text>
+            <Text>Art. 28 .El que publica un lote se hace responsable de la veracidad de la información.</Text>
+            <Text>Art. 29 .En caso de duda Delagro se reserva de revisar el lote y condicionar la venta hasta la verificación de la información.</Text>
 
-            <Text>Art. 31 .Se excluye todo derecho del Cliente a ser indemnizado por daños y perjuicios por Delagro y/o sus empleados, siempre que tales daños no se deban a un comportamiento premeditado o de negligencia grave.</Text>
+            <Text>Art. 30 .Se excluye todo derecho del Cliente a ser indemnizado por daños y perjuicios por Delagro y/o sus empleados, siempre que tales daños no se deban a un comportamiento premeditado o de negligencia grave.</Text>
 
-            <Text>Art. 32 .Las condiciones establecidas en este reglamento,  podrán ser modificadas con previo aviso.</Text>
+            <Text>Art. 31 .Las condiciones establecidas en este reglamento,  podrán ser modificadas con previo aviso.</Text>
 
           </ScrollView>
           <View style={{ marginTop: 20 }}>
