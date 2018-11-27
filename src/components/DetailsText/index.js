@@ -36,10 +36,8 @@ const DetailsText = ({
         <Text style={styles.caption}>Peso:</Text>
         <Text style={styles.text}>{weight} kg</Text>
       </View>
-      <View style={styles.row} >
-        <Text style={styles.caption}>Comentarios:</Text>
-        <Text style={styles.text}>{description}</Text>
-      </View>
+      <Text style={styles.caption}>Comentarios:</Text>
+      <Text style={styles.text}>{description}</Text>
     </View>
     <View style={styles.buttonsContainer}>
       <MainButton onPress={toggleModal} title={'Contactar'} style={styles.button} />
