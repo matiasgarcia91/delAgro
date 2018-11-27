@@ -96,7 +96,7 @@ class RegisterScreen extends Component {
     const { state, checkbox } = this.state;
     const mapStates = states.map(item => ({ id: item, name: stateTranslations[item] }));
     return (
-      <KeyboardAvoidingView style={styles.container} behavior="padding">
+      <KeyboardAvoidingView style={styles.container}>
         <ScrollView>
           <TouchableOpacity style={styles.icon} onPress={this.navigateBack}>
             <View style={styles.icon}>

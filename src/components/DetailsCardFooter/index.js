@@ -13,7 +13,7 @@ export default class DetailsCardFooter extends PureComponent {
       <View style={styles.container}>
         <View style={styles.textContainer}>
           <Text style={styles.countText}>{quantity} {category.name}</Text>
-          <Text style={styles.priceText}>${price} {unit}</Text>
+          <Text style={styles.priceText}>US${price} {unit}</Text>
         </View>
       </View>
     );
