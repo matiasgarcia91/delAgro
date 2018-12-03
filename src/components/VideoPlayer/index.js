@@ -5,6 +5,7 @@ import { View, TouchableOpacity, ActivityIndicator, Image } from 'react-native';
 import ElevatedView from 'react-native-elevated-view';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import vendido from '../../assets/images/vendido.png';
+import reservado from '../../assets/images/reservado.png';
 
 import styles from './styles';
 import { colors } from '../../styles';
@@ -55,6 +56,9 @@ export default class VideoPlayer extends Component {
         }
         {status && status === 'sold' && <ElevatedView elevation={1} style={{ position: 'absolute', width: '100%', height: '100%', backgroundColor: colors.transparent }}>
           <Image source={vendido} style={{ width: '100%', height: '100%' }} resizeMode='contain' />
+        </ElevatedView>}
+        {status && status === 'reserved' && <ElevatedView elevation={1} style={{ position: 'absolute', width: '100%', height: '100%', backgroundColor: colors.transparent }}>
+          <Image source={reservado} style={{ width: '100%', height: '100%' }} resizeMode='contain' />
         </ElevatedView>}
         <View style={styles.iconContainer}>
           { paused ?
