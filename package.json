@@ -12,7 +12,7 @@
     "axios": "^0.18.0",
     "prop-types": "^15.6.0",
     "react": "16.2.0",
-    "react-native": "0.53.0",
+    "react-native": "0.55.4",
     "react-native-camera": "^1.0.1",
     "react-native-check-box": "^2.1.0",
     "react-native-easy-toast": "^1.1.0",

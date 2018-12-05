@@ -32,7 +32,7 @@
 	<key>NSCameraUsageDescription</key>
 	<string>$(PRODUCT_NAME) desea acceder a tu cámara para poder publicar un lote.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-  	<string>Your location is require</string>
+	<string>Your location is require</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Your location is require</string>
 	<key>NSMicrophoneUsageDescription</key>
