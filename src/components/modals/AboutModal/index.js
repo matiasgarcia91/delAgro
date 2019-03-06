@@ -1,9 +1,10 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-native-modal';
-import { View, Text, ScrollView } from 'react-native';
+import { View, Text, ScrollView, Image } from 'react-native';
 
 import MainButton from '../../MainButton';
+import beneficios_economicos from '../../../assets/images/beneficios_economicos.png';
 
 import styles from './style';
 
@@ -16,7 +17,7 @@ import styles from './style';
 export default class AboutModal extends PureComponent {
   render() {
     return (
-      <Modal isVisible={this.props.isVisible}>
+      <Modal isVisible={this.props.isVisible} style={{ margin: 0 }}>
         <View style={styles.container}>
           <Text />
           <Text style={[styles.sideButtons, { marginBottom: 10 }]}>ACERCA DE MUUU</Text>
@@ -30,6 +31,12 @@ export default class AboutModal extends PureComponent {
             <Text>Con <Text style={{ fontWeight: 'bold', color: 'orange' }} >Muuu</Text>, <Text style={{ fontWeight: 'bold', color: 'green' }}>DelAgro&Cia</Text> lidera la innovación en la comercialización de ganado y lleva esta excelente herramienta a todos los productores.</Text>
             <Text />
             <Text>¡Llámenos y lo ayudamos a registrarse!</Text>
+
+            <Image
+              style={styles.imageContainer}
+              source={beneficios_economicos}
+              resizeMode="contain"
+            />
           </ScrollView>
           <View style={{ marginTop: 20 }}>
             <MainButton onPress={this.props.toggleModal} title={'Cerrar'} />

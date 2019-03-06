@@ -27,4 +27,10 @@ export default StyleSheet.create({
     borderColor: 'black',
     margin: 10,
   },
+  imageContainer: {
+    justifyContent: 'center',
+    alignSelf: 'center',
+    // height: 120,
+    width: 190,
+  },
 });
