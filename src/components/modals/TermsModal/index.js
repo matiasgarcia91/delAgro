@@ -1,9 +1,10 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-native-modal';
-import { View, Text, ScrollView } from 'react-native';
+import { View, Text, ScrollView, Image } from 'react-native';
 
 import MainButton from '../../MainButton';
+import beneficios_economicos from '../../../assets/images/beneficios_economicos.png';
 
 import styles from './styles';
 
@@ -17,7 +18,7 @@ import styles from './styles';
 export default class TermsModal extends PureComponent {
   render() {
     return (
-      <Modal isVisible={this.props.isVisible}>
+      <Modal isVisible={this.props.isVisible} style={{ margin: 0 }}>
         <View style={styles.container}>
           <Text style={[styles.sideButtons, { marginBottom: 10 }]}>Términos y Condiciones</Text>
           <ScrollView>
@@ -61,6 +62,11 @@ export default class TermsModal extends PureComponent {
             </View>
             <Text>  Art. 23. Beneficios para vendedores y compradores. La bonificación consistente entre 1 a 5 dólares por animal vendido y/o comprado a través de la aplicación, según la escala que se muestra en el Art. 24</Text>
             <Text>  Art. 24. Dicho beneficio es acumulativo y podrá hacerse efectivo cuando el productor lo desee. Una vez que hace efectivo el cobro de la bonificación, vuelve a cero la cantidad de animales comercializados. Este beneficio podrá descontarse de las comisiones, de futuras ventas y/o compras en la aplicación.</Text>
+            <Image
+              style={styles.imageContainer}
+              source={beneficios_economicos}
+              resizeMode="contain"
+            />
             <Text>  Art. 25. DELAGRO llevara una cuenta corriente de los beneficios acumulados y utilizados por cada cliente.</Text>
             <Text>  Art. 26. Los montos acumulados no son trasferibles ni reembolsables y solo pueden ser utilizados por quien lo generó.</Text>
             <Text>  Art. 27. DELAGRO puede eventualmente ponerse en contacto con los clientes de la aplicación con el objeto de informarles sobre productos y servicios relacionados que puedan interesarle</Text>
