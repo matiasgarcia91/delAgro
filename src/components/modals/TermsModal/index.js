@@ -39,8 +39,7 @@ export default class TermsModal extends PureComponent {
             <Text>  Art. 12. Los gastos totales para los vendedores y compradores serán de 3% del monto de la transacción más IVA para cada una de las partes.</Text>
 
             <View style={styles.titleContainer}>
-              <Text style={styles.sideButtons}>  Título II
- Del registro en la aplicación</Text>
+              <Text style={styles.sideButtons}>  Título II Del registro en la aplicación</Text>
             </View>
             <Text>  Art. 13. Para poder vender es imprescindible registrarse en la misma. El registro será completamente gratuito, y no generará ningún compromiso con ninguna de las partes.</Text>
             <Text>  Art. 14. Para registrarse en la aplicación deberán generar un número de usuario y contraseña y completar los siguientes datos: Nombre y apellido, correo electrónico, contraseña, fecha de nacimiento, teléfono móvil, y departamento</Text>
@@ -49,16 +48,16 @@ export default class TermsModal extends PureComponent {
             <Text>  Art. 17. El cliente deberá asegurarse de no divulgar la información de seguridad para el ingreso al sitio, ya que será responsable de todas las ofertas realizadas.</Text>
             <Text>  Art. 18. Se podrá ofrecer, como como mínimo la cantidad de 30 animales por lote, con un margen de tolerancia del 10%.</Text>
             <Text>  Art. 19. Pesada de animales: Los animales se pesaran en balanzas oficiales con la siguiente escala en su destare: Distancia a balanza: 1-70 km: 6% 71-150 km: 5% 151 km en adelante: 4% </Text>
+
             <View style={styles.titleContainer}>
-              <Text style={styles.sideButtons}> Título III
- De la compra en  la aplicación</Text>
+              <Text style={styles.sideButtons}> Título III De la compra en  la aplicación</Text>
             </View>
             <Text>  Art. 20. Para comprar a través de la aplicación no es necesario estar registrado. Solo basta con haber instalado la aplicación en su celular.</Text>
             <Text>  Art. 21. Todo el que tenga la aplicación en su celular recibirá una comunicación a través de la misma, cada vez que un nuevo lote se sube a la venta.</Text>
             <Text>  Art. 22. La compra solo podrá realizarse a estableciendo un contacto con personal de Delagro a través de la aplicación o de e- mail.</Text>
+
             <View style={styles.titleContainer} >
-              <Text style={styles.sideButtons}>  Título IV
-              Beneficios de los usuarios de la aplicación</Text>
+              <Text style={styles.sideButtons}>  Título IV Beneficios de los usuarios de la aplicación</Text>
             </View>
             <Text>  Art. 23. Beneficios para vendedores y compradores. La bonificación consistente entre 1 a 5 dólares por animal vendido y/o comprado a través de la aplicación, según la escala que se muestra en el Art. 24</Text>
             <Text>  Art. 24. Dicho beneficio es acumulativo y podrá hacerse efectivo cuando el productor lo desee. Una vez que hace efectivo el cobro de la bonificación, vuelve a cero la cantidad de animales comercializados. Este beneficio podrá descontarse de las comisiones, de futuras ventas y/o compras en la aplicación.</Text>
@@ -70,9 +69,9 @@ export default class TermsModal extends PureComponent {
             <Text>  Art. 25. DELAGRO llevara una cuenta corriente de los beneficios acumulados y utilizados por cada cliente.</Text>
             <Text>  Art. 26. Los montos acumulados no son trasferibles ni reembolsables y solo pueden ser utilizados por quien lo generó.</Text>
             <Text>  Art. 27. DELAGRO puede eventualmente ponerse en contacto con los clientes de la aplicación con el objeto de informarles sobre productos y servicios relacionados que puedan interesarle</Text>
+
             <View style={styles.titleContainer}>
-              <Text style={styles.sideButtons}> Título V
-De las responsabilidades</Text>
+              <Text style={styles.sideButtons}> Título V De las responsabilidades</Text>
             </View>
             <Text>  Art. 28. El que publica un lote se hace responsable de la veracidad de la información.</Text>
             <Text>  Art. 29. En caso de duda Delagro se reserva de revisar el lote y condicionar la venta hasta la verificación de la información.</Text>
