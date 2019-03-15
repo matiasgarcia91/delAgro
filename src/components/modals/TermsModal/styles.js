@@ -17,6 +17,7 @@ export default StyleSheet.create({
     color: '#2C5D3D',
     fontSize: 18,
     fontWeight: 'bold',
+    textAlign: 'center',
   },
   titleContainer: {
     marginTop: 15,
