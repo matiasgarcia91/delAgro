@@ -31,6 +31,6 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignSelf: 'center',
     // height: 120,
-    width: 220,
+    width: '100%',
   },
 });
