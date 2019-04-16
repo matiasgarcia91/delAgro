@@ -6,6 +6,7 @@ import NavBarBack from '../../components/NavBarBack';
 import CardItem from '../CardItem';
 import DetailsText from '../DetailsText';
 import ContactModal from '../../containers/ContactModal';
+import FullScreenVideo from '../VideoPlayer/FullScreenVideo';
 
 export default class DetailsScreen extends PureComponent {
   constructor(props) {
@@ -21,15 +22,19 @@ export default class DetailsScreen extends PureComponent {
     this.setState({ modalVisble: !modalVisble });
   }
   render() {
-    const { selected, breed } = this.props;
+    const { selected, breed, navigation } = this.props;
+    const { params } = navigation.state;
+    const landscape = params ? params.fullScreen : false;
+    const videoFullScreen = params && params.videofs ? params.videofs : false;
     const { modalVisble } = this.state;
     return (
       <View style={{ flex: 1 }}>
         <ContactModal isVisible={modalVisble} toggleModal={this.toggleModal} />
-        <NavBarBack navigation={this.props.navigation} title={'Detalles'} />
+        { !videoFullScreen && <NavBarBack navigation={this.props.navigation} title={'Detalles'} /> }
+        { videoFullScreen && <FullScreenVideo uri={videoFullScreen} navigation={navigation} /> }
         <View style={{ flex: 8 }}>
           <ScrollView>
-            <CardItem lot={selected} details />
+            <CardItem lot={selected} details navigation={navigation} />
             <DetailsText
               lot={selected}
               breed={breed}

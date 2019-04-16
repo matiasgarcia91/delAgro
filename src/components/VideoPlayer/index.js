@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Video from 'react-native-video';
 import PropTypes from 'prop-types';
-import { View, TouchableOpacity, ActivityIndicator, Image } from 'react-native';
+import { View, TouchableOpacity, ActivityIndicator, Text, Image } from 'react-native';
 import ElevatedView from 'react-native-elevated-view';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import vendido from '../../assets/images/vendido.png';
@@ -9,6 +9,7 @@ import reservado from '../../assets/images/reservado.png';
 
 import styles from './styles';
 import { colors } from '../../styles';
+
 
 
 export default class VideoPlayer extends Component {
@@ -23,6 +24,7 @@ export default class VideoPlayer extends Component {
     this.onPress = this.onPress.bind(this);
   }
 
+
   componentWillReceiveProps() {
     const { id, visibleItems } = this.props;
     if (!this.state.paused && !visibleItems.includes(id)) {
@@ -34,6 +36,7 @@ export default class VideoPlayer extends Component {
     this.setState({ paused: !this.state.paused, active: !this.state.active });
   }
 
+
   render() {
     const { paused, active } = this.state;
     const { uri, thumbnail, noThumbnail, status } = this.props;
@@ -44,6 +47,9 @@ export default class VideoPlayer extends Component {
           <View style={styles.backgroundVideo}>
             <Video
               source={{ uri }}
+              ref={(ref) => {
+                this.player = ref;
+              }}
               resizeMode='cover'
               repeat
               muted
@@ -51,6 +57,7 @@ export default class VideoPlayer extends Component {
               style={{ flex: 1 }}
               onProgress={({ currentTime }) => { this.currentTime = currentTime; }}
             />
+
           </View> :
           <Image style={styles.backgroundVideo} source={{ uri: thumbnail }} />
         }
