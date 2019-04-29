@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import Orientation from 'react-native-orientation';
-import { View, StatusBar, Text, BackHandler, TouchableOpacity } from 'react-native';
+import { View, StatusBar, BackHandler, TouchableOpacity } from 'react-native';
 import Video from 'react-native-video';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import Events from '../../utils/events';
 
 const styles = {
   fullScreen: {
@@ -57,12 +58,13 @@ export default class FullScreenVideo extends Component {
     if (verticalScreen) {
       StatusBar.setHidden(true);
       Orientation.lockToLandscapeLeft();
+      Events.publish('FullScreenEvent');
     } else {
       const { navigation } = this.props;
       navigation.setParams({ videofs: false });
       StatusBar.setHidden(false);
       Orientation.lockToPortrait();
-
+      Events.publish('FullScreenEvent');
     }
     this.setState({ verticalScreen: !verticalScreen });
   };
