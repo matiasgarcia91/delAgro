@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { NavigationActions } from 'react-navigation';
 import { Field, reduxForm } from 'redux-form';
 import Icon from 'react-native-vector-icons/FontAwesome';
-
+import Orientation from 'react-native-orientation';
 import FormInput from '../FormInput';
 import MainButton from '../MainButton';
 import Logo from '../Logo';
@@ -15,6 +15,10 @@ class LoginScreen extends PureComponent {
   constructor(props) {
     super(props);
     this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    Orientation.lockToPortrait();
   }
 
   onSubmit(values) {
@@ -49,7 +53,7 @@ class LoginScreen extends PureComponent {
 
   render() {
     const { handleSubmit, pending, loginError } = this.props;
-    let error = null;
+    const error = null;
     /* if(loginError && loginError.response && loginError.response.data && loginError.response.data.errors){
       error = loginError.response.data.errors[0];
     } */
@@ -92,7 +96,7 @@ class LoginScreen extends PureComponent {
               }
               {error && (
                 <View style={{ marginTop: 30 }}>
-                  <Text style={{textAlign: 'center', color: 'red'}}>{error}</Text>
+                  <Text style={{ textAlign: 'center', color: 'red' }}>{error}</Text>
                 </View>)
               }
             </View>

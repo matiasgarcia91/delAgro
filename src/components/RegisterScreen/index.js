@@ -5,7 +5,7 @@ import { NavigationActions } from 'react-navigation';
 import { Field, reduxForm } from 'redux-form';
 import CheckBox from 'react-native-check-box';
 import Icon from 'react-native-vector-icons/FontAwesome';
-
+import Orientation from 'react-native-orientation';
 import stateTranslations from '../../helpers/stateTranslations';
 
 import styles from './styles';
@@ -28,6 +28,10 @@ class RegisterScreen extends Component {
     this.onSubmit = this.onSubmit.bind(this);
     this.onChangeCheckbox = this.onChangeCheckbox.bind(this);
     this.navigateBack = this.navigateBack.bind(this);
+  }
+
+  componentDidMount() {
+    Orientation.lockToPortrait();
   }
 
   onChangeState(value, index, data) {
