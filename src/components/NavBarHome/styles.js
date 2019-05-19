@@ -14,7 +14,7 @@ export default StyleSheet.create({
     shadowColor: colors.darkGreen,
     shadowOpacity: 1,
     shadowRadius: 4,
-    height: 75,
+    height: 80,
   },
   icon: {
     alignSelf: 'flex-start',

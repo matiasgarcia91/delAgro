@@ -51,7 +51,7 @@ export default function reducer(state = initialState, action) {
     case SET_USER_DATA:
       return { ...state, userData: { phone: action.phone, state: action.state } };
     case LOGIN_PENDING:
-      return { ...state, pending: true };
+      return { ...state, pending: true, error: null };
     default:
       return state;
   }

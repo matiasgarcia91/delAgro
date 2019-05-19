@@ -37,7 +37,7 @@ export default StyleSheet.create({
     fontSize: global.midFontSize,
     fontWeight: 'bold',
     flex: 1,
-    color: colors.lightGreen,
+    color: colors.darkGreen,
   },
   border: {
     flex: 1,

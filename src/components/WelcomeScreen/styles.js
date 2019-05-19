@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native';
-
 import { colors } from '../../styles';
 
 export default StyleSheet.create({
@@ -7,15 +6,8 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: colors.creamBackground,
   },
-  formContainer: {
-    flex: 5,
-    justifyContent: 'flex-start',
-    alignItems: 'stretch',
-    marginBottom: 50,
-  },
   logoContainer: {
-    flex: 2.5,
-    marginTop: 30,
+    flex: 3.7,
   },
   logo: {
     alignSelf: 'center',
@@ -23,23 +15,19 @@ export default StyleSheet.create({
     flex: 1,
   },
   logoBottomContainer: {
-    flex: 1,
+    flex: 1.6,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingBottom:40,
-    width: 350,
-    height: 200,
   },
   logoBottom: {
     alignSelf: 'center',
     resizeMode: 'contain',
-    flex: 1,
+    flex: 0.55,
   },
   titleContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 30,
   },
   titleText: {
     marginBottom: 10,
@@ -47,19 +35,44 @@ export default StyleSheet.create({
     fontSize:30,
     flex:1,
     justifyContent: 'flex-start',
-    justifyContent: 'center',
     alignItems: 'center'
 
   },
+  formContainer: {
+    flex: 3.8,
+    justifyContent: 'flex-start',
+    alignItems: 'stretch',
+    marginBottom: -30,
+    zIndex: 2,
+  },
   bigButton: {
-    marginTop: 50,
-    padding: 10,
-    width: 250,
+    flexDirection: 'row',
+    marginBottom: 15,
+    width: '70%',
     height: 50,
+    borderWidth: 1,
+    borderRadius: 10,
+    backgroundColor: colors.transparent,
+  },
+  bigButtonText: {
+    color: colors.black,
+    fontSize: 17,
   },
   text: {
-    marginBottom: 10,
-    fontSize: 18,
-    fontWeight: '300',
-  }
+    fontSize: 17,
+    fontWeight: '500',
+    color: colors.darkGreen,
+  },
+  logoCowsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+    flex: 2.5,
+  },
+  logoCows: {
+    alignSelf: 'center',
+    resizeMode: 'contain',
+    flex: 1,
+  },
 });

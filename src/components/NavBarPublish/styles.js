@@ -15,6 +15,7 @@ export default StyleSheet.create({
     shadowColor: colors.darkGreen,
     shadowOpacity: 1,
     shadowRadius: 4,
+    alignItems: 'center',
   },
   sideButtons: {
     marginHorizontal: 20,

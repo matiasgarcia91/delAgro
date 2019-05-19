@@ -43,7 +43,7 @@ export default StyleSheet.create({
   priceText: {
     fontSize: global.midFontSize,
     fontWeight: 'bold',
-    color: colors.lightGreen,
+    color: colors.darkGreen,
     marginTop: 1,
   },
 });

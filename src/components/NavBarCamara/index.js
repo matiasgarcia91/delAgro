@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { View, TouchableHighlight, Text } from 'react-native';
+import { View, TouchableOpacity, Text, Alert } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 
 import styles from './styles';
@@ -21,18 +21,38 @@ export default class NavBarCamara extends PureComponent {
     this.props.navigation.dispatch(navigateHome);
   }
 
+  onPressCancel = () => {
+    const { video } = this.props;
+    const noVideoLoaded =  video === null;
+    if (noVideoLoaded){
+      this.navigateBack();
+    } else {
+      Alert.alert(
+        '',
+        '¿Está seguro que desea salir?',
+        [
+          { text: 'Aceptar', onPress: this.navigateBack },
+          { text: 'Cancelar', onPress: () => null, style: 'cancel' },
+        ],
+        { cancelable: true }
+      );
+    }
+  }
+
   render() {
+    const {title, onNextPress, video} = this.props;
+    const noVideoLoaded =  video === null;
     return (
       <View style={styles.bar} >
-        <TouchableHighlight onPress={this.navigateBack}>
+        <TouchableOpacity onPress={this.onPressCancel}>
           <Text style={styles.sideButtons}>Cancelar</Text>
-        </TouchableHighlight>
-        <TouchableHighlight>
-          <Text style={styles.title}>Grabar Video</Text>
-        </TouchableHighlight>
-        <TouchableHighlight onPress={this.navigate}>
-          <Text style={styles.sideButtons}>Siguiente</Text>
-        </TouchableHighlight>
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Text style={styles.title}>{title}</Text>
+        </TouchableOpacity>
+        <TouchableOpacity disabled={noVideoLoaded} onPress={onNextPress || this.navigate}>
+          <Text style={[styles.sideButtons, noVideoLoaded ? { opacity: 0.5 } : null]}>Siguiente</Text>
+        </TouchableOpacity>
       </View>
     );
   }

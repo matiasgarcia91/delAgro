@@ -16,15 +16,22 @@ export default StyleSheet.create({
   sideButtons: {
     color: '#2C5D3D',
     fontSize: 18,
-      fontWeight: 'bold',
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
   titleContainer: {
-    marginTop:15,
-    marginBottom:15
+    marginTop: 15,
+    marginBottom: 15,
   },
   lineStyle: {
     borderWidth: 0.5,
     borderColor: 'black',
     margin: 10,
+  },
+  imageContainer: {
+    justifyContent: 'center',
+    alignSelf: 'center',
+    // height: 120,
+    width: '100%',
   },
 });

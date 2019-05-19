@@ -4,6 +4,7 @@ const initialState = {
   terms: false,
   upload: false,
   register: false,
+  about: false,
 };
 
 export const SHOW_TERMS = 'modals/SHOW_TERMS';
@@ -12,6 +13,8 @@ export const SHOW_UPLOAD = 'modals/SHOW_UPLOAD';
 export const HIDE_TERMS = 'modals/HIDE_TERMS';
 export const HIDE_REGISTER = 'modals/HIDE_REGISTER';
 export const SHOW_REGISTER = 'modals/SHOW_REGISTER';
+export const HIDE_ABOUT = 'modals/HIDE_ABOUT';
+export const SHOW_ABOUT = 'modals/SHOW_ABOUT';
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
@@ -27,6 +30,10 @@ export default function reducer(state = initialState, action) {
       return { ...state, register: true };
     case HIDE_REGISTER:
       return { ...state, register: false };
+    case SHOW_ABOUT:
+      return { ...state, about: true };
+    case HIDE_ABOUT:
+      return { ...state, about: false };
     default:
       return state;
   }
@@ -54,4 +61,12 @@ export function showRegisterModal() {
 
 export function hideRegisterModal() {
   store.dispatch({ type: HIDE_REGISTER });
+}
+
+export function showAboutModal() {
+  store.dispatch({ type: SHOW_ABOUT });
+}
+
+export function hideAboutModal() {
+  store.dispatch({ type: HIDE_ABOUT });
 }

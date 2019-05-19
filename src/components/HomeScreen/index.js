@@ -4,10 +4,11 @@ import PropTypes from 'prop-types';
 
 import NavBarHome from '../NavBarHome';
 import CardItem from '../CardItem';
-
+import LoadingBanner from '../LoadingBanner';
+import FullScreenVideo from '../VideoPlayer/FullScreenVideo';
 import styles from './styles';
 
-const UploadBanner = () => (
+/* const UploadBanner = () => (
   <View style={styles.bar}>
     <View style={{ flex: 3, alignItems: 'center' }}>
       <Text style={styles.text}>Subiendo Publicación</Text>
@@ -16,7 +17,7 @@ const UploadBanner = () => (
       <ActivityIndicator size="small" color="#ff5000" />
     </View>
   </View>
-);
+); */
 
 export default class Home extends Component {
   constructor(props) {
@@ -38,7 +39,7 @@ export default class Home extends Component {
     if (allLots.length === 0) return fetchAllLots();
     const nrLots = allLots.length / 5;
     const page = nrLots.toFixed(0) === 0 ? 1 : Number(nrLots.toFixed(0));
-    return this.setState({ page })
+    return this.setState({ page });
   }
 
   onScrolled() {
@@ -74,24 +75,30 @@ export default class Home extends Component {
     );
   }
 
+
   render() {
     const list = this.props.allLots;
     const { navigation, uploading, refreshing } = this.props;
+    const { params } = navigation.state;
+    const landscape = params ? params.fullScreen : false;
+    const videoFullScreen = params && params.videofs ? params.videofs : false;
     const data =
       list.map(item => ({ key: `${item.id}`, navigation, lot: item }));
     return (
       <View style={{ flex: 1 }}>
-        <NavBarHome navigation={navigation} />
+        { !videoFullScreen && <NavBarHome navigation={navigation} />}
+        { videoFullScreen && <FullScreenVideo uri={videoFullScreen} navigation={navigation} /> }
         <View style={{ flex: 8 }}>
-          {uploading && <UploadBanner />}
+          {uploading && <LoadingBanner title="Subiendo Publicación" />}
           {list.length !== 0 &&
             <FlatList
+              scrollEnabled={!landscape}
               onScroll={this.onScrolled}
               data={data}
               renderItem={this.renderItem}
               onViewableItemsChanged={this.onViewableItemsChanged}
               onEndReached={this.onListEnd}
-              onEndReachedThreshold={0}
+              onEndReachedThreshold={0.5}
               refreshing={refreshing}
               onRefresh={this.onRefresh}
             />}

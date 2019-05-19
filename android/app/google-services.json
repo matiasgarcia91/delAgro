@@ -1,0 +1,40 @@
+{
+    "project_info": {
+      "project_number": "89503632065",
+      "firebase_url": "https://muuu-delagro.firebaseio.com",
+      "project_id": "muuu-delagro",
+      "storage_bucket": "muuu-delagro.appspot.com"
+    },
+    "client": [
+      {
+        "client_info": {
+          "mobilesdk_app_id": "1:89503632065:android:20d578732cbcb2ab",
+          "android_client_info": {
+            "package_name": "com.delagro"
+          }
+        },
+        "oauth_client": [
+          {
+            "client_id": "89503632065-v2gkaeu3p1lmp8h56l0fhthndvk73dlh.apps.googleusercontent.com",
+            "client_type": 3
+          }
+        ],
+        "api_key": [
+          {
+            "current_key": "AIzaSyD965YBxROyw9I8ImOFMwUx6jvjpx3v02U"
+          }
+        ],
+        "services": {
+          "appinvite_service": {
+            "other_platform_oauth_client": [
+              {
+                "client_id": "89503632065-v2gkaeu3p1lmp8h56l0fhthndvk73dlh.apps.googleusercontent.com",
+                "client_type": 3
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "configuration_version": "1"
+  }
